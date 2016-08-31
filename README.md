@@ -1,1 +1,1 @@
-hiya getup8's blog.
+getup8's blog.
