@@ -6,8 +6,18 @@
     <description>Recent content on The Blog of GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Aug 2016 22:00:43 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 31 Aug 2016 22:38:58 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>test</title>
+      <link>http://www.getup8.com/post/test/</link>
+      <pubDate>Wed, 31 Aug 2016 22:38:58 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/post/test/</guid>
+      <description>&lt;p&gt;Just a little test post!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Blogging in Hugo</title>
