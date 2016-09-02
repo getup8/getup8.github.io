@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GetUp8</title>
-    <link>http://www.getup8.com/</link>
-    <description>Recent content on GetUp8</description>
+    <title>GitHub on GetUp8</title>
+    <link>http://www.getup8.com/tags/github/</link>
+    <description>Recent content in GitHub on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Sep 2016 22:28:43 -0400</lastBuildDate>
-    <atom:link href="http://www.getup8.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>About</title>
-      <link>http://www.getup8.com/about/</link>
-      <pubDate>Thu, 01 Sep 2016 22:28:43 -0400</pubDate>
-      
-      <guid>http://www.getup8.com/about/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m Alex.  Will write more here soon.&lt;/p&gt;
-</description>
-    </item>
+    <lastBuildDate>Tue, 30 Aug 2016 22:00:43 -0400</lastBuildDate>
+    <atom:link href="http://www.getup8.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Blogging in Hugo</title>
