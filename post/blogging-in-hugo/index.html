@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
 		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
 		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
 
 		
 		<link rel="stylesheet" href="http://www.getup8.com/css/monosocialiconsfont.css">
@@ -84,7 +86,7 @@ are great instructions in the <a href="https://gohugo.io/overview/quickstart/">H
 <p>So now you have Hugo locally and you&rsquo;re ready to actually get something on the
 web!</p>
 
-<h1 id="step-1-create-the-github-respositories">Step 1: Create the GitHub Respositories</h1>
+<h2 id="step-1-create-the-github-respositories">Step 1: Create the GitHub Respositories</h2>
 
 <p>The way I decided to do it was to create two separate GitHub respositories, one
 to keep my raw Hugo source and then the GitHub Pages one to deploy the compiled
@@ -155,8 +157,7 @@ change <code>draft = true</code> to <code>draft = false</code>.</p>
 
 <h2 id="step-8-commit-your-changes-and-push">Step 8: Commit Your Changes and Push</h2>
 
-<pre><code class="language-sh">
-# Add all files to staging
+<pre><code class="language-sh"># Add all files to staging
 git add --all
 # Check the status, make sure files have been added
 git status
@@ -164,7 +165,6 @@ git status
 git commit -m &quot;Test post&quot;
 # Push to GitHub repository
 git push -u origin master
-
 </code></pre>
 
 <h2 id="step-9-deploy-to-github-pages">Step 9: Deploy to GitHub Pages</h2>
@@ -175,8 +175,7 @@ repository.</p>
 
 <p>From within the blog source directory again, execute the following.</p>
 
-<pre><code class="language-sh">
-# Generate the static files with your chosen theme and most importantly,
+<pre><code class="language-sh"># Generate the static files with your chosen theme and most importantly,
 # direct them to your *other* directory
 hugo -t hugo-future-imperfect -d ../getup8.github.io
 
@@ -187,7 +186,6 @@ cd ../getup8.github.io
 git add --all
 git commit -m &quot;Test post&quot;
 git push -u origin master
-
 </code></pre>
 
 <h2 id="fin">Fin!</h2>

@@ -50,7 +50,7 @@ are great instructions in the &lt;a href=&#34;https://gohugo.io/overview/quickst
 &lt;p&gt;So now you have Hugo locally and you&amp;rsquo;re ready to actually get something on the
 web!&lt;/p&gt;
 
-&lt;h1 id=&#34;step-1-create-the-github-respositories&#34;&gt;Step 1: Create the GitHub Respositories&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-create-the-github-respositories&#34;&gt;Step 1: Create the GitHub Respositories&lt;/h2&gt;
 
 &lt;p&gt;The way I decided to do it was to create two separate GitHub respositories, one
 to keep my raw Hugo source and then the GitHub Pages one to deploy the compiled
@@ -121,8 +121,7 @@ change &lt;code&gt;draft = true&lt;/code&gt; to &lt;code&gt;draft = false&lt;/co
 
 &lt;h2 id=&#34;step-8-commit-your-changes-and-push&#34;&gt;Step 8: Commit Your Changes and Push&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;
-# Add all files to staging
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Add all files to staging
 git add --all
 # Check the status, make sure files have been added
 git status
@@ -130,7 +129,6 @@ git status
 git commit -m &amp;quot;Test post&amp;quot;
 # Push to GitHub repository
 git push -u origin master
-
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;step-9-deploy-to-github-pages&#34;&gt;Step 9: Deploy to GitHub Pages&lt;/h2&gt;
@@ -141,8 +139,7 @@ repository.&lt;/p&gt;
 
 &lt;p&gt;From within the blog source directory again, execute the following.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;
-# Generate the static files with your chosen theme and most importantly,
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most importantly,
 # direct them to your *other* directory
 hugo -t hugo-future-imperfect -d ../getup8.github.io
 
@@ -153,7 +150,6 @@ cd ../getup8.github.io
 git add --all
 git commit -m &amp;quot;Test post&amp;quot;
 git push -u origin master
-
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;fin&#34;&gt;Fin!&lt;/h2&gt;
