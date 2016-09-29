@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on GetUp8</title>
-    <link>http://www.getup8.com/post/</link>
-    <description>Recent content in Posts on GetUp8</description>
+    <title>data structures on GetUp8</title>
+    <link>http://www.getup8.com/tags/data-structures/</link>
+    <description>Recent content in data structures on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Sep 2016 22:36:00 -0400</lastBuildDate>
-    <atom:link href="http://www.getup8.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.getup8.com/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Lecture 7: ArrayList, LinkedList, Stacks</title>
@@ -446,149 +446,6 @@ generics.  The compiler doesn&amp;rsquo;t know how to create an array of generic
 through anything) if you&amp;rsquo;re adding to the end.&lt;/p&gt;
 
 &lt;p&gt;ArrayListIterator() is not provided by java, need to implement ourselves.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Blogging in Hugo</title>
-      <link>http://www.getup8.com/post/blogging-in-hugo/</link>
-      <pubDate>Tue, 30 Aug 2016 22:00:43 -0400</pubDate>
-      
-      <guid>http://www.getup8.com/post/blogging-in-hugo/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; is a &amp;ldquo;Fast &amp;amp; Modern Website Engine&amp;rdquo; written in the
-Go programming language.  It&amp;rsquo;s what I&amp;rsquo;ve chosen to write this blog in because,
-well, it:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;is new(ish)&lt;/li&gt;
-&lt;li&gt;has an &lt;a href=&#34;https://github.com/spf13/hugo&#34;&gt;active community&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;is relatively simple&lt;/li&gt;
-&lt;li&gt;can deploy easily to &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; (free hosting yo!)&lt;/li&gt;
-&lt;li&gt;is fast&lt;/li&gt;
-&lt;li&gt;has some &lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;beautiful, modern, responsive (and might I add, free) themes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;is written in &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, which I kinda wanted to learn (and started at the Googs)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Below is a quick start guide to get blogging using Hugo and GitHub User Pages.
-I assume you&amp;rsquo;ve downloaded and installed Hugo and have a GitHub account.&lt;/p&gt;
-
-&lt;p&gt;I also assume you&amp;rsquo;ve created the base blog directory, and added a theme.  There
-are great instructions in the &lt;a href=&#34;https://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;So now you have Hugo locally and you&amp;rsquo;re ready to actually get something on the
-web!&lt;/p&gt;
-
-&lt;h2 id=&#34;step-1-create-the-github-respositories&#34;&gt;Step 1: Create the GitHub Respositories&lt;/h2&gt;
-
-&lt;p&gt;The way I decided to do it was to create two separate GitHub respositories, one
-to keep my raw Hugo source and then the GitHub Pages one to deploy the compiled
-HTML to.&lt;/p&gt;
-
-&lt;p&gt;In my case, that meant setting up:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/getup8/getup8.github.io&#34;&gt;https://github.com/getup8/getup8.github.io&lt;/a&gt; - my GitHub User Page
- respository and where we&amp;rsquo;ll story the generated static files for the blog&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/getup8/getup8-hugo&#34;&gt;https://github.com/getup8/getup8-hugo&lt;/a&gt; for the Hugo source&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Create both of those.  For the first, you&amp;rsquo;ll want to follow the instructions
-&lt;a href=&#34;https://pages.github.com/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;step-2-set-up-git-and-local-directories&#34;&gt;Step 2: Set up Git and Local Directories&lt;/h2&gt;
-
-&lt;p&gt;Now you&amp;rsquo;ll want to set up local directories that will tie to each of these
-repositories.  So create a directory named &lt;code&gt;blog&lt;/code&gt; or something of that sort
-and from within that directory run:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;git clone https://github.com/getup8/getup8.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;and&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;git clone https://github.com/getup8/getup8-hugo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This will create and initialize two local repositories.  Easy peasy.&lt;/p&gt;
-
-&lt;h2 id=&#34;step-3-set-up-hugo&#34;&gt;Step 3: Set up Hugo&lt;/h2&gt;
-
-&lt;p&gt;If you&amp;rsquo;ve followed the Hugo QuickStart guide, you have the Hugo directory
-structure set up elsewhere and you&amp;rsquo;ve downloaded a theme, etc.  Copy those
-files into your local source respository (e.g. &lt;code&gt;getup-hugo/&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;It should work just the same there as it was elsewhere.&lt;/p&gt;
-
-&lt;h2 id=&#34;step-4-create-a-blog-post&#34;&gt;Step 4: Create a Blog Post&lt;/h2&gt;
-
-&lt;p&gt;From within the local blog directory (&lt;code&gt;getup8-hugo&lt;/code&gt;), create a new post by
-running this on the command line:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;hugo new post/testing.md&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;step-5-write-the-post&#34;&gt;Step 5: Write the Post&lt;/h2&gt;
-
-&lt;p&gt;Well, this is the easy part.  Open that file (&lt;code&gt;getup8-hugo/content/post/testing.md&lt;/code&gt;)
-and write the dang post using markdown!  Maybe for now just put &amp;ldquo;Test&amp;rdquo; in the
-content section.&lt;/p&gt;
-
-&lt;h2 id=&#34;step-6-preview-the-post-locally&#34;&gt;Step 6: Preview the Post Locally&lt;/h2&gt;
-
-&lt;p&gt;To preview the draft, run the following:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;hugo server -t hugo-cactus-theme --buildDrafts&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;And then visit &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;step-7-undraft-the-post&#34;&gt;Step 7: Undraft the Post&lt;/h2&gt;
-
-&lt;p&gt;All looks good?  Undraft the post:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;hugo undraft content/post/blogging-in-hugo.md&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Alternatively, at the top of the markdown file in the TOML section, just
-change &lt;code&gt;draft = true&lt;/code&gt; to &lt;code&gt;draft = false&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;step-8-commit-your-changes-and-push&#34;&gt;Step 8: Commit Your Changes and Push&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Add all files to staging
-git add --all
-# Check the status, make sure files have been added
-git status
-# Commit locally
-git commit -m &amp;quot;Test post&amp;quot;
-# Push to GitHub repository
-git push -u origin master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;step-9-deploy-to-github-pages&#34;&gt;Step 9: Deploy to GitHub Pages&lt;/h2&gt;
-
-&lt;p&gt;Almost there but you&amp;rsquo;re not done yet.  This is the most important part.  We
-now need to generate our static files and push them to our GitHub Pages
-repository.&lt;/p&gt;
-
-&lt;p&gt;From within the blog source directory again, execute the following.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most importantly,
-# direct them to your *other* directory
-hugo -t hugo-cactus-theme -d ../getup8.github.io
-
-# Now move to that directory
-cd ../getup8.github.io
-
-# And commit all those files
-git add --all
-git commit -m &amp;quot;Test post&amp;quot;
-git push -u origin master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;fin&#34;&gt;Fin!&lt;/h2&gt;
-
-&lt;p&gt;With a little luck, when you browse to your blog&amp;rsquo;s URL, you&amp;rsquo;ll see your
-beautiful test post.  Once you have it working, you can actually automate
-Steps 8 and 9 (I automate Step 9) by creating a simple shell script.&lt;/p&gt;
-
-&lt;p&gt;Hope this was helpful, let me know if you have any trouble.&lt;/p&gt;
 </description>
     </item>
     

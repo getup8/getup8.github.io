@@ -1,0 +1,316 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 6: Linked Lists &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="cta" href="http://www.getup8.com/index.xml">Subscribe</a>
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 6: Linked Lists</h1>
+                    <h2 class="headline">
+                    September 26, 2016 
+                    <br>
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section id="post-body">
+                    
+
+<p>ArrayList
+Issues if we add to end if we&rsquo;re out of room or if we try to add in the beginning (or middle). O(N).</p>
+
+<h2 id="linkedlist">LinkedList</h2>
+
+<p>A few types of linked lists: singly and doubly linked.</p>
+
+<p>Singly linked list:</p>
+
+<ul>
+<li>Each piece of data we insert is placed in a <code>Node</code> object</li>
+<li><code>Node</code> class defines two instance variables
+
+<ol>
+<li>The data</li>
+<li>Object reference to another node: <code>next</code></li>
+</ol></li>
+<li>Don&rsquo;t have prescribed locations in memory where each element is. You have
+to start at the beginning and work your way to it using the <code>next</code>
+references.</li>
+<li><code>next</code> reference in last element of the list just points to <code>null</code></li>
+</ul>
+
+<p>Linked list class has a <code>head</code> reference to the first element of the list.  So
+to get the third element, you have to keep a counter and start at the first and
+go to the third using <code>next</code>.</p>
+
+<p>What if we want to access the nth element?  What&rsquo;s Big-Oh cost?  <em>O(N)</em>.
+What about for an array? <em>O(const)</em> or <em>O(1)</em>.</p>
+
+<p>Linked lists suck!  At least for <em>get</em> operations.  They&rsquo;re more expensive.</p>
+
+<pre><code class="language-java">class Node&lt;AnyType&gt; {
+    AnyType data;
+    Node&lt;AnyType&gt; next;
+}
+</code></pre>
+
+<pre><code class="language-java">class LinkedList&lt;AnyType&gt; {
+    Node&lt;AnyType&gt; head;
+    int size;
+
+    // Getter
+    AnyType get(int i) {
+        // Initially point to beginning of list
+        Node&lt;AnyType&gt; t = head;
+        int count = 0;
+        if (i &gt;= size) {
+            // throw exception..
+        }
+        while(count &lt; i) {
+            count++;
+            // You'll get a null pointer exception here if `i` is greater than
+            // the number of nodes in the list
+            t = t.next;
+        }
+        return t.data;
+    }
+}
+</code></pre>
+
+<p>So what would the cost be to insert a new value at the beginning of the list?
+Order 1. <em>O(1)</em>.</p>
+
+<ol>
+<li>Create a new node</li>
+<li>Put data into it</li>
+<li>Set <code>next</code> equal to <code>head</code></li>
+<li>Make <code>head</code> refer to it</li>
+</ol>
+
+<p>What about if you want to insert at the end?  You need to iterate all the way
+to the end since you only have a reference to <code>head</code>.  So it&rsquo;s O(N).</p>
+
+<p>What about the middle?  O(N) still.  But once I have the reference to the node
+I want to insert after already, it&rsquo;s easy and O(1).  Remember that.  So if
+you&rsquo;re already moving across the list, and you decide you want to insert
+something, it&rsquo;s easy and cheap.</p>
+
+<p>Another benefit: We don&rsquo;t need to specify how large this list is going to be.</p>
+
+<p>This is a building block for other data structures.</p>
+
+<h2 id="doubly-linked-lists">Doubly Linked Lists</h2>
+
+<p>You have a head and a tail.  You add a <code>previous</code> pointer.  So you can move in
+both directions, forwards or backwards.</p>
+
+<p>Iterator interface.  ListIterator interface adds an extra bit that allows you
+to move forward or backward; it exploits the doubly linked list.</p>
+
+<p>Uses &ldquo;sentinal nodes&rdquo;.  The head data has no data.  The first piece of data is
+actually at head.next().  The tail also doesn&rsquo;t have any data.  The last node
+is tail.previous().</p>
+
+<p>Nodes now have three fields:</p>
+
+<ol>
+<li>data</li>
+<li>previous</li>
+<li>next</li>
+</ol>
+
+<p>An empty doubly linked list:
+null -&gt; head -&gt; tail -&gt; null</p>
+
+<p>If we&rsquo;re going to insert data, we&rsquo;d insert after head or before tail.</p>
+
+<ol>
+<li>Create a node, populated with data</li>
+<li><code>previous</code> points to <code>head</code></li>
+<li><code>next</code> points to <code>head.next</code> (instead of <code>tail</code>)</li>
+<li><code>head.next.previous</code> (or <code>tail.previous</code>) points to it</li>
+<li><code>head.next</code> points to it</li>
+</ol>
+
+<p>You can actually implement both types with sentinal nodes (singly and doubly).</p>
+
+<p>Next class:
+ArrayList code.
+Doubly LinkedList code.</p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                <a href="https://twitter.com/getup8">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="dark">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    </a>
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fpost%2fclasses%2fdata-structures%2flecture6%2f - Lecture%206%3a%20Linked%20Lists by @getup8"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </footer>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/post\/classes\/data-structures\/lecture6\/';
+    var disqus_title = 'Lecture 6: Linked Lists';
+    var disqus_url = 'http:\/\/www.getup8.com\/post\/classes\/data-structures\/lecture6\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+    
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/classes/data-structures/lecture7/">Lecture 7: ArrayList, LinkedList, Stacks<aside class="dates">Sep 28</aside></a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/classes/data-structures/lecture6/">Lecture 6: Linked Lists<aside class="dates">Sep 26</aside></a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/classes/data-structures/lecture5/">Lecture 5: Iterators and Interfaces<aside class="dates">Sep 21</aside></a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/blogging-in-hugo/">Blogging in Hugo<aside class="dates">Aug 30</aside></a>
+        </li>
+        
+   
+</ul>
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>
