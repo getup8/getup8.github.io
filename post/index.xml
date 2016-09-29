@@ -96,7 +96,7 @@ content section.&lt;/p&gt;
 
 &lt;p&gt;To preview the draft, run the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;hugo server -t hugo-future-imperfect --buildDrafts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo server -t hugo-cactus-theme --buildDrafts&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;And then visit &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;/p&gt;
 
@@ -131,7 +131,7 @@ repository.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most importantly,
 # direct them to your *other* directory
-hugo -t hugo-future-imperfect -d ../getup8.github.io
+hugo -t hugo-cactus-theme -d ../getup8.github.io
 
 # Now move to that directory
 cd ../getup8.github.io

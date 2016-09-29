@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>GitHub on GetUp8</title>
+    <title>github on GetUp8</title>
     <link>http://www.getup8.com/tags/github/</link>
-    <description>Recent content in GitHub on GetUp8</description>
+    <description>Recent content in github on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 30 Aug 2016 22:00:43 -0400</lastBuildDate>
@@ -96,7 +96,7 @@ content section.&lt;/p&gt;
 
 &lt;p&gt;To preview the draft, run the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;hugo server -t hugo-future-imperfect --buildDrafts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo server -t hugo-cactus-theme --buildDrafts&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;And then visit &lt;a href=&#34;http://localhost:1313/&#34;&gt;http://localhost:1313/&lt;/a&gt;&lt;/p&gt;
 
@@ -131,7 +131,7 @@ repository.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most importantly,
 # direct them to your *other* directory
-hugo -t hugo-future-imperfect -d ../getup8.github.io
+hugo -t hugo-cactus-theme -d ../getup8.github.io
 
 # Now move to that directory
 cd ../getup8.github.io
