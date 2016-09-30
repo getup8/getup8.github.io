@@ -11,10 +11,10 @@
     
     <item>
       <title>Lecture 7: ArrayList, LinkedList, Stacks</title>
-      <link>http://www.getup8.com/post/classes/data-structures/lecture7/</link>
+      <link>http://www.getup8.com/classes/data-structures/lecture7/</link>
       <pubDate>Wed, 28 Sep 2016 22:36:00 -0400</pubDate>
       
-      <guid>http://www.getup8.com/post/classes/data-structures/lecture7/</guid>
+      <guid>http://www.getup8.com/classes/data-structures/lecture7/</guid>
       <description>
 
 &lt;h2 id=&#34;agenda&#34;&gt;Agenda&lt;/h2&gt;
@@ -218,11 +218,45 @@ along with the other functions above.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Classes</title>
+      <link>http://www.getup8.com/classes/</link>
+      <pubDate>Wed, 28 Sep 2016 22:28:43 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/</guid>
+      <description>
+
+&lt;h2 id=&#34;data-structures-in-java&#34;&gt;Data Structures in Java&lt;/h2&gt;
+
+&lt;h3 id=&#34;columbia-university-coms-3134&#34;&gt;Columbia University, COMS 3134&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Fall 2016&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Columbia University: Data Structures in Java (COMS 3134)</title>
+      <link>http://www.getup8.com/classes/data-structures/</link>
+      <pubDate>Wed, 28 Sep 2016 22:28:43 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/</guid>
+      <description>
+
+&lt;h2 id=&#34;lecture-notes&#34;&gt;Lecture Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lecture 5&lt;/li&gt;
+&lt;li&gt;Lecture 6&lt;/li&gt;
+&lt;li&gt;Lecture 7&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Lecture 6: Linked Lists</title>
-      <link>http://www.getup8.com/post/classes/data-structures/lecture6/</link>
+      <link>http://www.getup8.com/classes/data-structures/lecture6/</link>
       <pubDate>Mon, 26 Sep 2016 22:49:10 -0400</pubDate>
       
-      <guid>http://www.getup8.com/post/classes/data-structures/lecture6/</guid>
+      <guid>http://www.getup8.com/classes/data-structures/lecture6/</guid>
       <description>
 
 &lt;p&gt;ArrayList
@@ -351,10 +385,10 @@ Doubly LinkedList code.&lt;/p&gt;
     
     <item>
       <title>Lecture 5: Iterators and Interfaces</title>
-      <link>http://www.getup8.com/post/classes/data-structures/lecture5/</link>
+      <link>http://www.getup8.com/classes/data-structures/lecture5/</link>
       <pubDate>Wed, 21 Sep 2016 22:49:15 -0400</pubDate>
       
-      <guid>http://www.getup8.com/post/classes/data-structures/lecture5/</guid>
+      <guid>http://www.getup8.com/classes/data-structures/lecture5/</guid>
       <description>&lt;p&gt;A list is a type of collection.&lt;/p&gt;
 
 &lt;p&gt;A collection is&lt;/p&gt;

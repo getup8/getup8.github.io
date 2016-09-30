@@ -1,0 +1,263 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 5: Iterators and Interfaces &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="cta" href="http://www.getup8.com/index.xml">Subscribe</a>
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 5: Iterators and Interfaces</h1>
+                    <h2 class="headline">
+                    September 21, 2016 
+                    <br>
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section id="post-body">
+                    <p>A list is a type of collection.</p>
+
+<p>A collection is</p>
+
+<p>Iterator is another class that attaches to a particular Collection used to go
+through the Collection, item by item.</p>
+
+<p>Can have multiple iterators attached to a collection moving at different
+speeds, different locations.</p>
+
+<p>java.util.Iterator is an &ldquo;interface&rdquo; provides methods.</p>
+
+<p>Iterator method is a factory method and its job is to construct a class. It&rsquo;s
+job is to create some Iterator object that iterates across the collection and
+returns something.</p>
+
+<p>An iterator is its own object of type Iterator.</p>
+
+<p>This is all in chapter 3 of the book..</p>
+
+<p>Iterators have 3 methods:</p>
+
+<ol>
+<li>Boolean: hasNext (if true, move on to next, if false, end of list)</li>
+<li>AnyType next(): returns current element (telling where we aer),
+ advances to next</li>
+<li>void remove(): remove the item? or the iterator? think the latter.
+<br /></li>
+</ol>
+
+<p>while hasNext() == True:
+  next()</p>
+
+<p>List interface extends Collection.  So all methods included in List.</p>
+
+<p>So the List interface adds additional methods to take advantage of ordered
+space.</p>
+
+<p>ListIterator is same as Iterator but can move forward/backward since lists have
+an order (Collections do not)</p>
+
+<p>Some mumbo jumbo about generics and objects and using int vs Integer???</p>
+
+<p>Advanced for loop expects an iterable / iterator. (a.iterator())
+It creates an iterator and uses it to go through.
+Understand how to make something work in an advanced for loop.</p>
+
+<p>Iterator is generic so defaults to object.  Need to cast it like
+java.util.Iterator<Integer></p>
+
+<hr />
+
+<p>When we create an ArrayList, we need to preallocate the size (let&rsquo;s say 10
+elements) and keep track of the first empty location.  So on instantiation,
+it&rsquo;s location zero.  We don&rsquo;t know how long it&rsquo;s going to be.</p>
+
+<p>Adding elements at end of list is O(1) operation until you fill up the list
+(the preallocated size) and then it&rsquo;s O(n) to copy it to the new array.</p>
+
+<p>So how big do we make it when we need a larger list?  Wasteful to just make it
+11 since it&rsquo;s quite possible to make it 12 later.</p>
+
+<p>Randomly, they multiply by 1.5.  Or 2.</p>
+
+<p>Removing elements also O(1). So is changing a specific element.</p>
+
+<p>What if you want to insert an element in the middle or beginning?  You have to
+copy everything and move it over.  So O(n).  n is how many things you&rsquo;re
+moving?</p>
+
+<hr />
+
+<p>On Canvas there is a download of all the code in the textbook.</p>
+
+<p>Difference between extends and implements?
+implements Iterator..</p>
+
+<p>theSize is how many items are filled up.
+Length of theItems is how long the arraylist is.</p>
+
+<p>ensureCapacity().</p>
+
+<p>When creating the array, you construct an array of objects and then cast it to
+generics.  The compiler doesn&rsquo;t know how to create an array of generics.</p>
+
+<p>&ndash;</p>
+
+<p>By starting at the end with add() you don&rsquo;t have to move anything (or iterate
+through anything) if you&rsquo;re adding to the end.</p>
+
+<p>ArrayListIterator() is not provided by java, need to implement ourselves.</p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                <a href="https://twitter.com/getup8">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="dark">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    </a>
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture5%2f - Lecture%205%3a%20Iterators%20and%20Interfaces by @getup8"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </footer>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture5\/';
+    var disqus_title = 'Lecture 5: Iterators and Interfaces';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture5\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+    
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/blogging-in-hugo/">Blogging in Hugo<aside class="dates">Aug 30</aside></a>
+        </li>
+        
+   
+</ul>
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

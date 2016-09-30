@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>data structures on GetUp8</title>
-    <link>http://www.getup8.com/tags/data-structures/</link>
-    <description>Recent content in data structures on GetUp8</description>
+    <title>Classes on GetUp8</title>
+    <link>http://www.getup8.com/classes/</link>
+    <description>Recent content in Classes on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Sep 2016 22:36:00 -0400</lastBuildDate>
-    <atom:link href="http://www.getup8.com/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.getup8.com/classes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Lecture 7: ArrayList, LinkedList, Stacks</title>
@@ -213,6 +213,40 @@ along with the other functions above.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Similar to Stacks, but FIFO, first in, first out.&lt;/li&gt;
 &lt;li&gt;Adding from one end, Removing from the other.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Classes</title>
+      <link>http://www.getup8.com/classes/</link>
+      <pubDate>Wed, 28 Sep 2016 22:28:43 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/</guid>
+      <description>
+
+&lt;h2 id=&#34;data-structures-in-java&#34;&gt;Data Structures in Java&lt;/h2&gt;
+
+&lt;h3 id=&#34;columbia-university-coms-3134&#34;&gt;Columbia University, COMS 3134&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Fall 2016&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Columbia University: Data Structures in Java (COMS 3134)</title>
+      <link>http://www.getup8.com/classes/data-structures/</link>
+      <pubDate>Wed, 28 Sep 2016 22:28:43 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/</guid>
+      <description>
+
+&lt;h2 id=&#34;lecture-notes&#34;&gt;Lecture Notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lecture 5&lt;/li&gt;
+&lt;li&gt;Lecture 6&lt;/li&gt;
+&lt;li&gt;Lecture 7&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
