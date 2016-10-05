@@ -142,11 +142,48 @@ git commit -m &amp;quot;Test post&amp;quot;
 git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;You can actually just wrap up all those commands into a shell script to make it
+much easier to deploy in the future.  Something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;deploy.sh&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+# Change this to the relative path of your other directory
+PAGES_PATH=&amp;quot;../getup8.github.io&amp;quot;
+DIR=&amp;quot;$( cd &amp;quot;$( dirname &amp;quot;${BASH_SOURCE[0]}&amp;quot; )&amp;quot; &amp;amp;&amp;amp; pwd )&amp;quot;
+
+echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
+
+# Build project and direct the output to the GitHub Pages repository
+hugo -d ${PAGES_PATH}
+
+# Now move to that directory
+cd ${PAGES_PATH}
+
+# Set commit message to first arg or default.
+MSG=&amp;quot;Rebuilding site `date`&amp;quot;
+if [ $# -eq 1 ]
+  then MSG=&amp;quot;$1&amp;quot;
+fi
+
+# Add, commit and push changes.
+git add --all
+git commit -m &amp;quot;${MSG}&amp;quot;
+git push -u origin master
+
+# Come Back
+cd ${DIR}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now after commiting changes, you can deploy to the blog in one step:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;./deploy.sh &amp;quot;Initial blog post&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;fin&#34;&gt;Fin!&lt;/h2&gt;
 
 &lt;p&gt;With a little luck, when you browse to your blog&amp;rsquo;s URL, you&amp;rsquo;ll see your
-beautiful test post.  Once you have it working, you can actually automate
-Steps 8 and 9 (I automate Step 9) by creating a simple shell script.&lt;/p&gt;
+beautiful test post.&lt;/p&gt;
 
 &lt;p&gt;Hope this was helpful, let me know if you have any trouble.&lt;/p&gt;
 </description>
