@@ -6,8 +6,192 @@
     <description>Recent content on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Oct 2016 22:36:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 05 Oct 2016 22:36:00 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lecture 9: Stacks, Queues, Trees</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture9/</link>
+      <pubDate>Wed, 05 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture9/</guid>
+      <description>
+
+&lt;h2 id=&#34;stacks-and-postfix-infix-expression-continued&#34;&gt;Stacks and Postfix / Infix Expression (continued)&lt;/h2&gt;
+
+&lt;p&gt;Postfix and Infix expressions.&lt;/p&gt;
+
+&lt;p&gt;If we have an infix expression, we scan through each token and when we
+encounter an operator, we don&amp;rsquo;t have all of the operands.  So we &lt;code&gt;push&lt;/code&gt; that
+operator onto the stack (as long as it&amp;rsquo;s empty).  If it&amp;rsquo;s not empty and there
+are other operators, we need to figure out order of operations.&lt;/p&gt;
+
+&lt;p&gt;So we look at the top of the stack and check if it has a lower precedence of
+the one we&amp;rsquo;re processing, we &lt;code&gt;push&lt;/code&gt; on to the stack.  If it&amp;rsquo;s higher, we &lt;code&gt;pop&lt;/code&gt;
+it off and do the operation and keep checking until the stack is empty or we
+find an operator of lower precedence.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;Example 1&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;a * b - c + d&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a&lt;/li&gt;
+&lt;li&gt;stack = [*]&lt;/li&gt;
+&lt;li&gt;b&lt;/li&gt;
+&lt;li&gt;stack = [-, *]&lt;/li&gt;
+&lt;li&gt;c&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(-)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;stack = [+, *]&lt;/li&gt;
+&lt;li&gt;&amp;lt;run out of tokens]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(+)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(*)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;a b * c - d +&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;What about parentheses?  You &lt;code&gt;push&lt;/code&gt; open parentheses onto the stack.
+Eventually you reach the end of the parentheses; when you do, you keep &lt;code&gt;pop&lt;/code&gt;ing
+the stack until you get the open parentheses.  Then you &lt;code&gt;pop&lt;/code&gt; it out and get
+rid of both parentheses and keep going.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;Example 2&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;a + b * c + (d * e + f) * g&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a&lt;/li&gt;
+&lt;li&gt;[+]&lt;/li&gt;
+&lt;li&gt;b&lt;/li&gt;
+&lt;li&gt;[*, +]&lt;/li&gt;
+&lt;li&gt;c&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(*)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(+)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;[+]&lt;/li&gt;
+&lt;li&gt;[(, +]&lt;/li&gt;
+&lt;li&gt;d&lt;/li&gt;
+&lt;li&gt;[*, (, +]&lt;/li&gt;
+&lt;li&gt;e&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(*)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;[+, (, +]&lt;/li&gt;
+&lt;li&gt;f&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(+)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;g&lt;/li&gt;
+&lt;li&gt;[*, +]&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(*)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop(+)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;a b c * + d e * f + g * +&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Stacks are used in programs (all programs?) and are very present in how
+recursion works.  Each level of the recursion pushes the step onto the stack
+until we return and we start popping them all off.&lt;/p&gt;
+
+&lt;h2 id=&#34;queues-and-the-josephus-game&#34;&gt;Queues and the Josephus Game&lt;/h2&gt;
+
+&lt;p&gt;You have &lt;code&gt;n&lt;/code&gt; items in a circle, in a specific order.&lt;/p&gt;
+
+&lt;p&gt;Then you have a second value &lt;code&gt;k&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You count from the first to the &lt;code&gt;k&lt;/code&gt;th person.  That person is then out.  Then
+you count the next &lt;code&gt;k&lt;/code&gt;th and that person is out and you keep going.  You wrap
+back around in a circle to the beginning and keep going until there&amp;rsquo;s only one
+person left and that&amp;rsquo;s the winner.&lt;/p&gt;
+
+&lt;p&gt;Can you figure out which position wins given &lt;code&gt;N&lt;/code&gt; and &lt;code&gt;k&lt;/code&gt;?  Tough to do I guess.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s simulate it instead.  Using a Queue.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Example 3&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;n = 12&lt;/code&gt; and &lt;code&gt;k = 3&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;3, 6, 9, 12, 4, 8, 1, 7, 2, 11, 5.  10 is the winner.&lt;/p&gt;
+
+&lt;p&gt;So in a queue, add them all in order.  As you process, &lt;code&gt;dequeue&lt;/code&gt; and then
+&lt;code&gt;enqueue&lt;/code&gt; it to the end of the list until the &lt;code&gt;k&lt;/code&gt;th element, you &lt;code&gt;dequeue&lt;/code&gt;
+but don&amp;rsquo;t &lt;code&gt;enqueue&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;implementing-a-queue&#34;&gt;Implementing a Queue&lt;/h3&gt;
+
+&lt;p&gt;We would use a list.  We want to add at one end and remove at the other.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;code&gt;LinkedList&lt;/code&gt; API in Java, the &lt;code&gt;add&lt;/code&gt; method adds to the end of the list
+by default.  There&amp;rsquo;s also a &lt;code&gt;remove&lt;/code&gt; method that takes no input and by default,
+removes the first element.  So these directly map to a Queue.&lt;/p&gt;
+
+&lt;p&gt;Java actually has a Queue interface.  In the homework, we implement &lt;code&gt;MyQueue&lt;/code&gt;
+which is slightly different (simplified I believe).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;LinkedList&lt;/code&gt; actually implements &lt;code&gt;Queue&lt;/code&gt;.  So it uses &lt;code&gt;enqueue&lt;/code&gt; and &lt;code&gt;dequeue&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import java.util.LinkedList;
+import java.util.Queue;
+
+public class Josephus {
+  public static void main(String[] args) {
+    int n = 12;
+    int k = 3;
+    // Queue is an interface so we can use it as type
+    // LinkedList implements Queue so this works
+    // We constrain ourselves to the Queue interface which is a subset
+    // of LinkedList
+    Queue&amp;lt;Integer&amp;gt; q = new LinkedList&amp;lt;Integer&amp;gt;;
+    
+    // Initialize our Queue full of peeps
+    for (int i = 1; i &amp;lt;= n; i++) {
+      q.add(i);
+    }
+    
+    // Keep going until there&#39;s only one person left
+    while(q.size &amp;gt; 1) {
+      for (int i = 0; i &amp;lt; k - 1) {
+        q.add(q.remove());
+      }
+      // We&#39;re now at the kth element so remove it
+      q.remove()
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;trees&#34;&gt;Trees&lt;/h2&gt;
+
+&lt;p&gt;We&amp;rsquo;re going to go up to AVL trees, which is through 4.4 (check that though).&lt;/p&gt;
+
+&lt;p&gt;Trees have a root node and zero or more sub-nodes hanging off the root node.
+Each of these sub-nodes are in turn trees.&lt;/p&gt;
+
+&lt;p&gt;Trees are like Graphs but are not cyclical (you only in one direction). Maybe
+read about Graphs.&lt;/p&gt;
+
+&lt;p&gt;Linked lists are actually Trees (kinda) with only one path to follow.&lt;/p&gt;
+
+&lt;p&gt;The sub-nodes are called children and the root is the parent.  Nodes with no
+children are called leaf nodes.  Nodes with children are called interior /
+inner nodes.&lt;/p&gt;
+
+&lt;h3 id=&#34;height-of-a-node&#34;&gt;Height of a Node&lt;/h3&gt;
+
+&lt;p&gt;The length of a path is the number of edges we traverse (the connectors between
+nodes).  The height of a node is the length of the longest path to a leaf.&lt;/p&gt;
+
+&lt;h3 id=&#34;depth-of-a-node&#34;&gt;Depth of a Node&lt;/h3&gt;
+
+&lt;p&gt;Depth of a node is the length of the unique path to the root.  Depth of the
+root is zero.  Each level of a tree is basically increasing the depth by one.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Lecture 8: Stacks</title>
@@ -811,7 +995,7 @@ git push -u origin master
 &lt;p&gt;You can actually just wrap up all those commands into a shell script to make it
 much easier to deploy in the future.  Something like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;deploy.sh&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div style=&#34;margin-bottom:-1rem;&#34;&gt;&lt;em&gt;deploy.sh&lt;/em&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
 

@@ -1,0 +1,347 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 9: Stacks, Queues, Trees &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="cta" href="http://www.getup8.com/index.xml">Subscribe</a>
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 9: Stacks, Queues, Trees</h1>
+                    <h2 class="headline">
+                    October 5, 2016 
+                    <br>
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section id="post-body">
+                    
+
+<h2 id="stacks-and-postfix-infix-expression-continued">Stacks and Postfix / Infix Expression (continued)</h2>
+
+<p>Postfix and Infix expressions.</p>
+
+<p>If we have an infix expression, we scan through each token and when we
+encounter an operator, we don&rsquo;t have all of the operands.  So we <code>push</code> that
+operator onto the stack (as long as it&rsquo;s empty).  If it&rsquo;s not empty and there
+are other operators, we need to figure out order of operations.</p>
+
+<p>So we look at the top of the stack and check if it has a lower precedence of
+the one we&rsquo;re processing, we <code>push</code> on to the stack.  If it&rsquo;s higher, we <code>pop</code>
+it off and do the operation and keep checking until the stack is empty or we
+find an operator of lower precedence.</p>
+
+<hr />
+
+<p><em>Example 1</em></p>
+
+<p><code>a * b - c + d</code></p>
+
+<p>Steps:</p>
+
+<ul>
+<li>a</li>
+<li>stack = [*]</li>
+<li>b</li>
+<li>stack = [-, *]</li>
+<li>c</li>
+<li><code>pop(-)</code></li>
+<li>stack = [+, *]</li>
+<li>&lt;run out of tokens]</li>
+<li><code>pop(+)</code></li>
+<li><code>pop(*)</code></li>
+</ul>
+
+<p><code>a b * c - d +</code></p>
+
+<p>What about parentheses?  You <code>push</code> open parentheses onto the stack.
+Eventually you reach the end of the parentheses; when you do, you keep <code>pop</code>ing
+the stack until you get the open parentheses.  Then you <code>pop</code> it out and get
+rid of both parentheses and keep going.</p>
+
+<hr />
+
+<p><em>Example 2</em></p>
+
+<p><code>a + b * c + (d * e + f) * g</code></p>
+
+<p>Steps:</p>
+
+<ul>
+<li>a</li>
+<li>[+]</li>
+<li>b</li>
+<li>[*, +]</li>
+<li>c</li>
+<li><code>pop(*)</code></li>
+<li><code>pop(+)</code></li>
+<li>[+]</li>
+<li>[(, +]</li>
+<li>d</li>
+<li>[*, (, +]</li>
+<li>e</li>
+<li><code>pop(*)</code></li>
+<li>[+, (, +]</li>
+<li>f</li>
+<li><code>pop(+)</code></li>
+<li><code>pop(()</code></li>
+<li>g</li>
+<li>[*, +]</li>
+<li><code>pop(*)</code></li>
+<li><code>pop(+)</code></li>
+</ul>
+
+<p><code>a b c * + d e * f + g * +</code></p>
+
+<p>Stacks are used in programs (all programs?) and are very present in how
+recursion works.  Each level of the recursion pushes the step onto the stack
+until we return and we start popping them all off.</p>
+
+<h2 id="queues-and-the-josephus-game">Queues and the Josephus Game</h2>
+
+<p>You have <code>n</code> items in a circle, in a specific order.</p>
+
+<p>Then you have a second value <code>k</code>.</p>
+
+<p>You count from the first to the <code>k</code>th person.  That person is then out.  Then
+you count the next <code>k</code>th and that person is out and you keep going.  You wrap
+back around in a circle to the beginning and keep going until there&rsquo;s only one
+person left and that&rsquo;s the winner.</p>
+
+<p>Can you figure out which position wins given <code>N</code> and <code>k</code>?  Tough to do I guess.</p>
+
+<p>Let&rsquo;s simulate it instead.  Using a Queue.</p>
+
+<p><em>Example 3</em></p>
+
+<p><code>n = 12</code> and <code>k = 3</code></p>
+
+<p>3, 6, 9, 12, 4, 8, 1, 7, 2, 11, 5.  10 is the winner.</p>
+
+<p>So in a queue, add them all in order.  As you process, <code>dequeue</code> and then
+<code>enqueue</code> it to the end of the list until the <code>k</code>th element, you <code>dequeue</code>
+but don&rsquo;t <code>enqueue</code>.</p>
+
+<h3 id="implementing-a-queue">Implementing a Queue</h3>
+
+<p>We would use a list.  We want to add at one end and remove at the other.</p>
+
+<p>In the <code>LinkedList</code> API in Java, the <code>add</code> method adds to the end of the list
+by default.  There&rsquo;s also a <code>remove</code> method that takes no input and by default,
+removes the first element.  So these directly map to a Queue.</p>
+
+<p>Java actually has a Queue interface.  In the homework, we implement <code>MyQueue</code>
+which is slightly different (simplified I believe).</p>
+
+<p><code>LinkedList</code> actually implements <code>Queue</code>.  So it uses <code>enqueue</code> and <code>dequeue</code>.</p>
+
+<pre><code class="language-java">import java.util.LinkedList;
+import java.util.Queue;
+
+public class Josephus {
+  public static void main(String[] args) {
+    int n = 12;
+    int k = 3;
+    // Queue is an interface so we can use it as type
+    // LinkedList implements Queue so this works
+    // We constrain ourselves to the Queue interface which is a subset
+    // of LinkedList
+    Queue&lt;Integer&gt; q = new LinkedList&lt;Integer&gt;;
+    
+    // Initialize our Queue full of peeps
+    for (int i = 1; i &lt;= n; i++) {
+      q.add(i);
+    }
+    
+    // Keep going until there's only one person left
+    while(q.size &gt; 1) {
+      for (int i = 0; i &lt; k - 1) {
+        q.add(q.remove());
+      }
+      // We're now at the kth element so remove it
+      q.remove()
+    }
+  }
+}
+</code></pre>
+
+<h2 id="trees">Trees</h2>
+
+<p>We&rsquo;re going to go up to AVL trees, which is through 4.4 (check that though).</p>
+
+<p>Trees have a root node and zero or more sub-nodes hanging off the root node.
+Each of these sub-nodes are in turn trees.</p>
+
+<p>Trees are like Graphs but are not cyclical (you only in one direction). Maybe
+read about Graphs.</p>
+
+<p>Linked lists are actually Trees (kinda) with only one path to follow.</p>
+
+<p>The sub-nodes are called children and the root is the parent.  Nodes with no
+children are called leaf nodes.  Nodes with children are called interior /
+inner nodes.</p>
+
+<h3 id="height-of-a-node">Height of a Node</h3>
+
+<p>The length of a path is the number of edges we traverse (the connectors between
+nodes).  The height of a node is the length of the longest path to a leaf.</p>
+
+<h3 id="depth-of-a-node">Depth of a Node</h3>
+
+<p>Depth of a node is the length of the unique path to the root.  Depth of the
+root is zero.  Each level of a tree is basically increasing the depth by one.</p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                <a href="https://twitter.com/getup8">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="dark">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    </a>
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture9%2f - Lecture%209%3a%20Stacks%2c%20Queues%2c%20Trees by @getup8"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </footer>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture9\/';
+    var disqus_title = 'Lecture 9: Stacks, Queues, Trees';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture9\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+    
+    
+        
+        <li>
+            <a href="http://www.getup8.com/post/blogging-in-hugo/">Blogging in Hugo<aside class="dates">Aug 30</aside></a>
+        </li>
+        
+   
+</ul>
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

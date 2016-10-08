@@ -145,7 +145,7 @@ git push -u origin master
 &lt;p&gt;You can actually just wrap up all those commands into a shell script to make it
 much easier to deploy in the future.  Something like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;deploy.sh&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div style=&#34;margin-bottom:-1rem;&#34;&gt;&lt;em&gt;deploy.sh&lt;/em&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
 
