@@ -963,10 +963,13 @@ change &lt;code&gt;draft = true&lt;/code&gt; to &lt;code&gt;draft = false&lt;/co
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Add all files to staging
 git add --all
+
 # Check the status, make sure files have been added
 git status
+
 # Commit locally
 git commit -m &amp;quot;Test post&amp;quot;
+
 # Push to GitHub repository
 git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;
@@ -979,8 +982,8 @@ repository.&lt;/p&gt;
 
 &lt;p&gt;From within the blog source directory again, execute the following.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most importantly,
-# direct them to your *other* directory
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Generate the static files with your chosen theme and most
+# importantly, direct them to your *other* directory
 hugo -t hugo-cactus-theme -d ../getup8.github.io
 
 # Now move to that directory

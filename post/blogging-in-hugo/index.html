@@ -28,7 +28,7 @@
        <nav class="main-nav">
 	
 	
-		<a href='http://www.getup8.com/'> <span class="arrow">←</span>Home</a>
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
 	
 
 	
@@ -36,7 +36,7 @@
 	
 
 	
-	<a class="cta" href="http://www.getup8.com/index.xml">Subscribe</a>
+	<a class="button" href="http://www.getup8.com/index.xml">Subscribe</a>
 	
 </nav>
 
@@ -160,10 +160,13 @@ change <code>draft = true</code> to <code>draft = false</code>.</p>
 
 <pre><code class="language-sh"># Add all files to staging
 git add --all
+
 # Check the status, make sure files have been added
 git status
+
 # Commit locally
 git commit -m &quot;Test post&quot;
+
 # Push to GitHub repository
 git push -u origin master
 </code></pre>
@@ -176,8 +179,8 @@ repository.</p>
 
 <p>From within the blog source directory again, execute the following.</p>
 
-<pre><code class="language-sh"># Generate the static files with your chosen theme and most importantly,
-# direct them to your *other* directory
+<pre><code class="language-sh"># Generate the static files with your chosen theme and most
+# importantly, direct them to your *other* directory
 hugo -t hugo-cactus-theme -d ../getup8.github.io
 
 # Now move to that directory
@@ -236,7 +239,7 @@ beautiful test post.</p>
 
                 </section>
             </article>
-            <footer class="post-meta clearfix">
+            <div class="post-meta clearfix">
                 <a href="https://twitter.com/getup8">
                         <img class="avatar" src="http://www.getup8.com/images/avatar.png">
                         <div>
@@ -256,7 +259,7 @@ beautiful test post.</p>
 </a>
 
                 </section>
-            </footer>
+            </div>
 
             <div id="disqus_thread"></div>
 <script type="text/javascript">
