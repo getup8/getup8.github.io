@@ -6,8 +6,94 @@
     <description>Recent content in Posts on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Aug 2016 22:00:43 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 13 Oct 2016 23:40:37 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The Power of One (and Zero)</title>
+      <link>http://www.getup8.com/post/power_of_one_and_zero/</link>
+      <pubDate>Thu, 13 Oct 2016 23:40:37 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/post/power_of_one_and_zero/</guid>
+      <description>
+
+&lt;p&gt;About two years ago, my girlfriend and I were looking for a little extra
+motivation to get us in the gym or out running more often.  We both somewhat
+regularly worked out but it was often a slog and we&amp;rsquo;d go through peaks and
+valleys of activity.&lt;/p&gt;
+
+&lt;p&gt;So we decided to set up a simple spreadsheet in the cloud and track our
+progress.  Initially I was thinking of trying to keep track of what specific
+exercises we did, how many sets, reps, etc. but it was difficult to set up a
+spreadsheet to track all the possible exercises we would do.  Also, there were
+some days we didn&amp;rsquo;t feel like pushing ourselves too hard so constantly feeling
+pressured to beat our previous efforts seemed stressful.&lt;/p&gt;
+
+&lt;p&gt;In the end, the spreadsheet just looked like this:&lt;/p&gt;
+
+&lt;p&gt;|&lt;/p&gt;
+
+&lt;p&gt;The days&amp;rsquo;s date, a binary column for whether we worked our or not, and then
+an optional note to say what you did.&lt;/p&gt;
+
+&lt;p&gt;500 days later, we&amp;rsquo;re still going strong.  We&amp;rsquo;ve filled out every single day.
+Not always on the same day, I admit, sometimes we&amp;rsquo;ll go a few days or more
+without marking a zero or a one but inevitably we&amp;rsquo;ll remember and backfill the
+unmarked days.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-this-works&#34;&gt;Why This Works&lt;/h2&gt;
+
+&lt;p&gt;I think there are a few reasons we&amp;rsquo;ve been able to keep this up for so long.&lt;/p&gt;
+
+&lt;h3 id=&#34;simplicity&#34;&gt;Simplicity&lt;/h3&gt;
+
+&lt;p&gt;The simplicity of tracking makes it near painless.  All you need to do is mark
+a zero or one.  We even started allowing for the occassional 0.5 if you had
+an in-betweener (a very long walk let&amp;rsquo;s say).&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s easy to do on a daily basis but I think more importantly, it&amp;rsquo;s easy to
+catch up on if you fall behind.  Simple and straightforward is key.&lt;/p&gt;
+
+&lt;h3 id=&#34;visibility-accessibility&#34;&gt;Visibility / Accessibility&lt;/h3&gt;
+
+&lt;p&gt;Since we did it in Google Spreadsheets, it was almost always accessible.  We
+also would just leave it open in a Chrome tab (you could even pin it) so every
+time you were on the computer, you couldn&amp;rsquo;t help but noticing it.&lt;/p&gt;
+
+&lt;p&gt;No alarms, no automated reminders; it was just often visible and easily
+accessible.&lt;/p&gt;
+
+&lt;h3 id=&#34;a-little-competition-accountability&#34;&gt;A Little Competition / Accountability&lt;/h3&gt;
+
+&lt;p&gt;We were our own reminder system.  When one of us was falling off the wagon, the
+other would gently nudge the other, sometimes as passively as just leaving a
+tagged comment in the sheet.&lt;/p&gt;
+
+&lt;p&gt;Once you start, and especially once you&amp;rsquo;ve kept it up for some weeks, you don&amp;rsquo;t
+NOT want to fill it out.  And I think it&amp;rsquo;s just the right amount of guilt you
+feel when you have to mark that zero.  The second zero is a little tougher.
+The third in a row and you have all the motivation you need to strap on those
+running shoes.&lt;/p&gt;
+
+&lt;p&gt;But really, doing it together is what makes it fun.  You want to challenge
+each other and you also don&amp;rsquo;t want to let the other down.  So you keep going
+and make it part of your every day habits.&lt;/p&gt;
+
+&lt;h3 id=&#34;no-major-life-changes&#34;&gt;No Major Life Changes&lt;/h3&gt;
+
+&lt;p&gt;Lastly, I think it&amp;rsquo;s been possible for us to keep this going for so long
+because we haven&amp;rsquo;t had any big life upsets.  No big moves, no babies, no
+tragedies and we&amp;rsquo;ve been healthy (which I&amp;rsquo;m very grateful for).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you&amp;rsquo;re looking to make a change, to pick up a new skill, or just want to
+support an activity you&amp;rsquo;re already doing, consider starting a similar system.
+It&amp;rsquo;s fun, it&amp;rsquo;s easy and if you&amp;rsquo;re a nerd, you even get the benefit of having
+some cool data to play with after you&amp;rsquo;ve done it awhile (post on that coming
+soon).  Let me know how it goes.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Blogging in Hugo</title>

@@ -51,104 +51,114 @@
                     
                     
                         
-                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
                         
                     
                     
                     </h2>
                 </header>
                 <section class="post-body">
-                    <p>A list is a type of collection.</p>
+                    
 
-<p>A collection is</p>
+<p>A list is a type of collection.</p>
 
-<p>Iterator is another class that attaches to a particular Collection used to go
-through the Collection, item by item.</p>
+<p>A collection is TODO: fill me in.</p>
+
+<h2 id="iterators">Iterators</h2>
+
+<p><code>Iterator</code> is another class that attaches to a particular <code>Collection</code> used to
+go through the <code>Collection</code>, item by item.</p>
 
 <p>Can have multiple iterators attached to a collection moving at different
 speeds, different locations.</p>
 
-<p>java.util.Iterator is an &ldquo;interface&rdquo; provides methods.</p>
+<p><code>java.util.Iterator</code> is an <em>interface</em>, it provides method requirements.</p>
 
-<p>Iterator method is a factory method and its job is to construct a class. It&rsquo;s
-job is to create some Iterator object that iterates across the collection and
+<p><code>Iterator</code> method is a factory method and its job is to construct a class. It&rsquo;s
+job is to create some <code>Iterator</code> object that iterates across the collection and
 returns something.</p>
 
-<p>An iterator is its own object of type Iterator.</p>
+<p>An iterator is its own object of type <code>Iterator</code>.</p>
 
 <p>This is all in chapter 3 of the book..</p>
 
 <p>Iterators have 3 methods:</p>
 
 <ol>
-<li>Boolean: hasNext (if true, move on to next, if false, end of list)</li>
-<li>AnyType next(): returns current element (telling where we aer),
+<li><code>boolean hasNext()</code> (if true, move on to next, if false, end of list)</li>
+<li><code>&lt;AnyType&gt; next()</code>: returns current element (telling where we are),
  advances to next</li>
-<li>void remove(): remove the item? or the iterator? think the latter.
-<br /></li>
+<li><code>void remove()</code>: remove the item? or the iterator? think the latter.</li>
 </ol>
 
-<p>while hasNext() == True:
-  next()</p>
-
-<p>List interface extends Collection.  So all methods included in List.</p>
-
-<p>So the List interface adds additional methods to take advantage of ordered
-space.</p>
-
-<p>ListIterator is same as Iterator but can move forward/backward since lists have
-an order (Collections do not)</p>
-
-<p>Some mumbo jumbo about generics and objects and using int vs Integer???</p>
-
-<p>Advanced for loop expects an iterable / iterator. (a.iterator())
-It creates an iterator and uses it to go through.
-Understand how to make something work in an advanced for loop.</p>
-
-<p>Iterator is generic so defaults to object.  Need to cast it like
-java.util.Iterator<Integer></p>
+<pre><code class="language-java">while hasNext() == True:
+    next()
+</code></pre>
 
 <hr />
 
-<p>When we create an ArrayList, we need to preallocate the size (let&rsquo;s say 10
+<h2 id="lists">Lists</h2>
+
+<p><code>List</code> interface extends <code>Collection</code>.  So all <code>Collection</code> methods must be
+(and are) included in List.</p>
+
+<p>So the <code>List</code> interface adds additional methods to take advantage of ordered
+space.</p>
+
+<p><code>ListIterator</code> is same as <code>Iterator</code> but can move forward/backward since lists
+have an order (<code>Collection</code>s do not)</p>
+
+<p>Some mumbo jumbo about generics and objects and using int vs Integer???</p>
+
+<p>Advanced for loops expect an iterable / iterator. (<code>a.iterator()</code>)<br />
+It creates an iterator and uses it to go through.<br />
+Understand how to make something work in an advanced for loop.</p>
+
+<p><code>Iterator</code> is generic so defaults to object.  Need to cast it like
+<code>java.util.Iterator&lt;Integer&gt;</code></p>
+
+<hr />
+
+<h2 id="arraylists">ArrayLists</h2>
+
+<p>When we create an <code>ArrayList</code>, we need to preallocate the size (let&rsquo;s say 10
 elements) and keep track of the first empty location.  So on instantiation,
 it&rsquo;s location zero.  We don&rsquo;t know how long it&rsquo;s going to be.</p>
 
-<p>Adding elements at end of list is O(1) operation until you fill up the list
-(the preallocated size) and then it&rsquo;s O(n) to copy it to the new array.</p>
+<p>Adding elements at end of list is <em>O(1)</em> operation until you fill up the list
+(the preallocated size) and then it&rsquo;s <em>O(n)</em> to copy it to the new array.</p>
 
 <p>So how big do we make it when we need a larger list?  Wasteful to just make it
 11 since it&rsquo;s quite possible to make it 12 later.</p>
 
-<p>Randomly, they multiply by 1.5.  Or 2.</p>
+<p>Somewhat randomly, they multiply by 1.5.  Or sometimes 2.</p>
 
-<p>Removing elements also O(1). So is changing a specific element.</p>
+<p>Removing elements also <em>O(1)</em>. So is changing a specific element.</p>
 
 <p>What if you want to insert an element in the middle or beginning?  You have to
-copy everything and move it over.  So O(n).  n is how many things you&rsquo;re
-moving?</p>
+copy everything and move it over.  So <em>O(n)</em>.</p>
 
 <hr />
 
 <p>On Canvas there is a download of all the code in the textbook.</p>
 
-<p>Difference between extends and implements?
-implements Iterator..</p>
+<p>Difference between <code>extends</code> and <code>implements?</code><br />
+<code>implements Iterator</code>..</p>
 
-<p>theSize is how many items are filled up.
-Length of theItems is how long the arraylist is.</p>
+<p><code>theSize</code> is how many items are filled up.
+Length of <code>theItems</code> is how long the <code>ArrayList</code> is.</p>
 
-<p>ensureCapacity().</p>
+<p><code>ensureCapacity()</code>.</p>
 
 <p>When creating the array, you construct an array of objects and then cast it to
-generics.  The compiler doesn&rsquo;t know how to create an array of generics.</p>
+generics. The compiler doesn&rsquo;t know how to create an array of generics.</p>
 
-<p>&ndash;</p>
+<hr />
 
-<p>By starting at the end with add() you don&rsquo;t have to move anything (or iterate
+<p>By starting at the end with <code>add()</code> you don&rsquo;t have to move anything (or iterate
 through anything) if you&rsquo;re adding to the end.</p>
 
-<p>ArrayListIterator() is not provided by java, need to implement ourselves.</p>
+<p><code>ArrayListIterator()</code> is not provided by Java, need to implement ourselves.</p>
 
                 </section>
             </article>
@@ -156,7 +166,7 @@ through anything) if you&rsquo;re adding to the end.</p>
                 <a href="https://twitter.com/getup8">
                         <img class="avatar" src="http://www.getup8.com/images/avatar.png">
                         <div>
-                            <span class="dark">Alex Scott</span>
+                            <span class="author">Alex Scott</span>
                             <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
                         </div>
                     </a>
@@ -193,6 +203,18 @@ through anything) if you&rsquo;re adding to the end.</p>
             <ul class="post-list readmore">  
     <h3>Read more</h3>
 
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 13</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
     
 
     

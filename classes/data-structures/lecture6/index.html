@@ -51,7 +51,7 @@
                     
                     
                         
-                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
                         
                     
                     
@@ -60,22 +60,19 @@
                 <section class="post-body">
                     
 
-<p>ArrayList
-Issues if we add to end if we&rsquo;re out of room or if we try to add in the beginning (or middle). O(N).</p>
-
 <h2 id="linkedlist">LinkedList</h2>
 
 <p>A few types of linked lists: singly and doubly linked.</p>
 
-<p>Singly linked list:</p>
+<h3 id="singly-linked-lists">Singly Linked Lists</h3>
 
 <ul>
 <li>Each piece of data we insert is placed in a <code>Node</code> object</li>
 <li><code>Node</code> class defines two instance variables
 
 <ol>
-<li>The data</li>
-<li>Object reference to another node: <code>next</code></li>
+<li>The <code>data</code></li>
+<li>Object reference to another <code>Node</code>: <code>next</code></li>
 </ol></li>
 <li>Don&rsquo;t have prescribed locations in memory where each element is. You have
 to start at the beginning and work your way to it using the <code>next</code>
@@ -97,6 +94,8 @@ What about for an array? <em>O(const)</em> or <em>O(1)</em>.</p>
     Node&lt;AnyType&gt; next;
 }
 </code></pre>
+
+<p><br/></p>
 
 <pre><code class="language-java">class LinkedList&lt;AnyType&gt; {
     Node&lt;AnyType&gt; head;
@@ -125,51 +124,51 @@ What about for an array? <em>O(const)</em> or <em>O(1)</em>.</p>
 Order 1. <em>O(1)</em>.</p>
 
 <ol>
-<li>Create a new node</li>
+<li>Create a new <code>Node</code></li>
 <li>Put data into it</li>
 <li>Set <code>next</code> equal to <code>head</code></li>
 <li>Make <code>head</code> refer to it</li>
 </ol>
 
 <p>What about if you want to insert at the end?  You need to iterate all the way
-to the end since you only have a reference to <code>head</code>.  So it&rsquo;s O(N).</p>
+to the end since you only have a reference to <code>head</code>.  So it&rsquo;s <em>O(N)</em>.</p>
 
-<p>What about the middle?  O(N) still.  But once I have the reference to the node
-I want to insert after already, it&rsquo;s easy and O(1).  Remember that.  So if
-you&rsquo;re already moving across the list, and you decide you want to insert
+<p>What about the middle?  <em>O(N)</em> still.  But once I have the reference to the
+node I want to insert after already, it&rsquo;s easy and <em>O(1)</em>.  Remember that.  So
+if you&rsquo;re already moving across the list, and you decide you want to insert
 something, it&rsquo;s easy and cheap.</p>
 
 <p>Another benefit: We don&rsquo;t need to specify how large this list is going to be.</p>
 
 <p>This is a building block for other data structures.</p>
 
-<h2 id="doubly-linked-lists">Doubly Linked Lists</h2>
+<h3 id="doubly-linked-lists">Doubly Linked Lists</h3>
 
-<p>You have a head and a tail.  You add a <code>previous</code> pointer.  So you can move in
-both directions, forwards or backwards.</p>
+<p>You have a <code>head</code> and a <code>tail</code>.  You add a <code>previous</code> pointer.  So you can move
+in both directions, forwards or backwards.</p>
 
-<p>Iterator interface.  ListIterator interface adds an extra bit that allows you
-to move forward or backward; it exploits the doubly linked list.</p>
+<p><code>Iterator</code> interface.  <code>ListIterator</code> interface adds an extra bit that allows
+you to move forward or backward; it exploits the doubly linked list.</p>
 
 <p>Uses &ldquo;sentinal nodes&rdquo;.  The head data has no data.  The first piece of data is
-actually at head.next().  The tail also doesn&rsquo;t have any data.  The last node
-is tail.previous().</p>
+actually at <code>head.next()</code>.  The tail also doesn&rsquo;t have any data.  The last node
+is <code>tail.previous()</code>.</p>
 
 <p>Nodes now have three fields:</p>
 
 <ol>
-<li>data</li>
-<li>previous</li>
-<li>next</li>
+<li><code>data</code></li>
+<li><code>previous</code></li>
+<li><code>next</code></li>
 </ol>
 
 <p>An empty doubly linked list:
-null -&gt; head -&gt; tail -&gt; null</p>
+<code>null</code> -&gt; <code>head</code> -&gt; <code>tail</code> -&gt; <code>null</code></p>
 
-<p>If we&rsquo;re going to insert data, we&rsquo;d insert after head or before tail.</p>
+<p>If we&rsquo;re going to insert data, we&rsquo;d insert after <code>head</code> or before <code>tail</code>.</p>
 
 <ol>
-<li>Create a node, populated with data</li>
+<li>Create a <code>Node</code>, populated with <code>data</code></li>
 <li><code>previous</code> points to <code>head</code></li>
 <li><code>next</code> points to <code>head.next</code> (instead of <code>tail</code>)</li>
 <li><code>head.next.previous</code> (or <code>tail.previous</code>) points to it</li>
@@ -178,17 +177,13 @@ null -&gt; head -&gt; tail -&gt; null</p>
 
 <p>You can actually implement both types with sentinal nodes (singly and doubly).</p>
 
-<p>Next class:
-ArrayList code.
-Doubly LinkedList code.</p>
-
                 </section>
             </article>
             <div class="post-meta clearfix">
                 <a href="https://twitter.com/getup8">
                         <img class="avatar" src="http://www.getup8.com/images/avatar.png">
                         <div>
-                            <span class="dark">Alex Scott</span>
+                            <span class="author">Alex Scott</span>
                             <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
                         </div>
                     </a>
@@ -225,6 +220,18 @@ Doubly LinkedList code.</p>
             <ul class="post-list readmore">  
     <h3>Read more</h3>
 
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 13</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
     
 
     

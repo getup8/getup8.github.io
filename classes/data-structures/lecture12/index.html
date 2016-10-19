@@ -7,7 +7,7 @@
 		<meta name="author" content="Alex Scott">
 		<meta name="description" content="getup8 blog">
 		<meta name="generator" content="Hugo 0.16" />
-		<title>Classes &middot; GetUp8</title>
+		<title>Lecture 12: Trees, Continued &middot; GetUp8</title>
 		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
 		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
 		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
@@ -43,22 +43,133 @@
         <section class="wrapper">
             <article class="post">
                 <header>
-                    <h1>Classes</h1>
+                    <h1>Lecture 12: Trees, Continued</h1>
                     <h2 class="headline">
-                    September 28, 2016 
+                    October 17, 2016 
                     </h2>
                     <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
                     
                     </h2>
                 </header>
                 <section class="post-body">
                     
 
-<h2 id="data-structures-in-java">Data Structures in Java</h2>
+<p>Material covered through next lecture (on Wednesday) will be on Midterm.</p>
 
-<h3 id="columbia-university-coms-3134">Columbia University, COMS 3134</h3>
+<p>This week&rsquo;s resitation sessions will be midterm review.</p>
 
-<p><em>Fall 2016</em></p>
+<p>Next Monday will be Midterm review.  Do not miss this.</p>
+
+<hr />
+
+<h2 id="binarysearchtree-class">BinarySearchTree Class</h2>
+
+<p>Look up and understand this code, it&rsquo;s provided in the book PDF.</p>
+
+<p><code>Comparable&lt;? super AnyType&gt;</code>says it has to be comparable to itself or any
+superclass of itself.</p>
+
+<p>He says it&rsquo;s gratuitous having two Constructors since when you insert, you
+replace the null reference with a single leaf node.</p>
+
+<h3 id="public-boolean-contains-anytype-x-method"><code>public boolean contains(AnyType x)</code> Method</h3>
+
+<p>Returns <code>contains(x, root)</code>.  The true <code>contains</code> method has to take in the
+root.  This one does not and is not recursive, it actually calls the <code>private</code>
+recursive method with <code>root</code>.</p>
+
+<p>We see this <code>public</code> / <code>private</code> pairing a lot in this.</p>
+
+<h3 id="insert-method">Insert Method</h3>
+
+<p><code>public boolean contains(AnyType x)</code></p>
+
+<p>The method takes in a node we want to insert.  If it&rsquo;s already in the tree,
+we don&rsquo;t do anything.  If it&rsquo;s not, we add it in, and make sure the rules of
+the tree are upheld.</p>
+
+<pre><code class="language-java">public void insert(AnyType x) {
+    // We assign to root here just in case the tree is empty.
+    // So the recursive `insert` that this calls returns the &quot;new&quot;
+    // root of the tree
+    root = insert(x, root);
+}
+</code></pre>
+
+<p>The <code>private</code> method is recursive and similar to <code>contains</code> in its logic.</p>
+
+<h3 id="find-min-and-find-max">Find Min and Find Max</h3>
+
+<p>We basically just search left (right) until we find a left <code>null</code> reference and
+return that node with the <code>null</code> pointer.</p>
+
+<p>These are tail recursions; when you make a recursive call as the very last line
+of your method.  You&rsquo;re effectively iterating across the dataset.  These can
+very easily be replace with <code>while</code> loops.</p>
+
+<p>In the text, <code>findMax</code> is written iteratively as a while loop instead of as a
+recursion.</p>
+
+<h3 id="height-method">Height Method</h3>
+
+<p>Find the longer of the left and right subtrees (recursively) and add one (the
+root).</p>
+
+<h3 id="print-tree">Print Tree</h3>
+
+<p>Standard in-order traversal. Will print the data in sorted order.</p>
+
+<h3 id="remove">Remove</h3>
+
+<p>Leaf nodes are simple.  Just drop them.</p>
+
+<p>What if we delete the root?</p>
+
+<ul>
+<li>Replace with the smallest thing on the right hand side.</li>
+<li>Or the largest thing on the left hand side.</li>
+</ul>
+
+<p>So the steps are:</p>
+
+<ol>
+<li>Find the largest on the left side using <code>findMax</code></li>
+<li>Replace root with it</li>
+<li>Recursively remove it</li>
+</ol>
+
+<p><code>public</code> method very similar to <code>insert</code> method.<br />
+<code>private</code> method starts out with base case similar to others (null tree).</p>
+
+<p>Pretty simple if the node just has a single child.  If it has two, it&rsquo;s kinda
+hard.</p>
+
+<p>Look over the code and understand this.  Fading in class fast.</p>
+
+<h3 id="lazy-deletion">Lazy Deletion</h3>
+
+<p>Add a field to the TreeNode class <code>valid</code>.  If it&rsquo;s <code>true</code>, the node is marked
+to exist.  If it&rsquo;s <code>false</code>, the node is marked to not exist.  So in lazy
+deletion, you just do a <code>contains</code> check and if it finds it, you just flip
+the value to <code>false</code>.</p>
+
+<p>All the other methods need to be adjusted to take account of this though and
+check whether nodes are <code>valid</code> or not.</p>
+
+<p><code>findMax</code> and <code>findMin</code> actually become quite tough.</p>
+
+<h2 id="avl-trees">AVL Trees</h2>
+
+<p>Binary search trees with an added condition: the height of the left subtree
+cannot differ from the height of the right subtree by more than one.  If at
+any time, an insertion or deletion is made that disrupts this balance, you need
+to perform a single or double rotation to fix it.</p>
 
                 </section>
             </article>
@@ -71,7 +182,7 @@
                         </div>
                     </a>
                 <section class="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2f - Classes by @getup8"><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture12%2f - Lecture%2012%3a%20Trees%2c%20Continued by @getup8"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -87,9 +198,9 @@
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'getup8';
-    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/';
-    var disqus_title = 'Classes';
-    var disqus_url = 'http:\/\/www.getup8.com\/classes\/';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture12\/';
+    var disqus_title = 'Lecture 12: Trees, Continued';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture12\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

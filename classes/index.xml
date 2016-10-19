@@ -6,8 +6,494 @@
     <description>Recent content in Classes on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Oct 2016 22:36:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 17 Oct 2016 22:36:00 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/classes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lecture 12: Trees, Continued</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture12/</link>
+      <pubDate>Mon, 17 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture12/</guid>
+      <description>
+
+&lt;p&gt;Material covered through next lecture (on Wednesday) will be on Midterm.&lt;/p&gt;
+
+&lt;p&gt;This week&amp;rsquo;s resitation sessions will be midterm review.&lt;/p&gt;
+
+&lt;p&gt;Next Monday will be Midterm review.  Do not miss this.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;binarysearchtree-class&#34;&gt;BinarySearchTree Class&lt;/h2&gt;
+
+&lt;p&gt;Look up and understand this code, it&amp;rsquo;s provided in the book PDF.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Comparable&amp;lt;? super AnyType&amp;gt;&lt;/code&gt;says it has to be comparable to itself or any
+superclass of itself.&lt;/p&gt;
+
+&lt;p&gt;He says it&amp;rsquo;s gratuitous having two Constructors since when you insert, you
+replace the null reference with a single leaf node.&lt;/p&gt;
+
+&lt;h3 id=&#34;public-boolean-contains-anytype-x-method&#34;&gt;&lt;code&gt;public boolean contains(AnyType x)&lt;/code&gt; Method&lt;/h3&gt;
+
+&lt;p&gt;Returns &lt;code&gt;contains(x, root)&lt;/code&gt;.  The true &lt;code&gt;contains&lt;/code&gt; method has to take in the
+root.  This one does not and is not recursive, it actually calls the &lt;code&gt;private&lt;/code&gt;
+recursive method with &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We see this &lt;code&gt;public&lt;/code&gt; / &lt;code&gt;private&lt;/code&gt; pairing a lot in this.&lt;/p&gt;
+
+&lt;h3 id=&#34;insert-method&#34;&gt;Insert Method&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;public boolean contains(AnyType x)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The method takes in a node we want to insert.  If it&amp;rsquo;s already in the tree,
+we don&amp;rsquo;t do anything.  If it&amp;rsquo;s not, we add it in, and make sure the rules of
+the tree are upheld.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public void insert(AnyType x) {
+    // We assign to root here just in case the tree is empty.
+    // So the recursive `insert` that this calls returns the &amp;quot;new&amp;quot;
+    // root of the tree
+    root = insert(x, root);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;private&lt;/code&gt; method is recursive and similar to &lt;code&gt;contains&lt;/code&gt; in its logic.&lt;/p&gt;
+
+&lt;h3 id=&#34;find-min-and-find-max&#34;&gt;Find Min and Find Max&lt;/h3&gt;
+
+&lt;p&gt;We basically just search left (right) until we find a left &lt;code&gt;null&lt;/code&gt; reference and
+return that node with the &lt;code&gt;null&lt;/code&gt; pointer.&lt;/p&gt;
+
+&lt;p&gt;These are tail recursions; when you make a recursive call as the very last line
+of your method.  You&amp;rsquo;re effectively iterating across the dataset.  These can
+very easily be replace with &lt;code&gt;while&lt;/code&gt; loops.&lt;/p&gt;
+
+&lt;p&gt;In the text, &lt;code&gt;findMax&lt;/code&gt; is written iteratively as a while loop instead of as a
+recursion.&lt;/p&gt;
+
+&lt;h3 id=&#34;height-method&#34;&gt;Height Method&lt;/h3&gt;
+
+&lt;p&gt;Find the longer of the left and right subtrees (recursively) and add one (the
+root).&lt;/p&gt;
+
+&lt;h3 id=&#34;print-tree&#34;&gt;Print Tree&lt;/h3&gt;
+
+&lt;p&gt;Standard in-order traversal. Will print the data in sorted order.&lt;/p&gt;
+
+&lt;h3 id=&#34;remove&#34;&gt;Remove&lt;/h3&gt;
+
+&lt;p&gt;Leaf nodes are simple.  Just drop them.&lt;/p&gt;
+
+&lt;p&gt;What if we delete the root?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Replace with the smallest thing on the right hand side.&lt;/li&gt;
+&lt;li&gt;Or the largest thing on the left hand side.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So the steps are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Find the largest on the left side using &lt;code&gt;findMax&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Replace root with it&lt;/li&gt;
+&lt;li&gt;Recursively remove it&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;public&lt;/code&gt; method very similar to &lt;code&gt;insert&lt;/code&gt; method.&lt;br /&gt;
+&lt;code&gt;private&lt;/code&gt; method starts out with base case similar to others (null tree).&lt;/p&gt;
+
+&lt;p&gt;Pretty simple if the node just has a single child.  If it has two, it&amp;rsquo;s kinda
+hard.&lt;/p&gt;
+
+&lt;p&gt;Look over the code and understand this.  Fading in class fast.&lt;/p&gt;
+
+&lt;h3 id=&#34;lazy-deletion&#34;&gt;Lazy Deletion&lt;/h3&gt;
+
+&lt;p&gt;Add a field to the TreeNode class &lt;code&gt;valid&lt;/code&gt;.  If it&amp;rsquo;s &lt;code&gt;true&lt;/code&gt;, the node is marked
+to exist.  If it&amp;rsquo;s &lt;code&gt;false&lt;/code&gt;, the node is marked to not exist.  So in lazy
+deletion, you just do a &lt;code&gt;contains&lt;/code&gt; check and if it finds it, you just flip
+the value to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;All the other methods need to be adjusted to take account of this though and
+check whether nodes are &lt;code&gt;valid&lt;/code&gt; or not.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;findMax&lt;/code&gt; and &lt;code&gt;findMin&lt;/code&gt; actually become quite tough.&lt;/p&gt;
+
+&lt;h2 id=&#34;avl-trees&#34;&gt;AVL Trees&lt;/h2&gt;
+
+&lt;p&gt;Binary search trees with an added condition: the height of the left subtree
+cannot differ from the height of the right subtree by more than one.  If at
+any time, an insertion or deletion is made that disrupts this balance, you need
+to perform a single or double rotation to fix it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lecture 11: Trees, Continued</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture11/</link>
+      <pubDate>Wed, 12 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture11/</guid>
+      <description>
+
+&lt;p&gt;Root node is usually operator.&lt;/p&gt;
+
+&lt;h3 id=&#34;post-order-traversal&#34;&gt;Post-Order Traversal&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gives us Postfix expressions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;in-order-traversal&#34;&gt;In-Order Traversal&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Do the left&lt;/li&gt;
+&lt;li&gt;Print out the result&lt;/li&gt;
+&lt;li&gt;Do the right&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Using a tree to evaluate expressions.&lt;/p&gt;
+
+&lt;p&gt;What should we store the operators and operands as?  And how do we tell them
+apart?&lt;/p&gt;
+
+&lt;p&gt;Some rules (I think):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A leaf has to be an operand&lt;/li&gt;
+&lt;li&gt;An inner node has to be an operator&lt;/li&gt;
+&lt;li&gt;Another?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;implementing-a-tree-for-expressions-expression-trees&#34;&gt;Implementing a Tree for Expressions: Expression Trees&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class ExprNode {
+    char operator;
+    int operand;
+    ExprNode left;
+    ExprNode right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also do a string and then try to parse it and see if it&amp;rsquo;s a number or
+not.  Need to be careful of negative numbers.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re making the decision to just have two instance vars, one of each type.
+Then we can have logic to determine which value to look at (and where to store
+a value as well).&lt;/p&gt;
+
+&lt;p&gt;Programming problem #1 on Homework 3.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Construct tree&lt;/li&gt;
+&lt;li&gt;Postfix expr&lt;/li&gt;
+&lt;li&gt;Prefix expr&lt;/li&gt;
+&lt;li&gt;Infix expr&lt;/li&gt;
+&lt;li&gt;Evaluate the tree&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;void postFix(ExprNode t) {
+    // Print out the left, then the right, then the node itself.
+
+    // base case. tree is empty.
+    if (t == null) {
+        return;
+    }
+    postFix(t.left);  // If these are leafs, it will be our base case and just return
+    postFix(t.right);
+
+    // Now we want to print out. Need to determine if it&#39;s a operator or
+    // an operand.
+    if (t.left != null) {
+        System.out.println(t.operator);
+    } else {
+        System.outprintln(t.operand);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What if we want to change this to prefix?  Basically just move the &lt;code&gt;if&lt;/code&gt;/&lt;code&gt;else&lt;/code&gt;
+statements to before the recursive call.&lt;/p&gt;
+
+&lt;p&gt;What about the infix?  You can&amp;rsquo;t just put the &lt;code&gt;if&lt;/code&gt;/&lt;code&gt;else&lt;/code&gt; in the middle of the
+left and right postFix calls.  Order of operations is important!&lt;/p&gt;
+
+&lt;p&gt;Print parentheses pre and post the &lt;code&gt;postFix(t.left)&lt;/code&gt; call.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-do-we-evaluate-the-tree&#34;&gt;How do we evaluate the tree?&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Evaluate the left side&lt;/li&gt;
+&lt;li&gt;Evaluate the right side&lt;/li&gt;
+&lt;li&gt;Do the expression&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So evaluating a tree is actually just a flavor of postfix.&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-expression-trees&#34;&gt;Creating Expression Trees&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Input:&lt;/strong&gt; postfix expression from a user&lt;br /&gt;
+&lt;strong&gt;Output:&lt;/strong&gt; an expression tree object&lt;/p&gt;
+
+&lt;p&gt;We use stacks of nodes!&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;3 4 * 5 +&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;encase 3 into a node and &lt;code&gt;push&lt;/code&gt; to stack&lt;/li&gt;
+&lt;li&gt;encase 4 into a node and &lt;code&gt;push&lt;/code&gt; to stack&lt;/li&gt;
+&lt;li&gt;oooh we&amp;rsquo;ve come to an operator; create a node around the operator and then
+&lt;code&gt;pop&lt;/code&gt; the stack twice.
+
+&lt;ul&gt;
+&lt;li&gt;First &lt;code&gt;pop&lt;/code&gt; goes to the right reference&lt;/li&gt;
+&lt;li&gt;Second &lt;code&gt;pop&lt;/code&gt; goes to the left reference&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Now push the root of the tree we just created back onto the stack (root
+of the tree is the &lt;code&gt;*&lt;/code&gt; with &lt;code&gt;3&lt;/code&gt; and &lt;code&gt;4&lt;/code&gt; hanging off of it as children)&lt;/li&gt;
+&lt;li&gt;5 because a node (&lt;code&gt;ExprNode&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;+&lt;/code&gt;, encase it, &lt;code&gt;pop&lt;/code&gt; the stack twice again.
+
+&lt;ul&gt;
+&lt;li&gt;5 goes to the right&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExprNode&lt;/code&gt; (with &lt;code&gt;3&lt;/code&gt; and &lt;code&gt;4&lt;/code&gt; with it) on the left&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;push&lt;/code&gt; back to the stack&lt;/li&gt;
+&lt;li&gt;End of expression! Soo&amp;hellip;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop&lt;/code&gt; the stack! And get a reference to the root &lt;code&gt;ExprNode&lt;/code&gt; of the tree&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;code&#34;&gt;Code.&lt;/h2&gt;
+
+&lt;p&gt;There&amp;rsquo;s a distinction between the &lt;code&gt;ExprTree&lt;/code&gt; class and the &lt;code&gt;ExprNode&lt;/code&gt; class.
+The job of the &lt;code&gt;ExprTree&lt;/code&gt; is to encapsulate &lt;code&gt;ExprNode&lt;/code&gt;.  The instance variable
+will be the root of the tree.&lt;/p&gt;
+
+&lt;p&gt;Constructor for &lt;code&gt;ExprTree&lt;/code&gt; class would take in a postfix expression and build
+up the tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ExprTree.java&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class ExprTree {
+
+    private ExprNode root;
+
+    public ExprTree(String postFix) {
+        // run through stack-based algorithm to build the expression tree
+        // remember, you&#39;re pushing `ExprNode`s
+        // When done, pop the stack and make that the root.
+    }
+
+    // Evaluate the expression tree.  Public version of the function since the
+    // user doesn&#39;t know anything about the root node.
+    public eval() {
+        return eval(root);
+    }
+
+    private int eval(ExprNode t) {
+        // do your traversal to evaluate the tree rooted at t and return it
+    }
+
+    static private class ExprNode {
+        int operand;
+        char operator;
+        ExprNode left;
+        ExprNode right;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;binary-search-tree&#34;&gt;Binary Search Tree&lt;/h2&gt;
+
+&lt;h3 id=&#34;rules&#34;&gt;Rules&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Every single node in the left subtree must be smaller than the root node&lt;/li&gt;
+&lt;li&gt;Every single node in the right subtree must be larger than the root node&lt;/li&gt;
+&lt;li&gt;This must be true at every node&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A perfect binary search tree has perfect balance.&lt;/p&gt;
+
+&lt;p&gt;At each node, ask if smaller or larger, move to left or right accordingly and
+keep going (recursion).  Keep going until you find the value or you reach a
+&lt;code&gt;null&lt;/code&gt; link.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re making the assumption that there are no repeat values.&lt;/p&gt;
+
+&lt;p&gt;So what methods should we have for the ADT for a Binary Search Tree?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;contains&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;add&lt;/code&gt;: just like &lt;code&gt;contains&lt;/code&gt;, go through looking for it, if you find it,
+ just return; if you don&amp;rsquo;t, replace your value with a &lt;code&gt;null&lt;/code&gt; link.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;remove&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;PBST means height is about &lt;code&gt;O(log N)&lt;/code&gt; so both &lt;code&gt;contains&lt;/code&gt; and &lt;code&gt;add&lt;/code&gt; run that
+fast.  But not for non-perfect BSTs.&lt;/p&gt;
+
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;5, 4, 3, 2, 1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically you end up building a &lt;code&gt;LinkedList&lt;/code&gt; so searching could actually be
+&lt;code&gt;O(N)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If tree is very well balanced, then it&amp;rsquo;s &lt;code&gt;O(log N)&lt;/code&gt;, but if it&amp;rsquo;s not, then it&amp;rsquo;s
+&lt;code&gt;O(N)&lt;/code&gt;.  Basically, you have to assume &lt;code&gt;O(N)&lt;/code&gt; is the worst case unless you
+KNOW its well balanced.&lt;/p&gt;
+
+&lt;p&gt;But there are such things as self-balancing trees, e.g. ABL trees.  For these
+we can guarantee &lt;code&gt;O(log N)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finding &lt;code&gt;min&lt;/code&gt; and &lt;code&gt;max&lt;/code&gt; is pretty easy, just keep going left or right,
+respectively.  Same order as searching.&lt;/p&gt;
+
+&lt;p&gt;Btw, an in-order traversal of a BST will give us a &lt;strong&gt;sorted list&lt;/strong&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lecture 10: Trees</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture10/</link>
+      <pubDate>Mon, 10 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture10/</guid>
+      <description>
+
+&lt;p&gt;Starting this lecture at 6:40 btw. 30 minutes of nothingness before.&lt;/p&gt;
+
+&lt;h2 id=&#34;trees&#34;&gt;Trees&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Trees are a bunch of nodes&lt;/li&gt;
+&lt;li&gt;Need to have references to child nodes&lt;/li&gt;
+&lt;li&gt;Very likely going to iterate across children, not necessarily jump to a
+specific one.&lt;/li&gt;
+&lt;li&gt;You could do this with a LinkedList but there&amp;rsquo;s an easier way&lt;/li&gt;
+&lt;li&gt;To iterate through children, go to &lt;code&gt;firstChild&lt;/code&gt; and then iterate through
+using &lt;code&gt;nextSibling&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class TreeNode&amp;lt;T&amp;gt; {
+    T data;
+    TreeNode&amp;lt;T&amp;gt; nextSibling;  // Similar to LinkedList
+    TreeNode&amp;lt;T&amp;gt; firstChild;  // Another LinkedList type structure to children
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pre-order traversal: evaluate the node first, then evaluate the children.
+Post-order: evaluate the children first, then the node.&lt;/p&gt;
+
+&lt;h2 id=&#34;tree-traversal&#34;&gt;Tree Traversal&lt;/h2&gt;
+
+&lt;p&gt;A pre-order tree traversal via &lt;code&gt;listAll&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// Pseudo code
+private void listAll(int depth) {
+    printName(depth);  // Print name of object
+    if(isDirectory()) {
+        for each file c in this directory (for each child) {
+            c.listAll(depth + 1);
+        }
+    }
+}
+
+public void listAll() {
+    listAll(0);  // Initial call for root node calls actual recursive method
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;tree-types&#34;&gt;Tree Types&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Full Binary Tree
+
+&lt;ul&gt;
+&lt;li&gt;?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Complete Binary Tree
+
+&lt;ul&gt;
+&lt;li&gt;Last row is filled up from left to right but not all the way&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Perfect Binary Tree
+
+&lt;ul&gt;
+&lt;li&gt;A complete binary tree with the last row all filled up&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Need to think about the number of nodes in a tree given the height..&lt;/p&gt;
+
+&lt;p&gt;A perfect binary tree has &lt;code&gt;2^(h + 1) - 1&lt;/code&gt; nodes.&lt;/p&gt;
+
+&lt;p&gt;Btw, know what &amp;ldquo;proof by induction&amp;rdquo; means.&lt;/p&gt;
+
+&lt;h3 id=&#34;proof-by-induction&#34;&gt;Proof by Induction&lt;/h3&gt;
+
+&lt;h4 id=&#34;base-case&#34;&gt;Base Case&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2^(0 + 1) - 1 = 1&lt;/li&gt;
+&lt;li&gt;2^(1 + 1) - 1 = 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assume for perfect trees of height &lt;code&gt;1&lt;/code&gt; through &lt;code&gt;k&lt;/code&gt; this holds.&lt;/p&gt;
+
+&lt;p&gt;So now we need to prove that this works for a tree of height &lt;code&gt;k + 1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A tree of height &lt;code&gt;k&lt;/code&gt; will have &lt;code&gt;2^(k + 1) - 1&lt;/code&gt; nodes.&lt;/p&gt;
+
+&lt;p&gt;Now copy that tree and we have two identical trees.&lt;/p&gt;
+
+&lt;p&gt;Now add a root node and point to the root nodes of those two initial trees.&lt;/p&gt;
+
+&lt;p&gt;So now we just need to add up the nodes.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;2 * (2^(k + 1) - 1) + 1&lt;/code&gt;
+&lt;code&gt;2^((k + 1) + 1) - 2 + 1&lt;/code&gt;
+&lt;code&gt;2^((k + 1) + 1) - 1&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;question-one-on-the-midterm-will-essentially-be-this-but-on-another&#34;&gt;QUESTION ONE ON THE MIDTERM WILL ESSENTIALLY BE THIS BUT ON ANOTHER&lt;/h2&gt;
+
+&lt;p&gt;CHARACTERISTIC OF THE BINARY TREE&lt;/p&gt;
+
+&lt;h2 id=&#34;expression-tree&#34;&gt;Expression Tree&lt;/h2&gt;
+
+&lt;p&gt;Tree will be represented by a full binary tree.  In a binary tree, there is
+something on the &amp;ldquo;left&amp;rdquo; and something on the &amp;ldquo;right&amp;rdquo; so there is some implicit
+order.&lt;/p&gt;
+
+&lt;p&gt;Operators are interior nodes.  Operands are leaf nodes.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;3 + (2 * 5)&lt;/p&gt;
+
+&lt;p&gt;+
+3   *
+  2   5&lt;/p&gt;
+
+&lt;p&gt;Does the root node of an expression tree have to be an operand?  Nope.&lt;/p&gt;
+
+&lt;p&gt;Interior nodes must be operators.&lt;/p&gt;
+
+&lt;p&gt;Leaf nodes must be operands?&lt;/p&gt;
+
+&lt;p&gt;Look at the ExpressionNode class&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class ExprNode {
+    Op data;  // either operator or operand
+    ExprNode left;
+    ExprNode right;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Lecture 9: Stacks, Queues, Trees</title>
@@ -97,6 +583,8 @@ rid of both parentheses and keep going.&lt;/p&gt;
 recursion works.  Each level of the recursion pushes the step onto the stack
 until we return and we start popping them all off.&lt;/p&gt;
 
+&lt;hr /&gt;
+
 &lt;h2 id=&#34;queues-and-the-josephus-game&#34;&gt;Queues and the Josephus Game&lt;/h2&gt;
 
 &lt;p&gt;You have &lt;code&gt;n&lt;/code&gt; items in a circle, in a specific order.&lt;/p&gt;
@@ -128,9 +616,9 @@ but don&amp;rsquo;t &lt;code&gt;enqueue&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;In the &lt;code&gt;LinkedList&lt;/code&gt; API in Java, the &lt;code&gt;add&lt;/code&gt; method adds to the end of the list
 by default.  There&amp;rsquo;s also a &lt;code&gt;remove&lt;/code&gt; method that takes no input and by default,
-removes the first element.  So these directly map to a Queue.&lt;/p&gt;
+removes the first element.  So these directly map to a &lt;code&gt;Queue&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Java actually has a Queue interface.  In the homework, we implement &lt;code&gt;MyQueue&lt;/code&gt;
+&lt;p&gt;Java actually has a &lt;code&gt;Queue&lt;/code&gt; interface.  In the homework, we implement &lt;code&gt;MyQueue&lt;/code&gt;
 which is slightly different (simplified I believe).&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;LinkedList&lt;/code&gt; actually implements &lt;code&gt;Queue&lt;/code&gt;.  So it uses &lt;code&gt;enqueue&lt;/code&gt; and &lt;code&gt;dequeue&lt;/code&gt;.&lt;/p&gt;
@@ -165,6 +653,8 @@ public class Josephus {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;hr /&gt;
+
 &lt;h2 id=&#34;trees&#34;&gt;Trees&lt;/h2&gt;
 
 &lt;p&gt;We&amp;rsquo;re going to go up to AVL trees, which is through 4.4 (check that though).&lt;/p&gt;
@@ -194,16 +684,14 @@ root is zero.  Each level of a tree is basically increasing the depth by one.&lt
     </item>
     
     <item>
-      <title>Lecture 8: Stacks</title>
+      <title>Lecture 8: Stacks and Queues</title>
       <link>http://www.getup8.com/classes/data-structures/lecture8/</link>
       <pubDate>Mon, 03 Oct 2016 22:36:00 -0400</pubDate>
       
       <guid>http://www.getup8.com/classes/data-structures/lecture8/</guid>
       <description>
 
-&lt;h2 id=&#34;agenda&#34;&gt;Agenda&lt;/h2&gt;
-
-&lt;h3 id=&#34;stacks-continued&#34;&gt;Stacks (continued)&lt;/h3&gt;
+&lt;h2 id=&#34;stacks-continued&#34;&gt;Stacks (continued)&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;LIFO: Last In, First Out&lt;/li&gt;
@@ -259,7 +747,7 @@ do in &lt;code&gt;LinkedList&lt;/code&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;queues-continued&#34;&gt;Queues (continued)&lt;/h3&gt;
+&lt;h2 id=&#34;queues&#34;&gt;Queues&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;FIFO.  First in, first out.  Line at the grocery store.&lt;/li&gt;
@@ -294,7 +782,7 @@ structures. Multiple ways to do them but how can we do them most efficiently?&lt
 
 &lt;p&gt;If one, let&amp;rsquo;s say &lt;code&gt;tail&lt;/code&gt;, doesn&amp;rsquo;t work great since we can only track one side
 of the queue so we&amp;rsquo;d have to move everything over if we &lt;code&gt;dequeue&lt;/code&gt;d an
-element.  It&amp;rsquo;d be O(N) because of that.&lt;/p&gt;
+element.  It&amp;rsquo;d be &lt;em&gt;O(N)&lt;/em&gt; because of that.&lt;/p&gt;
 
 &lt;p&gt;If two variables: &lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt;, we can track both ends and we don&amp;rsquo;t have
 to move anything around.&lt;/p&gt;
@@ -310,12 +798,12 @@ wrap around or increase the size of the array.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;stack-algorithms&#34;&gt;Stack Algorithms&lt;/h3&gt;
+&lt;h2 id=&#34;stack-algorithms-and-use-cases&#34;&gt;Stack Algorithms and Use Cases&lt;/h2&gt;
 
 &lt;p&gt;One good use of stacks is to reverse strings; e.g. check for palindromes.&lt;br /&gt;
 e.g. &lt;em&gt;yo banana boy&lt;/em&gt;, &lt;em&gt;race car&lt;/em&gt;, &lt;em&gt;taco cat&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Sample algorithm for determining if &lt;code&gt;race car&lt;/code&gt; is a palindrome:&lt;/p&gt;
+&lt;p&gt;Sample algorithm for determining if &lt;em&gt;&amp;ldquo;race car&amp;rdquo;&lt;/em&gt; is a palindrome:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;For each character in the string, &lt;code&gt;push&lt;/code&gt; into stack&lt;/li&gt;
@@ -326,12 +814,12 @@ even, you don&amp;rsquo;t ignore&lt;/li&gt;
 &lt;li&gt;If ever it doesn&amp;rsquo;t match, you return false&lt;/li&gt;
 &lt;li&gt;When you get to the end, you should check to make sure the string is empty
 but this shouldn&amp;rsquo;t happen (the string or the stack?)&lt;/li&gt;
-&lt;li&gt;If you pop an empty stack something is wrong as well&lt;/li&gt;
+&lt;li&gt;If you &lt;code&gt;pop&lt;/code&gt; an empty stack something is wrong as well&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Another example&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;RPN Calculator: put the operands first followed by the operator (e.g. 5 3 +).
+&lt;p&gt;RPN Calculator: put the operands first followed by the operator (e.g. &lt;code&gt;5 3 +&lt;/code&gt;).
 Parentheses aren&amp;rsquo;t needed because order of operations is explicit.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;5 3 + 2 *&lt;/code&gt; would equal &lt;code&gt;(5 + 3) * 2&lt;/code&gt;&lt;/p&gt;
@@ -345,9 +833,9 @@ Parentheses aren&amp;rsquo;t needed because order of operations is explicit.&lt;
 &lt;li&gt;Is the token an operator or operand?&lt;/li&gt;
 &lt;li&gt;If it&amp;rsquo;s an operand, &lt;code&gt;push&lt;/code&gt; onto the stack.&lt;/li&gt;
 &lt;li&gt;If it&amp;rsquo;s an operator, we &lt;code&gt;pop&lt;/code&gt; the stack twice.&lt;/li&gt;
-&lt;li&gt;The first number popped is the second operand&lt;/li&gt;
-&lt;li&gt;The second number popped is the first operand&lt;/li&gt;
-&lt;li&gt;Pop the stack one more time, if the stack is not empty, you have an error&lt;/li&gt;
+&lt;li&gt;The first number &lt;code&gt;pop&lt;/code&gt;ped is the second operand&lt;/li&gt;
+&lt;li&gt;The second number &lt;code&gt;pop&lt;/code&gt;ped is the first operand&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pop&lt;/code&gt; the stack one more time, if the stack is not empty, you have an error&lt;/li&gt;
 &lt;li&gt;Other errors?  If there is only one number and then an operand, the second
 &lt;code&gt;pop&lt;/code&gt; won&amp;rsquo;t work.&lt;/li&gt;
 &lt;/ol&gt;
@@ -366,6 +854,7 @@ push(result); // Push result back onto stack and keep going
 The way we usually do things is called Infix expressions.&lt;/p&gt;
 
 &lt;ol&gt;
+&lt;li&gt;I missed the first two steps here..&lt;/li&gt;
 &lt;li&gt;A token is either a number or an operator.&lt;/li&gt;
 &lt;li&gt;How should we distinguish between them?&lt;/li&gt;
 &lt;li&gt;We can use &lt;code&gt;split&lt;/code&gt; to turn string into an array.&lt;/li&gt;
@@ -386,9 +875,9 @@ The way we usually do things is called Infix expressions.&lt;/p&gt;
 &lt;h2 id=&#34;agenda&#34;&gt;Agenda&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Cycling back to the ArrayListIterator to understand how nested classes
+&lt;li&gt;Cycling back to the &lt;code&gt;ArrayListIterator&lt;/code&gt; to understand how nested classes
 function.&lt;/li&gt;
-&lt;li&gt;Also going through implementation of LinkedList.&lt;/li&gt;
+&lt;li&gt;Also going through implementation of &lt;code&gt;LinkedList&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Stacks and Queues.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -414,16 +903,16 @@ instantiate it, but &lt;code&gt;MyArrayList&lt;/code&gt; can.&lt;/p&gt;
 &lt;p&gt;Purpose of an iterator is to step through a collection of any sort.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;hasNext(): figure out if there&amp;rsquo;s a next element&lt;/li&gt;
-&lt;li&gt;next(): move to next and return it&lt;/li&gt;
-&lt;li&gt;remove(): remove the element that we just moved past&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hasNext()&lt;/code&gt;: figure out if there&amp;rsquo;s a next element&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;next()&lt;/code&gt;: move to next and return it&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;remove()&lt;/code&gt;: remove the element that we just moved past&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Our iterator is &lt;em&gt;not&lt;/em&gt; &lt;code&gt;static&lt;/code&gt;.  There are two kinds of nested.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Non-&lt;code&gt;static&lt;/code&gt; is tied to the particular instance of MyArrayList from whence it
-is generator.&lt;/li&gt;
+&lt;li&gt;Non-&lt;code&gt;static&lt;/code&gt; is tied to the particular instance of &lt;code&gt;MyArrayList&lt;/code&gt; from
+whence its generator.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The one thing we need to keep track of w/ an iterator is &amp;ldquo;Where are we?&amp;rdquo;.&lt;/p&gt;
@@ -442,9 +931,9 @@ wouldn&amp;rsquo;t be tied to a specific instance but I should test it!&lt;/p&gt
 
 &lt;p&gt;&lt;code&gt;curent++&lt;/code&gt; will evaluate the value of &lt;code&gt;current&lt;/code&gt; first and then increment it.&lt;/p&gt;
 
-&lt;p&gt;MyArrayList.this.remove(&amp;ndash;current);&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MyArrayList.this.remove(--current);&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;There&amp;rsquo;s a method in the MyArrayList to actually remove an element which is
+&lt;p&gt;There&amp;rsquo;s a method in the &lt;code&gt;MyArrayList&lt;/code&gt; to actually remove an element which is
 what we actually want to call.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;MyArrayList.this&lt;/code&gt; means the specific containing object.
@@ -456,16 +945,16 @@ what we actually want to call.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;Back to Linked Lists.&lt;/p&gt;
+&lt;h2 id=&#34;linked-lists&#34;&gt;Linked Lists&lt;/h2&gt;
 
-&lt;p&gt;MyLinkedList implementation (that will be sent out?) does a doubly linked list
-with sentinal nodes.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MyLinkedList&lt;/code&gt; implementation (that will be sent out?) does a doubly linked
+list with sentinal nodes.&lt;/p&gt;
 
 &lt;p&gt;Don&amp;rsquo;t worry about &lt;code&gt;modCount&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;There&amp;rsquo;s a class LinkedList and you can just instantiate to create.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s a class &lt;code&gt;LinkedList&lt;/code&gt; and you can just instantiate to create.&lt;/p&gt;
 
-&lt;p&gt;Has two private Node objects: begin and end.&lt;/p&gt;
+&lt;p&gt;Has two private &lt;code&gt;Node&lt;/code&gt; objects: &lt;code&gt;begin&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Node&lt;/code&gt; class is &lt;code&gt;static&lt;/code&gt; and defined in MyLinkedList.
 &lt;code&gt;Node&lt;/code&gt; doesn&amp;rsquo;t have access to MyLinkedList objects (since it&amp;rsquo;s &lt;code&gt;static&lt;/code&gt;).
@@ -505,7 +994,7 @@ to the &lt;code&gt;Node&lt;/code&gt; that exists that many steps into the linked
 &lt;li&gt;Depending on what index is, we start from beginning or end. Doesn&amp;rsquo;t
 change Big Oh&lt;/li&gt;
 &lt;li&gt;Start at first element if start at beginning&lt;/li&gt;
-&lt;li&gt;Start at endMarker if we start at the end though since we&amp;rsquo;re inserting
+&lt;li&gt;Start at &lt;code&gt;endMarker&lt;/code&gt; if we start at the end though since we&amp;rsquo;re inserting
 before.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -525,6 +1014,8 @@ want to remove and you can use its &lt;code&gt;next&lt;/code&gt; and &lt;code&gt
 Look at this code and understand it.&lt;/p&gt;
 
 &lt;hr /&gt;
+
+&lt;h2 id=&#34;stacks&#34;&gt;Stacks&lt;/h2&gt;
 
 &lt;p&gt;So what can we do with these things??&lt;/p&gt;
 
@@ -565,21 +1056,13 @@ Removing an element (and returning it) is referred to &lt;code&gt;pop&lt;/code&g
 Need to implement a Stack.
 Any List will work.&lt;/p&gt;
 
-&lt;p&gt;If singly linked list, push/pop from front, all O(1), otherwise if you do from
-end, it&amp;rsquo;s O(N).
-With doubly linked list, it&amp;rsquo;s O(1) from either end.&lt;/p&gt;
+&lt;p&gt;If singly linked list, &lt;code&gt;push&lt;/code&gt;/&lt;code&gt;pop&lt;/code&gt; from front, all &lt;em&gt;O(1)&lt;/em&gt;, otherwise if you do
+from end, it&amp;rsquo;s &lt;em&gt;O(N)&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;LinkedList has push / pop methods in java.util.  Basically just reimplement this
-along with the other functions above.&lt;/p&gt;
+&lt;p&gt;With doubly linked list, it&amp;rsquo;s &lt;em&gt;O(1)&lt;/em&gt; from either end.&lt;/p&gt;
 
-&lt;hr /&gt;
-
-&lt;p&gt;Queues.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Similar to Stacks, but FIFO, first in, first out.&lt;/li&gt;
-&lt;li&gt;Adding from one end, Removing from the other.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;LinkedList&lt;/code&gt; has push / pop methods in &lt;code&gt;java.util&lt;/code&gt;.  Basically just reimplement
+this along with the other functions above.&lt;/p&gt;
 </description>
     </item>
     
@@ -625,22 +1108,19 @@ along with the other functions above.&lt;/p&gt;
       <guid>http://www.getup8.com/classes/data-structures/lecture6/</guid>
       <description>
 
-&lt;p&gt;ArrayList
-Issues if we add to end if we&amp;rsquo;re out of room or if we try to add in the beginning (or middle). O(N).&lt;/p&gt;
-
 &lt;h2 id=&#34;linkedlist&#34;&gt;LinkedList&lt;/h2&gt;
 
 &lt;p&gt;A few types of linked lists: singly and doubly linked.&lt;/p&gt;
 
-&lt;p&gt;Singly linked list:&lt;/p&gt;
+&lt;h3 id=&#34;singly-linked-lists&#34;&gt;Singly Linked Lists&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Each piece of data we insert is placed in a &lt;code&gt;Node&lt;/code&gt; object&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Node&lt;/code&gt; class defines two instance variables
 
 &lt;ol&gt;
-&lt;li&gt;The data&lt;/li&gt;
-&lt;li&gt;Object reference to another node: &lt;code&gt;next&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Object reference to another &lt;code&gt;Node&lt;/code&gt;: &lt;code&gt;next&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
 &lt;li&gt;Don&amp;rsquo;t have prescribed locations in memory where each element is. You have
 to start at the beginning and work your way to it using the &lt;code&gt;next&lt;/code&gt;
@@ -662,6 +1142,8 @@ What about for an array? &lt;em&gt;O(const)&lt;/em&gt; or &lt;em&gt;O(1)&lt;/em&
     Node&amp;lt;AnyType&amp;gt; next;
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class LinkedList&amp;lt;AnyType&amp;gt; {
     Node&amp;lt;AnyType&amp;gt; head;
@@ -690,51 +1172,51 @@ What about for an array? &lt;em&gt;O(const)&lt;/em&gt; or &lt;em&gt;O(1)&lt;/em&
 Order 1. &lt;em&gt;O(1)&lt;/em&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Create a new node&lt;/li&gt;
+&lt;li&gt;Create a new &lt;code&gt;Node&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Put data into it&lt;/li&gt;
 &lt;li&gt;Set &lt;code&gt;next&lt;/code&gt; equal to &lt;code&gt;head&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Make &lt;code&gt;head&lt;/code&gt; refer to it&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;What about if you want to insert at the end?  You need to iterate all the way
-to the end since you only have a reference to &lt;code&gt;head&lt;/code&gt;.  So it&amp;rsquo;s O(N).&lt;/p&gt;
+to the end since you only have a reference to &lt;code&gt;head&lt;/code&gt;.  So it&amp;rsquo;s &lt;em&gt;O(N)&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;What about the middle?  O(N) still.  But once I have the reference to the node
-I want to insert after already, it&amp;rsquo;s easy and O(1).  Remember that.  So if
-you&amp;rsquo;re already moving across the list, and you decide you want to insert
+&lt;p&gt;What about the middle?  &lt;em&gt;O(N)&lt;/em&gt; still.  But once I have the reference to the
+node I want to insert after already, it&amp;rsquo;s easy and &lt;em&gt;O(1)&lt;/em&gt;.  Remember that.  So
+if you&amp;rsquo;re already moving across the list, and you decide you want to insert
 something, it&amp;rsquo;s easy and cheap.&lt;/p&gt;
 
 &lt;p&gt;Another benefit: We don&amp;rsquo;t need to specify how large this list is going to be.&lt;/p&gt;
 
 &lt;p&gt;This is a building block for other data structures.&lt;/p&gt;
 
-&lt;h2 id=&#34;doubly-linked-lists&#34;&gt;Doubly Linked Lists&lt;/h2&gt;
+&lt;h3 id=&#34;doubly-linked-lists&#34;&gt;Doubly Linked Lists&lt;/h3&gt;
 
-&lt;p&gt;You have a head and a tail.  You add a &lt;code&gt;previous&lt;/code&gt; pointer.  So you can move in
-both directions, forwards or backwards.&lt;/p&gt;
+&lt;p&gt;You have a &lt;code&gt;head&lt;/code&gt; and a &lt;code&gt;tail&lt;/code&gt;.  You add a &lt;code&gt;previous&lt;/code&gt; pointer.  So you can move
+in both directions, forwards or backwards.&lt;/p&gt;
 
-&lt;p&gt;Iterator interface.  ListIterator interface adds an extra bit that allows you
-to move forward or backward; it exploits the doubly linked list.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Iterator&lt;/code&gt; interface.  &lt;code&gt;ListIterator&lt;/code&gt; interface adds an extra bit that allows
+you to move forward or backward; it exploits the doubly linked list.&lt;/p&gt;
 
 &lt;p&gt;Uses &amp;ldquo;sentinal nodes&amp;rdquo;.  The head data has no data.  The first piece of data is
-actually at head.next().  The tail also doesn&amp;rsquo;t have any data.  The last node
-is tail.previous().&lt;/p&gt;
+actually at &lt;code&gt;head.next()&lt;/code&gt;.  The tail also doesn&amp;rsquo;t have any data.  The last node
+is &lt;code&gt;tail.previous()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nodes now have three fields:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;data&lt;/li&gt;
-&lt;li&gt;previous&lt;/li&gt;
-&lt;li&gt;next&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;previous&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;next&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;An empty doubly linked list:
-null -&amp;gt; head -&amp;gt; tail -&amp;gt; null&lt;/p&gt;
+&lt;code&gt;null&lt;/code&gt; -&amp;gt; &lt;code&gt;head&lt;/code&gt; -&amp;gt; &lt;code&gt;tail&lt;/code&gt; -&amp;gt; &lt;code&gt;null&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;If we&amp;rsquo;re going to insert data, we&amp;rsquo;d insert after head or before tail.&lt;/p&gt;
+&lt;p&gt;If we&amp;rsquo;re going to insert data, we&amp;rsquo;d insert after &lt;code&gt;head&lt;/code&gt; or before &lt;code&gt;tail&lt;/code&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Create a node, populated with data&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;Node&lt;/code&gt;, populated with &lt;code&gt;data&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;previous&lt;/code&gt; points to &lt;code&gt;head&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;next&lt;/code&gt; points to &lt;code&gt;head.next&lt;/code&gt; (instead of &lt;code&gt;tail&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;head.next.previous&lt;/code&gt; (or &lt;code&gt;tail.previous&lt;/code&gt;) points to it&lt;/li&gt;
@@ -742,10 +1224,6 @@ null -&amp;gt; head -&amp;gt; tail -&amp;gt; null&lt;/p&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;You can actually implement both types with sentinal nodes (singly and doubly).&lt;/p&gt;
-
-&lt;p&gt;Next class:
-ArrayList code.
-Doubly LinkedList code.&lt;/p&gt;
 </description>
     </item>
     
@@ -755,97 +1233,107 @@ Doubly LinkedList code.&lt;/p&gt;
       <pubDate>Wed, 21 Sep 2016 22:49:15 -0400</pubDate>
       
       <guid>http://www.getup8.com/classes/data-structures/lecture5/</guid>
-      <description>&lt;p&gt;A list is a type of collection.&lt;/p&gt;
+      <description>
 
-&lt;p&gt;A collection is&lt;/p&gt;
+&lt;p&gt;A list is a type of collection.&lt;/p&gt;
 
-&lt;p&gt;Iterator is another class that attaches to a particular Collection used to go
-through the Collection, item by item.&lt;/p&gt;
+&lt;p&gt;A collection is TODO: fill me in.&lt;/p&gt;
+
+&lt;h2 id=&#34;iterators&#34;&gt;Iterators&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Iterator&lt;/code&gt; is another class that attaches to a particular &lt;code&gt;Collection&lt;/code&gt; used to
+go through the &lt;code&gt;Collection&lt;/code&gt;, item by item.&lt;/p&gt;
 
 &lt;p&gt;Can have multiple iterators attached to a collection moving at different
 speeds, different locations.&lt;/p&gt;
 
-&lt;p&gt;java.util.Iterator is an &amp;ldquo;interface&amp;rdquo; provides methods.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;java.util.Iterator&lt;/code&gt; is an &lt;em&gt;interface&lt;/em&gt;, it provides method requirements.&lt;/p&gt;
 
-&lt;p&gt;Iterator method is a factory method and its job is to construct a class. It&amp;rsquo;s
-job is to create some Iterator object that iterates across the collection and
+&lt;p&gt;&lt;code&gt;Iterator&lt;/code&gt; method is a factory method and its job is to construct a class. It&amp;rsquo;s
+job is to create some &lt;code&gt;Iterator&lt;/code&gt; object that iterates across the collection and
 returns something.&lt;/p&gt;
 
-&lt;p&gt;An iterator is its own object of type Iterator.&lt;/p&gt;
+&lt;p&gt;An iterator is its own object of type &lt;code&gt;Iterator&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This is all in chapter 3 of the book..&lt;/p&gt;
 
 &lt;p&gt;Iterators have 3 methods:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Boolean: hasNext (if true, move on to next, if false, end of list)&lt;/li&gt;
-&lt;li&gt;AnyType next(): returns current element (telling where we aer),
+&lt;li&gt;&lt;code&gt;boolean hasNext()&lt;/code&gt; (if true, move on to next, if false, end of list)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;AnyType&amp;gt; next()&lt;/code&gt;: returns current element (telling where we are),
  advances to next&lt;/li&gt;
-&lt;li&gt;void remove(): remove the item? or the iterator? think the latter.
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void remove()&lt;/code&gt;: remove the item? or the iterator? think the latter.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;while hasNext() == True:
-  next()&lt;/p&gt;
-
-&lt;p&gt;List interface extends Collection.  So all methods included in List.&lt;/p&gt;
-
-&lt;p&gt;So the List interface adds additional methods to take advantage of ordered
-space.&lt;/p&gt;
-
-&lt;p&gt;ListIterator is same as Iterator but can move forward/backward since lists have
-an order (Collections do not)&lt;/p&gt;
-
-&lt;p&gt;Some mumbo jumbo about generics and objects and using int vs Integer???&lt;/p&gt;
-
-&lt;p&gt;Advanced for loop expects an iterable / iterator. (a.iterator())
-It creates an iterator and uses it to go through.
-Understand how to make something work in an advanced for loop.&lt;/p&gt;
-
-&lt;p&gt;Iterator is generic so defaults to object.  Need to cast it like
-java.util.Iterator&lt;Integer&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;while hasNext() == True:
+    next()
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;When we create an ArrayList, we need to preallocate the size (let&amp;rsquo;s say 10
+&lt;h2 id=&#34;lists&#34;&gt;Lists&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;List&lt;/code&gt; interface extends &lt;code&gt;Collection&lt;/code&gt;.  So all &lt;code&gt;Collection&lt;/code&gt; methods must be
+(and are) included in List.&lt;/p&gt;
+
+&lt;p&gt;So the &lt;code&gt;List&lt;/code&gt; interface adds additional methods to take advantage of ordered
+space.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ListIterator&lt;/code&gt; is same as &lt;code&gt;Iterator&lt;/code&gt; but can move forward/backward since lists
+have an order (&lt;code&gt;Collection&lt;/code&gt;s do not)&lt;/p&gt;
+
+&lt;p&gt;Some mumbo jumbo about generics and objects and using int vs Integer???&lt;/p&gt;
+
+&lt;p&gt;Advanced for loops expect an iterable / iterator. (&lt;code&gt;a.iterator()&lt;/code&gt;)&lt;br /&gt;
+It creates an iterator and uses it to go through.&lt;br /&gt;
+Understand how to make something work in an advanced for loop.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Iterator&lt;/code&gt; is generic so defaults to object.  Need to cast it like
+&lt;code&gt;java.util.Iterator&amp;lt;Integer&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;arraylists&#34;&gt;ArrayLists&lt;/h2&gt;
+
+&lt;p&gt;When we create an &lt;code&gt;ArrayList&lt;/code&gt;, we need to preallocate the size (let&amp;rsquo;s say 10
 elements) and keep track of the first empty location.  So on instantiation,
 it&amp;rsquo;s location zero.  We don&amp;rsquo;t know how long it&amp;rsquo;s going to be.&lt;/p&gt;
 
-&lt;p&gt;Adding elements at end of list is O(1) operation until you fill up the list
-(the preallocated size) and then it&amp;rsquo;s O(n) to copy it to the new array.&lt;/p&gt;
+&lt;p&gt;Adding elements at end of list is &lt;em&gt;O(1)&lt;/em&gt; operation until you fill up the list
+(the preallocated size) and then it&amp;rsquo;s &lt;em&gt;O(n)&lt;/em&gt; to copy it to the new array.&lt;/p&gt;
 
 &lt;p&gt;So how big do we make it when we need a larger list?  Wasteful to just make it
 11 since it&amp;rsquo;s quite possible to make it 12 later.&lt;/p&gt;
 
-&lt;p&gt;Randomly, they multiply by 1.5.  Or 2.&lt;/p&gt;
+&lt;p&gt;Somewhat randomly, they multiply by 1.5.  Or sometimes 2.&lt;/p&gt;
 
-&lt;p&gt;Removing elements also O(1). So is changing a specific element.&lt;/p&gt;
+&lt;p&gt;Removing elements also &lt;em&gt;O(1)&lt;/em&gt;. So is changing a specific element.&lt;/p&gt;
 
 &lt;p&gt;What if you want to insert an element in the middle or beginning?  You have to
-copy everything and move it over.  So O(n).  n is how many things you&amp;rsquo;re
-moving?&lt;/p&gt;
+copy everything and move it over.  So &lt;em&gt;O(n)&lt;/em&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;On Canvas there is a download of all the code in the textbook.&lt;/p&gt;
 
-&lt;p&gt;Difference between extends and implements?
-implements Iterator..&lt;/p&gt;
+&lt;p&gt;Difference between &lt;code&gt;extends&lt;/code&gt; and &lt;code&gt;implements?&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;implements Iterator&lt;/code&gt;..&lt;/p&gt;
 
-&lt;p&gt;theSize is how many items are filled up.
-Length of theItems is how long the arraylist is.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;theSize&lt;/code&gt; is how many items are filled up.
+Length of &lt;code&gt;theItems&lt;/code&gt; is how long the &lt;code&gt;ArrayList&lt;/code&gt; is.&lt;/p&gt;
 
-&lt;p&gt;ensureCapacity().&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ensureCapacity()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;When creating the array, you construct an array of objects and then cast it to
-generics.  The compiler doesn&amp;rsquo;t know how to create an array of generics.&lt;/p&gt;
+generics. The compiler doesn&amp;rsquo;t know how to create an array of generics.&lt;/p&gt;
 
-&lt;p&gt;&amp;ndash;&lt;/p&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;By starting at the end with add() you don&amp;rsquo;t have to move anything (or iterate
+&lt;p&gt;By starting at the end with &lt;code&gt;add()&lt;/code&gt; you don&amp;rsquo;t have to move anything (or iterate
 through anything) if you&amp;rsquo;re adding to the end.&lt;/p&gt;
 
-&lt;p&gt;ArrayListIterator() is not provided by java, need to implement ourselves.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ArrayListIterator()&lt;/code&gt; is not provided by Java, need to implement ourselves.&lt;/p&gt;
 </description>
     </item>
     

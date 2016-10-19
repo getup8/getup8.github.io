@@ -1,0 +1,408 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 11: Trees, Continued &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="button" href="http://www.getup8.com/index.xml">Subscribe</a>
+	
+</nav>
+
+        <section class="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 11: Trees, Continued</h1>
+                    <h2 class="headline">
+                    October 12, 2016 
+                    </h2>
+                    <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section class="post-body">
+                    
+
+<p>Root node is usually operator.</p>
+
+<h3 id="post-order-traversal">Post-Order Traversal</h3>
+
+<ul>
+<li>Gives us Postfix expressions</li>
+</ul>
+
+<h3 id="in-order-traversal">In-Order Traversal</h3>
+
+<ul>
+<li>Do the left</li>
+<li>Print out the result</li>
+<li>Do the right</li>
+</ul>
+
+<p>Using a tree to evaluate expressions.</p>
+
+<p>What should we store the operators and operands as?  And how do we tell them
+apart?</p>
+
+<p>Some rules (I think):</p>
+
+<ul>
+<li>A leaf has to be an operand</li>
+<li>An inner node has to be an operator</li>
+<li>Another?</li>
+</ul>
+
+<h2 id="implementing-a-tree-for-expressions-expression-trees">Implementing a Tree for Expressions: Expression Trees</h2>
+
+<pre><code class="language-java">class ExprNode {
+    char operator;
+    int operand;
+    ExprNode left;
+    ExprNode right;
+}
+</code></pre>
+
+<p>You could also do a string and then try to parse it and see if it&rsquo;s a number or
+not.  Need to be careful of negative numbers.</p>
+
+<p>We&rsquo;re making the decision to just have two instance vars, one of each type.
+Then we can have logic to determine which value to look at (and where to store
+a value as well).</p>
+
+<p>Programming problem #1 on Homework 3.</p>
+
+<ol>
+<li>Construct tree</li>
+<li>Postfix expr</li>
+<li>Prefix expr</li>
+<li>Infix expr</li>
+<li>Evaluate the tree</li>
+</ol>
+
+<pre><code class="language-java">void postFix(ExprNode t) {
+    // Print out the left, then the right, then the node itself.
+
+    // base case. tree is empty.
+    if (t == null) {
+        return;
+    }
+    postFix(t.left);  // If these are leafs, it will be our base case and just return
+    postFix(t.right);
+
+    // Now we want to print out. Need to determine if it's a operator or
+    // an operand.
+    if (t.left != null) {
+        System.out.println(t.operator);
+    } else {
+        System.outprintln(t.operand);
+    }
+}
+</code></pre>
+
+<p>What if we want to change this to prefix?  Basically just move the <code>if</code>/<code>else</code>
+statements to before the recursive call.</p>
+
+<p>What about the infix?  You can&rsquo;t just put the <code>if</code>/<code>else</code> in the middle of the
+left and right postFix calls.  Order of operations is important!</p>
+
+<p>Print parentheses pre and post the <code>postFix(t.left)</code> call.</p>
+
+<h3 id="how-do-we-evaluate-the-tree">How do we evaluate the tree?</h3>
+
+<ol>
+<li>Evaluate the left side</li>
+<li>Evaluate the right side</li>
+<li>Do the expression</li>
+</ol>
+
+<p>So evaluating a tree is actually just a flavor of postfix.</p>
+
+<h2 id="creating-expression-trees">Creating Expression Trees</h2>
+
+<p><strong>Input:</strong> postfix expression from a user<br />
+<strong>Output:</strong> an expression tree object</p>
+
+<p>We use stacks of nodes!</p>
+
+<p><code>3 4 * 5 +</code></p>
+
+<ul>
+<li>encase 3 into a node and <code>push</code> to stack</li>
+<li>encase 4 into a node and <code>push</code> to stack</li>
+<li>oooh we&rsquo;ve come to an operator; create a node around the operator and then
+<code>pop</code> the stack twice.
+
+<ul>
+<li>First <code>pop</code> goes to the right reference</li>
+<li>Second <code>pop</code> goes to the left reference</li>
+</ul></li>
+<li>Now push the root of the tree we just created back onto the stack (root
+of the tree is the <code>*</code> with <code>3</code> and <code>4</code> hanging off of it as children)</li>
+<li>5 because a node (<code>ExprNode</code>)</li>
+<li>The <code>+</code>, encase it, <code>pop</code> the stack twice again.
+
+<ul>
+<li>5 goes to the right</li>
+<li><code>ExprNode</code> (with <code>3</code> and <code>4</code> with it) on the left</li>
+</ul></li>
+<li><code>push</code> back to the stack</li>
+<li>End of expression! Soo&hellip;</li>
+<li><code>pop</code> the stack! And get a reference to the root <code>ExprNode</code> of the tree</li>
+</ul>
+
+<h2 id="code">Code.</h2>
+
+<p>There&rsquo;s a distinction between the <code>ExprTree</code> class and the <code>ExprNode</code> class.
+The job of the <code>ExprTree</code> is to encapsulate <code>ExprNode</code>.  The instance variable
+will be the root of the tree.</p>
+
+<p>Constructor for <code>ExprTree</code> class would take in a postfix expression and build
+up the tree.</p>
+
+<p><code>ExprTree.java</code></p>
+
+<pre><code class="language-java">public class ExprTree {
+
+    private ExprNode root;
+
+    public ExprTree(String postFix) {
+        // run through stack-based algorithm to build the expression tree
+        // remember, you're pushing `ExprNode`s
+        // When done, pop the stack and make that the root.
+    }
+
+    // Evaluate the expression tree.  Public version of the function since the
+    // user doesn't know anything about the root node.
+    public eval() {
+        return eval(root);
+    }
+
+    private int eval(ExprNode t) {
+        // do your traversal to evaluate the tree rooted at t and return it
+    }
+
+    static private class ExprNode {
+        int operand;
+        char operator;
+        ExprNode left;
+        ExprNode right;
+    }
+}
+</code></pre>
+
+<h2 id="binary-search-tree">Binary Search Tree</h2>
+
+<h3 id="rules">Rules</h3>
+
+<ul>
+<li>Every single node in the left subtree must be smaller than the root node</li>
+<li>Every single node in the right subtree must be larger than the root node</li>
+<li>This must be true at every node</li>
+</ul>
+
+<p>A perfect binary search tree has perfect balance.</p>
+
+<p>At each node, ask if smaller or larger, move to left or right accordingly and
+keep going (recursion).  Keep going until you find the value or you reach a
+<code>null</code> link.</p>
+
+<p>We&rsquo;re making the assumption that there are no repeat values.</p>
+
+<p>So what methods should we have for the ADT for a Binary Search Tree?</p>
+
+<ol>
+<li><code>contains</code></li>
+<li><code>add</code>: just like <code>contains</code>, go through looking for it, if you find it,
+ just return; if you don&rsquo;t, replace your value with a <code>null</code> link.</li>
+<li><code>remove</code></li>
+</ol>
+
+<p>PBST means height is about <code>O(log N)</code> so both <code>contains</code> and <code>add</code> run that
+fast.  But not for non-perfect BSTs.</p>
+
+<h3 id="example">Example</h3>
+
+<p><code>5, 4, 3, 2, 1</code></p>
+
+<p>Basically you end up building a <code>LinkedList</code> so searching could actually be
+<code>O(N)</code>.</p>
+
+<p>If tree is very well balanced, then it&rsquo;s <code>O(log N)</code>, but if it&rsquo;s not, then it&rsquo;s
+<code>O(N)</code>.  Basically, you have to assume <code>O(N)</code> is the worst case unless you
+KNOW its well balanced.</p>
+
+<p>But there are such things as self-balancing trees, e.g. ABL trees.  For these
+we can guarantee <code>O(log N)</code>.</p>
+
+<p>Finding <code>min</code> and <code>max</code> is pretty easy, just keep going left or right,
+respectively.  Same order as searching.</p>
+
+<p>Btw, an in-order traversal of a BST will give us a <strong>sorted list</strong>!</p>
+
+                </section>
+            </article>
+            <div class="post-meta clearfix">
+                <a href="https://twitter.com/getup8">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="author">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    </a>
+                <section class="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture11%2f - Lecture%2011%3a%20Trees%2c%20Continued by @getup8"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture11\/';
+    var disqus_title = 'Lecture 11: Trees, Continued';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture11\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul class="post-list readmore">  
+    <h3>Read more</h3>
+
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 13</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/blogging-in-hugo/'>
+                    <aside class="date">Aug 30</aside>
+                    <h1>Blogging in Hugo</h1>
+                    <h2>A guide to getting set up on Hugo and deploying to GitHub Pages.</h2>
+                </a>
+            </li>
+        
+    
+</ul>
+            <footer>
+    
+        <div class="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

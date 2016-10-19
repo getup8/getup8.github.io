@@ -7,7 +7,7 @@
 		<meta name="author" content="Alex Scott">
 		<meta name="description" content="getup8 blog">
 		<meta name="generator" content="Hugo 0.16" />
-		<title>Lecture 8: Stacks &middot; GetUp8</title>
+		<title>Lecture 8: Stacks and Queues &middot; GetUp8</title>
 		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
 		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
 		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
@@ -43,7 +43,7 @@
         <section class="wrapper">
             <article class="post">
                 <header>
-                    <h1>Lecture 8: Stacks</h1>
+                    <h1>Lecture 8: Stacks and Queues</h1>
                     <h2 class="headline">
                     October 3, 2016 
                     </h2>
@@ -51,7 +51,7 @@
                     
                     
                         
-                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
                         
                     
                     
@@ -60,9 +60,7 @@
                 <section class="post-body">
                     
 
-<h2 id="agenda">Agenda</h2>
-
-<h3 id="stacks-continued">Stacks (continued)</h3>
+<h2 id="stacks-continued">Stacks (continued)</h2>
 
 <ul>
 <li>LIFO: Last In, First Out</li>
@@ -118,7 +116,7 @@ do in <code>LinkedList</code>.</p>
 
 <hr />
 
-<h3 id="queues-continued">Queues (continued)</h3>
+<h2 id="queues">Queues</h2>
 
 <ul>
 <li>FIFO.  First in, first out.  Line at the grocery store.</li>
@@ -153,7 +151,7 @@ structures. Multiple ways to do them but how can we do them most efficiently?</p
 
 <p>If one, let&rsquo;s say <code>tail</code>, doesn&rsquo;t work great since we can only track one side
 of the queue so we&rsquo;d have to move everything over if we <code>dequeue</code>d an
-element.  It&rsquo;d be O(N) because of that.</p>
+element.  It&rsquo;d be <em>O(N)</em> because of that.</p>
 
 <p>If two variables: <code>head</code> and <code>tail</code>, we can track both ends and we don&rsquo;t have
 to move anything around.</p>
@@ -169,12 +167,12 @@ wrap around or increase the size of the array.</p>
 
 <hr />
 
-<h3 id="stack-algorithms">Stack Algorithms</h3>
+<h2 id="stack-algorithms-and-use-cases">Stack Algorithms and Use Cases</h2>
 
 <p>One good use of stacks is to reverse strings; e.g. check for palindromes.<br />
 e.g. <em>yo banana boy</em>, <em>race car</em>, <em>taco cat</em></p>
 
-<p>Sample algorithm for determining if <code>race car</code> is a palindrome:</p>
+<p>Sample algorithm for determining if <em>&ldquo;race car&rdquo;</em> is a palindrome:</p>
 
 <ol>
 <li>For each character in the string, <code>push</code> into stack</li>
@@ -185,12 +183,12 @@ even, you don&rsquo;t ignore</li>
 <li>If ever it doesn&rsquo;t match, you return false</li>
 <li>When you get to the end, you should check to make sure the string is empty
 but this shouldn&rsquo;t happen (the string or the stack?)</li>
-<li>If you pop an empty stack something is wrong as well</li>
+<li>If you <code>pop</code> an empty stack something is wrong as well</li>
 </ol>
 
 <p>Another example&hellip;</p>
 
-<p>RPN Calculator: put the operands first followed by the operator (e.g. 5 3 +).
+<p>RPN Calculator: put the operands first followed by the operator (e.g. <code>5 3 +</code>).
 Parentheses aren&rsquo;t needed because order of operations is explicit.</p>
 
 <p><code>5 3 + 2 *</code> would equal <code>(5 + 3) * 2</code></p>
@@ -204,9 +202,9 @@ Parentheses aren&rsquo;t needed because order of operations is explicit.</p>
 <li>Is the token an operator or operand?</li>
 <li>If it&rsquo;s an operand, <code>push</code> onto the stack.</li>
 <li>If it&rsquo;s an operator, we <code>pop</code> the stack twice.</li>
-<li>The first number popped is the second operand</li>
-<li>The second number popped is the first operand</li>
-<li>Pop the stack one more time, if the stack is not empty, you have an error</li>
+<li>The first number <code>pop</code>ped is the second operand</li>
+<li>The second number <code>pop</code>ped is the first operand</li>
+<li><code>pop</code> the stack one more time, if the stack is not empty, you have an error</li>
 <li>Other errors?  If there is only one number and then an operand, the second
 <code>pop</code> won&rsquo;t work.</li>
 </ol>
@@ -225,6 +223,7 @@ push(result); // Push result back onto stack and keep going
 The way we usually do things is called Infix expressions.</p>
 
 <ol>
+<li>I missed the first two steps here..</li>
 <li>A token is either a number or an operator.</li>
 <li>How should we distinguish between them?</li>
 <li>We can use <code>split</code> to turn string into an array.</li>
@@ -238,12 +237,12 @@ The way we usually do things is called Infix expressions.</p>
                 <a href="https://twitter.com/getup8">
                         <img class="avatar" src="http://www.getup8.com/images/avatar.png">
                         <div>
-                            <span class="dark">Alex Scott</span>
+                            <span class="author">Alex Scott</span>
                             <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
                         </div>
                     </a>
                 <section class="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture8%2f - Lecture%208%3a%20Stacks by @getup8"><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture8%2f - Lecture%208%3a%20Stacks%20and%20Queues by @getup8"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -260,7 +259,7 @@ The way we usually do things is called Infix expressions.</p>
 <script type="text/javascript">
     var disqus_shortname = 'getup8';
     var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture8\/';
-    var disqus_title = 'Lecture 8: Stacks';
+    var disqus_title = 'Lecture 8: Stacks and Queues';
     var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture8\/';
 
     (function() {
@@ -275,6 +274,18 @@ The way we usually do things is called Infix expressions.</p>
             <ul class="post-list readmore">  
     <h3>Read more</h3>
 
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 13</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
     
 
     

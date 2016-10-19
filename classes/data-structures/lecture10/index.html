@@ -7,7 +7,7 @@
 		<meta name="author" content="Alex Scott">
 		<meta name="description" content="getup8 blog">
 		<meta name="generator" content="Hugo 0.16" />
-		<title>Classes &middot; GetUp8</title>
+		<title>Lecture 10: Trees &middot; GetUp8</title>
 		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
 		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
 		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
@@ -43,22 +43,151 @@
         <section class="wrapper">
             <article class="post">
                 <header>
-                    <h1>Classes</h1>
+                    <h1>Lecture 10: Trees</h1>
                     <h2 class="headline">
-                    September 28, 2016 
+                    October 10, 2016 
                     </h2>
                     <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
                     
                     </h2>
                 </header>
                 <section class="post-body">
                     
 
-<h2 id="data-structures-in-java">Data Structures in Java</h2>
+<p>Starting this lecture at 6:40 btw. 30 minutes of nothingness before.</p>
 
-<h3 id="columbia-university-coms-3134">Columbia University, COMS 3134</h3>
+<h2 id="trees">Trees</h2>
 
-<p><em>Fall 2016</em></p>
+<ul>
+<li>Trees are a bunch of nodes</li>
+<li>Need to have references to child nodes</li>
+<li>Very likely going to iterate across children, not necessarily jump to a
+specific one.</li>
+<li>You could do this with a LinkedList but there&rsquo;s an easier way</li>
+<li>To iterate through children, go to <code>firstChild</code> and then iterate through
+using <code>nextSibling</code></li>
+</ul>
+
+<pre><code class="language-java">class TreeNode&lt;T&gt; {
+    T data;
+    TreeNode&lt;T&gt; nextSibling;  // Similar to LinkedList
+    TreeNode&lt;T&gt; firstChild;  // Another LinkedList type structure to children
+}
+</code></pre>
+
+<p>Pre-order traversal: evaluate the node first, then evaluate the children.
+Post-order: evaluate the children first, then the node.</p>
+
+<h2 id="tree-traversal">Tree Traversal</h2>
+
+<p>A pre-order tree traversal via <code>listAll</code></p>
+
+<pre><code class="language-java">// Pseudo code
+private void listAll(int depth) {
+    printName(depth);  // Print name of object
+    if(isDirectory()) {
+        for each file c in this directory (for each child) {
+            c.listAll(depth + 1);
+        }
+    }
+}
+
+public void listAll() {
+    listAll(0);  // Initial call for root node calls actual recursive method
+}
+</code></pre>
+
+<h2 id="tree-types">Tree Types</h2>
+
+<ul>
+<li>Full Binary Tree
+
+<ul>
+<li>?</li>
+</ul></li>
+<li>Complete Binary Tree
+
+<ul>
+<li>Last row is filled up from left to right but not all the way</li>
+</ul></li>
+<li>Perfect Binary Tree
+
+<ul>
+<li>A complete binary tree with the last row all filled up</li>
+</ul></li>
+</ul>
+
+<p>Need to think about the number of nodes in a tree given the height..</p>
+
+<p>A perfect binary tree has <code>2^(h + 1) - 1</code> nodes.</p>
+
+<p>Btw, know what &ldquo;proof by induction&rdquo; means.</p>
+
+<h3 id="proof-by-induction">Proof by Induction</h3>
+
+<h4 id="base-case">Base Case</h4>
+
+<ul>
+<li>2^(0 + 1) - 1 = 1</li>
+<li>2^(1 + 1) - 1 = 3</li>
+</ul>
+
+<p>Assume for perfect trees of height <code>1</code> through <code>k</code> this holds.</p>
+
+<p>So now we need to prove that this works for a tree of height <code>k + 1</code>.</p>
+
+<p>A tree of height <code>k</code> will have <code>2^(k + 1) - 1</code> nodes.</p>
+
+<p>Now copy that tree and we have two identical trees.</p>
+
+<p>Now add a root node and point to the root nodes of those two initial trees.</p>
+
+<p>So now we just need to add up the nodes.</p>
+
+<p><code>2 * (2^(k + 1) - 1) + 1</code>
+<code>2^((k + 1) + 1) - 2 + 1</code>
+<code>2^((k + 1) + 1) - 1</code></p>
+
+<h2 id="question-one-on-the-midterm-will-essentially-be-this-but-on-another">QUESTION ONE ON THE MIDTERM WILL ESSENTIALLY BE THIS BUT ON ANOTHER</h2>
+
+<p>CHARACTERISTIC OF THE BINARY TREE</p>
+
+<h2 id="expression-tree">Expression Tree</h2>
+
+<p>Tree will be represented by a full binary tree.  In a binary tree, there is
+something on the &ldquo;left&rdquo; and something on the &ldquo;right&rdquo; so there is some implicit
+order.</p>
+
+<p>Operators are interior nodes.  Operands are leaf nodes.</p>
+
+<p>Example:</p>
+
+<p>3 + (2 * 5)</p>
+
+<p>+
+3   *
+  2   5</p>
+
+<p>Does the root node of an expression tree have to be an operand?  Nope.</p>
+
+<p>Interior nodes must be operators.</p>
+
+<p>Leaf nodes must be operands?</p>
+
+<p>Look at the ExpressionNode class&hellip;</p>
+
+<pre><code class="language-java">public class ExprNode {
+    Op data;  // either operator or operand
+    ExprNode left;
+    ExprNode right;
+}
+</code></pre>
 
                 </section>
             </article>
@@ -71,7 +200,7 @@
                         </div>
                     </a>
                 <section class="sharing">
-                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2f - Classes by @getup8"><span class="icon-twitter"> Tweet</span></a>
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture10%2f - Lecture%2010%3a%20Trees by @getup8"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -87,9 +216,9 @@
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'getup8';
-    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/';
-    var disqus_title = 'Classes';
-    var disqus_url = 'http:\/\/www.getup8.com\/classes\/';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture10\/';
+    var disqus_title = 'Lecture 10: Trees';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture10\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -51,7 +51,7 @@
                     
                     
                         
-                            <a href="http://www.getup8.com/tags/data-structures">data structures</a>
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
                         
                     
                     
@@ -63,9 +63,9 @@
 <h2 id="agenda">Agenda</h2>
 
 <ul>
-<li>Cycling back to the ArrayListIterator to understand how nested classes
+<li>Cycling back to the <code>ArrayListIterator</code> to understand how nested classes
 function.</li>
-<li>Also going through implementation of LinkedList.</li>
+<li>Also going through implementation of <code>LinkedList</code>.</li>
 <li>Stacks and Queues.</li>
 </ul>
 
@@ -91,16 +91,16 @@ instantiate it, but <code>MyArrayList</code> can.</p>
 <p>Purpose of an iterator is to step through a collection of any sort.</p>
 
 <ul>
-<li>hasNext(): figure out if there&rsquo;s a next element</li>
-<li>next(): move to next and return it</li>
-<li>remove(): remove the element that we just moved past</li>
+<li><code>hasNext()</code>: figure out if there&rsquo;s a next element</li>
+<li><code>next()</code>: move to next and return it</li>
+<li><code>remove()</code>: remove the element that we just moved past</li>
 </ul>
 
 <p>Our iterator is <em>not</em> <code>static</code>.  There are two kinds of nested.</p>
 
 <ul>
-<li>Non-<code>static</code> is tied to the particular instance of MyArrayList from whence it
-is generator.</li>
+<li>Non-<code>static</code> is tied to the particular instance of <code>MyArrayList</code> from
+whence its generator.</li>
 </ul>
 
 <p>The one thing we need to keep track of w/ an iterator is &ldquo;Where are we?&rdquo;.</p>
@@ -119,9 +119,9 @@ wouldn&rsquo;t be tied to a specific instance but I should test it!</p>
 
 <p><code>curent++</code> will evaluate the value of <code>current</code> first and then increment it.</p>
 
-<p>MyArrayList.this.remove(&ndash;current);</p>
+<p><code>MyArrayList.this.remove(--current);</code></p>
 
-<p>There&rsquo;s a method in the MyArrayList to actually remove an element which is
+<p>There&rsquo;s a method in the <code>MyArrayList</code> to actually remove an element which is
 what we actually want to call.</p>
 
 <p><code>MyArrayList.this</code> means the specific containing object.
@@ -133,16 +133,16 @@ what we actually want to call.</p>
 
 <hr />
 
-<p>Back to Linked Lists.</p>
+<h2 id="linked-lists">Linked Lists</h2>
 
-<p>MyLinkedList implementation (that will be sent out?) does a doubly linked list
-with sentinal nodes.</p>
+<p><code>MyLinkedList</code> implementation (that will be sent out?) does a doubly linked
+list with sentinal nodes.</p>
 
 <p>Don&rsquo;t worry about <code>modCount</code>.</p>
 
-<p>There&rsquo;s a class LinkedList and you can just instantiate to create.</p>
+<p>There&rsquo;s a class <code>LinkedList</code> and you can just instantiate to create.</p>
 
-<p>Has two private Node objects: begin and end.</p>
+<p>Has two private <code>Node</code> objects: <code>begin</code> and <code>end</code>.</p>
 
 <p><code>Node</code> class is <code>static</code> and defined in MyLinkedList.
 <code>Node</code> doesn&rsquo;t have access to MyLinkedList objects (since it&rsquo;s <code>static</code>).
@@ -182,7 +182,7 @@ to the <code>Node</code> that exists that many steps into the linked list.</p>
 <li>Depending on what index is, we start from beginning or end. Doesn&rsquo;t
 change Big Oh</li>
 <li>Start at first element if start at beginning</li>
-<li>Start at endMarker if we start at the end though since we&rsquo;re inserting
+<li>Start at <code>endMarker</code> if we start at the end though since we&rsquo;re inserting
 before.</li>
 </ul></li>
 </ul>
@@ -202,6 +202,8 @@ want to remove and you can use its <code>next</code> and <code>prev</code> refer
 Look at this code and understand it.</p>
 
 <hr />
+
+<h2 id="stacks">Stacks</h2>
 
 <p>So what can we do with these things??</p>
 
@@ -242,21 +244,13 @@ Removing an element (and returning it) is referred to <code>pop</code>ping.</p>
 Need to implement a Stack.
 Any List will work.</p>
 
-<p>If singly linked list, push/pop from front, all O(1), otherwise if you do from
-end, it&rsquo;s O(N).
-With doubly linked list, it&rsquo;s O(1) from either end.</p>
+<p>If singly linked list, <code>push</code>/<code>pop</code> from front, all <em>O(1)</em>, otherwise if you do
+from end, it&rsquo;s <em>O(N)</em>.</p>
 
-<p>LinkedList has push / pop methods in java.util.  Basically just reimplement this
-along with the other functions above.</p>
+<p>With doubly linked list, it&rsquo;s <em>O(1)</em> from either end.</p>
 
-<hr />
-
-<p>Queues.</p>
-
-<ul>
-<li>Similar to Stacks, but FIFO, first in, first out.</li>
-<li>Adding from one end, Removing from the other.</li>
-</ul>
+<p><code>LinkedList</code> has push / pop methods in <code>java.util</code>.  Basically just reimplement
+this along with the other functions above.</p>
 
                 </section>
             </article>
@@ -264,7 +258,7 @@ along with the other functions above.</p>
                 <a href="https://twitter.com/getup8">
                         <img class="avatar" src="http://www.getup8.com/images/avatar.png">
                         <div>
-                            <span class="dark">Alex Scott</span>
+                            <span class="author">Alex Scott</span>
                             <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
                         </div>
                     </a>
@@ -301,6 +295,18 @@ along with the other functions above.</p>
             <ul class="post-list readmore">  
     <h3>Read more</h3>
 
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 13</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
     
 
     
