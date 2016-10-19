@@ -6,13 +6,13 @@
     <description>Recent content in Posts on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Oct 2016 23:40:37 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 19 Oct 2016 23:40:37 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The Power of One (and Zero)</title>
       <link>http://www.getup8.com/post/power_of_one_and_zero/</link>
-      <pubDate>Thu, 13 Oct 2016 23:40:37 -0400</pubDate>
+      <pubDate>Wed, 19 Oct 2016 23:40:37 -0400</pubDate>
       
       <guid>http://www.getup8.com/post/power_of_one_and_zero/</guid>
       <description>
@@ -31,13 +31,49 @@ pressured to beat our previous efforts seemed stressful.&lt;/p&gt;
 
 &lt;p&gt;In the end, the spreadsheet just looked like this:&lt;/p&gt;
 
-&lt;p&gt;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Date&lt;/th&gt;
+&lt;th&gt;Alex &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;0&lt;/sub&gt;&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Lauren &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;0&lt;/sub&gt;&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2016-09-23&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Ran 5mi!&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Ran 5mi w/ A!&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2016-09-24&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;:(&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Pilates&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2016-09-25&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Gym, upper body&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;:(&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;The days&amp;rsquo;s date, a binary column for whether we worked our or not, and then
 an optional note to say what you did.&lt;/p&gt;
 
-&lt;p&gt;500 days later, we&amp;rsquo;re still going strong.  We&amp;rsquo;ve filled out every single day.
-Not always on the same day, I admit, sometimes we&amp;rsquo;ll go a few days or more
+&lt;p&gt;&lt;strong&gt;500 days later&lt;/strong&gt;, we&amp;rsquo;re still going strong.  We&amp;rsquo;ve filled out every single
+day. Not always on the same day, I admit, sometimes we&amp;rsquo;ll go a few days or more
 without marking a zero or a one but inevitably we&amp;rsquo;ll remember and backfill the
 unmarked days.&lt;/p&gt;
 
