@@ -6,8 +6,406 @@
     <description>Recent content in Classes on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Oct 2016 22:36:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 24 Oct 2016 22:36:00 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/classes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lecture 14: Midterm Review</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture14/</link>
+      <pubDate>Mon, 24 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture14/</guid>
+      <description>
+
+&lt;h2 id=&#34;midterm-review&#34;&gt;Midterm Review&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;8 questions&lt;/li&gt;
+&lt;li&gt;Straightforward&lt;/li&gt;
+&lt;li&gt;Touch on every topic&lt;/li&gt;
+&lt;li&gt;A little bit on the long side; budget time well and if you&amp;rsquo;re stuck, move
+on to the next&lt;/li&gt;
+&lt;li&gt;Closed book / notes / calculator&lt;/li&gt;
+&lt;li&gt;Pen or pencil, just not red&lt;/li&gt;
+&lt;li&gt;Short answer problems, Big Oh&lt;/li&gt;
+&lt;li&gt;Crank through algorithms on paper: AVL inserts on paper&lt;/li&gt;
+&lt;li&gt;Write two or three Java methods, one of which will be a recursion on a tree&lt;/li&gt;
+&lt;li&gt;Induction proof is the first question&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;from-the-book&#34;&gt;From the Book&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1-4.4 and 4.6&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;chapter-1&#34;&gt;Chapter 1&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chapter 1.  Induction proofs.  Don&amp;rsquo;t really need to know all the math.
+Fibonacci.  Binary trees.  Prove a property of a binary tree.&lt;/li&gt;
+&lt;li&gt;Proof by counter example. Homework 3.&lt;/li&gt;
+&lt;li&gt;Recursion. Base cases, design rules and be able to write methods
+recursively.&lt;/li&gt;
+&lt;li&gt;1.4 and 1.5.  Don&amp;rsquo;t need to focus on this.  Just be able to use generics
+and interfaces as we have in homeworks.  There will be generic methods.&lt;/li&gt;
+&lt;li&gt;1.6 Function objects&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;chapter-2&#34;&gt;Chapter 2&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pretty much whole thing&lt;/li&gt;
+&lt;li&gt;2.4 examples don&amp;rsquo;t really have to worry about but otherwise, all of it&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;chapter-3&#34;&gt;Chapter 3&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The whole thing.&lt;/li&gt;
+&lt;li&gt;Josephus problem about how to use a queue.  Don&amp;rsquo;t worry about that.  But
+know where queues, enqueue, dequeue, etc.&lt;/li&gt;
+&lt;li&gt;Implementation with LinkedList and ArrayList (MyLinkedList out of Weiss),
+know how to add and remove items&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;chapter-4&#34;&gt;Chapter 4&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;4.3.5 Ignore&lt;/li&gt;
+&lt;li&gt;Otherwise, everything up through 4.4 and then 4.6 as well&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;detailed-topics&#34;&gt;Detailed Topics&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tower of Hanoi.  Remember the basic problem and how we solved it
+recursively.  Will not have to implement but need to understand it.  What
+is the Big Oh notation of that?  2^(n-1) or 2^N&lt;/li&gt;
+&lt;li&gt;Abstract Data Type vs Data Structure.  ADT doesn&amp;rsquo;t define how they&amp;rsquo;re
+performed.  Data Structure is the specifics and implementation.  Stack vs
+ArrayStack.  Interfaces are kinda ADTs.  Just signatures, not
+implementation.&lt;/li&gt;
+&lt;li&gt;Generics.  Interfaces.  Iterators across a collection; using it with an
+enhance for loop.  Comparable. Inner Class.  Who can access them and who
+can&amp;rsquo;t.  Binary Nodes for example.&lt;/li&gt;
+&lt;li&gt;Big Oh notation for asymptotic runtime.  Typical growth functions and have
+a sense of ordering.&lt;/li&gt;
+&lt;li&gt;Costs of algorithms WILL be on the exam.  Big Oh is an upper bound.  But we
+need the tightest bound possible.&lt;/li&gt;
+&lt;li&gt;Binary Search Trees are O(N) for worst case.  So be careful of balanced vs
+not.  If it&amp;rsquo;s perfectly balanced, then O(log N).&lt;/li&gt;
+&lt;li&gt;List ADT.  Typical List operations.&lt;/li&gt;
+&lt;li&gt;ArrayList.  Costs of operations on ArrayLists.  How they&amp;rsquo;re implemented.
+Default size that auto grows.&lt;/li&gt;
+&lt;li&gt;LinkedList.  Runtimes for all methods.  Singly vs Doubly.  For add/removes,
+depends on where we are; O(N) or O(1).  Implementation.&lt;/li&gt;
+&lt;li&gt;Stacks/Queues.  Stack ADT and operations.  Queue and operations.  Costs of
+those.  All ideally O(1).&lt;/li&gt;
+&lt;li&gt;Lots of implementations of Stacks from class and homework.&lt;/li&gt;
+&lt;li&gt;Queues. LinkedList implementation.  Don&amp;rsquo;t need to worry about circular
+array implementation.&lt;/li&gt;
+&lt;li&gt;Trees and terminology.  Parent, child, leaf, path, node, depth, height.
+Height of leaf is zero.  Height of null link is -1.&lt;/li&gt;
+&lt;li&gt;Trees.  First child and next sibling vs link to all children.&lt;/li&gt;
+&lt;li&gt;Full binary trees: every node is a leaf or two children.  Remember all of
+these.  Complete binary tree is not necessarily full.  Filled from left to
+right.  Perfect binary tree is full, final row filled up.&lt;/li&gt;
+&lt;li&gt;In-order, pre-order and post-order traversal of a tree and be able to
+perform them and use them for other stuff.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;post-order&#34;&gt;Post Order&lt;/h3&gt;
+
+&lt;p&gt;Recursively call the left
+Recursively call the right
+Call the current node (root)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    A
+ B     C
+D E   F
+   G
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;DGEBFCA&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;pre-order&#34;&gt;Pre Order&lt;/h3&gt;
+
+&lt;p&gt;Current node first (root)
+Go left
+Go right&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ABDEGCF&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;in-order&#34;&gt;In Order&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;DBEGAFC&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;topics-continued&#34;&gt;Topics Continued&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Expression trees.  Operators and operands.  Interior nodes are operators
+and leaves are operands.  You can do postfix by post order, etc.  In-order
+traversal you have to modify a bit to include parentheses.&lt;/li&gt;
+&lt;li&gt;Stack based algorithm to build the tree.  Push/pop, etc.  Know that.&lt;/li&gt;
+&lt;li&gt;Know rules of Binary Search Tree.  In-order traversal will get us the
+elements in sorted order.  You should know when a tree is BST ordered.
+Know contains, findMin, findMax and remove.  Know about lazy deletion.
+Know how to do the remove.&lt;/li&gt;
+&lt;li&gt;Should know how to perform BST / AVL operations.  He&amp;rsquo;ll give a list of
+numbers and we&amp;rsquo;ll have to construct a tree.&lt;/li&gt;
+&lt;li&gt;AVL trees.  Constrain height so that operations are in O(log N).  Doesn&amp;rsquo;t
+have to be perfectly balanced but all AVL trees are Binary Search Trees.
+Always needs to be a BST, even during rotation.  Left subtreees height
+must not differ from right subtree&amp;rsquo;s height by more than one at every
+node.  Know how to spot these and how to fix them using rotations.&lt;/li&gt;
+&lt;li&gt;You&amp;rsquo;ll have to draw an AVL tree given a list of numbers.  And you&amp;rsquo;ll have
+to write down all the intermediate steps, including the rotations and
+show where the imbalances are, etc.&lt;/li&gt;
+&lt;li&gt;Iterable.  Implements Iterator, has some method, returns an iterator.&lt;/li&gt;
+&lt;li&gt;Throwing exceptions. Prob not but maybe.&lt;/li&gt;
+&lt;li&gt;No File IO operations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;example-avl-tree-creation&#34;&gt;Example AVL Tree Creation&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;50, 20, 10, 30, 40, 25&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  50
+20
+
+  *50
+ 20
+10
+
+# Single rotation.
+
+  20
+ 10  50
+    30 
+
+  20
+10  50*
+   30
+     40
+
+# Double rotation.
+
+  20
+ 10  50
+    40
+   30
+
+  20
+10  40
+   30 50
+
+   20*
+10    40
+    30  50
+  25
+
+# Again a double rotation.
+
+   20
+10    30
+    25  40
+  20
+
+# THIS IS WRONG FIX THIS.
+
+   20
+10    25
+    20  30
+         40
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;induction-proof&#34;&gt;Induction Proof&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Show that the base case holds true&lt;/li&gt;
+&lt;li&gt;Make an assumption that the property holds true from the base case up to
+ an arbitrary N.&lt;/li&gt;
+&lt;li&gt;Show that it&amp;rsquo;s true for N + 1&lt;/li&gt;
+&lt;li&gt;Draw a diagram and show what happens when you add one more&lt;/li&gt;
+&lt;li&gt;A little math to prove what we need to prove&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Total number of nodes.  Total height of tree.  Etc.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lecture 13: AVL Trees</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture13/</link>
+      <pubDate>Wed, 19 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture13/</guid>
+      <description>
+
+&lt;h2 id=&#34;random-stuff&#34;&gt;Random Stuff&lt;/h2&gt;
+
+&lt;p&gt;Only difference between AVL and Binary Search Tree code are the methods to take
+care of the tree balancing.&lt;/p&gt;
+
+&lt;p&gt;For the second programming problem, you just have to make some minor changes;
+basically just using it as a type of collection.&lt;/p&gt;
+
+&lt;p&gt;Only thing we haven&amp;rsquo;t learned is rotation for AVL inserts.  Have a problem on
+this in the homework and will have one on the exam.&lt;/p&gt;
+
+&lt;h2 id=&#34;avl-trees&#34;&gt;AVL Trees&lt;/h2&gt;
+
+&lt;p&gt;A self-balancing Binary Search Tree with a height constraint.  At a given node,
+the height of the left subtree cannot differ from the right subtree by more
+than one.  This has to be true for every node in the tree.&lt;/p&gt;
+
+&lt;p&gt;This bounds the height of the tree at &lt;em&gt;log(N)&lt;/em&gt; so all operations, including
+&lt;code&gt;remove()&lt;/code&gt; are &lt;em&gt;O(log N)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;tree-height&#34;&gt;Tree Height&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Height of a tree with only the root node is zero
+
+&lt;ul&gt;
+&lt;li&gt;Left subtree is &lt;code&gt;null&lt;/code&gt; and so is right subtree&lt;/li&gt;
+&lt;li&gt;These &lt;code&gt;null&lt;/code&gt; &amp;ldquo;nodes&amp;rdquo; have a height of -1&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Tree with a root node and one left node
+
+&lt;ul&gt;
+&lt;li&gt;Height of left node is 0&lt;/li&gt;
+&lt;li&gt;Height of right node (which is &lt;code&gt;null&lt;/code&gt;) is -1&lt;/li&gt;
+&lt;li&gt;So it&amp;rsquo;s a valid AVL Tree&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Tree with a root node and a left node which has a left node
+
+&lt;ul&gt;
+&lt;li&gt;Imbalance occurs at the root, which has a left node with height of 1 and
+a right node (&lt;code&gt;null&lt;/code&gt;) of height -1&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tree with root and three on left and two on right the imbalance occurs on the
+first left node.  I don&amp;rsquo;t really understand this.  Review.&lt;/p&gt;
+
+&lt;p&gt;Ahh, I think when we say &amp;ldquo;height&amp;rdquo; we&amp;rsquo;re talking about the height of the
+subtrees to the left and the right, not the height of the node itself.&lt;/p&gt;
+
+&lt;p&gt;Imbalances will occur on &lt;code&gt;insert()&lt;/code&gt; calls.  You need to check the height of the
+nodes and then balance if the rules are broken. (??)&lt;/p&gt;
+
+&lt;h3 id=&#34;single-rotation&#34;&gt;Single Rotation&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Case 1: &amp;ldquo;zig zig&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  4
+ 2
+1
+
+becomes
+
+  2
+ 1 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Case 2: &amp;ldquo;zig zag&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  4
+ 2
+  3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A single rotation doesn&amp;rsquo;t really work here. If you &amp;ldquo;pull the two up&amp;rdquo;, there&amp;rsquo;s
+no room for the 4.&lt;/p&gt;
+
+&lt;p&gt;So instead, we perform a double rotation.&lt;/p&gt;
+
+&lt;h3 id=&#34;double-rotation&#34;&gt;Double Rotation&lt;/h3&gt;
+
+&lt;p&gt;You have to do two steps.  In the above example, the 3 is what we want to
+become the root.  To do this, we do a sequence of two rotations.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Rotate the 2 and the 3&lt;/li&gt;
+&lt;li&gt;Do the single rotation, pulling the 3 up.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Case 2: &amp;ldquo;zig zag&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  4
+ 2
+  3
+
+  4
+ 3
+2
+
+  3
+ 2 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Case 3: &amp;ldquo;zag zig&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  2
+   4
+  3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is just a mirror of Case 2 so do the same thing.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Case 4: &amp;ldquo;zag zag&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  2
+   4
+    5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is a mirror of Case 1.&lt;/p&gt;
+
+&lt;h2 id=&#34;little-triangles-and-big-triangles&#34;&gt;Little Triangles and Big Triangles&lt;/h2&gt;
+
+&lt;p&gt;We&amp;rsquo;re talking about subtrees as little and big triangles.  I think a small
+triangle means height of &lt;em&gt;h&lt;/em&gt; and a big triangle means a height of &lt;em&gt;h + 1&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rebalancing large trees is actually the same as the trivial examples above.&lt;/p&gt;
+
+&lt;p&gt;When a new node gets inserted into a subtree, there are two scenarios:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The height of the subtree doesn&amp;rsquo;t change&lt;/li&gt;
+&lt;li&gt;The height of the subtree increases by one (and you might have an
+ imbalance)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &amp;ldquo;zig zag&amp;rdquo; rebalance (double rotation) is a bit tricky.  Basically the root
+of the big triangle (that has the imbalance) needs to be come the new root of
+the entire tree.&lt;/p&gt;
+
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;3, 1, 7, 2, 6, 8, 4, 5&lt;/p&gt;
+
+&lt;p&gt;Insert these numbers into an AVL tree.  We finally get an imbalance on the last
+entry of 5.  We get the imbalance at the 6 node which has a right subtree
+height of -1 and a left subtree height of 1.&lt;/p&gt;
+
+&lt;p&gt;I think this is a double rotation since it&amp;rsquo;s a &amp;ldquo;zig zag&amp;rdquo; but it looks like a
+simple switch of two nodes..&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s a website that allows you to check the validity of an AVL tree and see
+the operations that occur with each insertion.&lt;/p&gt;
+
+&lt;h2 id=&#34;exam&#34;&gt;Exam&lt;/h2&gt;
+
+&lt;p&gt;Only thing he hasn&amp;rsquo;t done is implementation of the AVL rebalancing methods.&lt;/p&gt;
+
+&lt;p&gt;Exam through 4.4&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Lecture 12: Trees, Continued</title>

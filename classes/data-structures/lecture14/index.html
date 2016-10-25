@@ -1,0 +1,410 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 14: Midterm Review &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="button" href="http://www.getup8.com/index.xml">RSS Feed</a>
+	
+</nav>
+
+        <section class="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 14: Midterm Review</h1>
+                    <h2 class="headline">
+                    October 24, 2016 
+                    </h2>
+                    <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section class="post-body">
+                    
+
+<h2 id="midterm-review">Midterm Review</h2>
+
+<ul>
+<li>8 questions</li>
+<li>Straightforward</li>
+<li>Touch on every topic</li>
+<li>A little bit on the long side; budget time well and if you&rsquo;re stuck, move
+on to the next</li>
+<li>Closed book / notes / calculator</li>
+<li>Pen or pencil, just not red</li>
+<li>Short answer problems, Big Oh</li>
+<li>Crank through algorithms on paper: AVL inserts on paper</li>
+<li>Write two or three Java methods, one of which will be a recursion on a tree</li>
+<li>Induction proof is the first question</li>
+</ul>
+
+<h2 id="from-the-book">From the Book</h2>
+
+<ul>
+<li>1-4.4 and 4.6</li>
+</ul>
+
+<h3 id="chapter-1">Chapter 1</h3>
+
+<ul>
+<li>Chapter 1.  Induction proofs.  Don&rsquo;t really need to know all the math.
+Fibonacci.  Binary trees.  Prove a property of a binary tree.</li>
+<li>Proof by counter example. Homework 3.</li>
+<li>Recursion. Base cases, design rules and be able to write methods
+recursively.</li>
+<li>1.4 and 1.5.  Don&rsquo;t need to focus on this.  Just be able to use generics
+and interfaces as we have in homeworks.  There will be generic methods.</li>
+<li>1.6 Function objects</li>
+</ul>
+
+<h3 id="chapter-2">Chapter 2</h3>
+
+<ul>
+<li>Pretty much whole thing</li>
+<li>2.4 examples don&rsquo;t really have to worry about but otherwise, all of it</li>
+</ul>
+
+<h3 id="chapter-3">Chapter 3</h3>
+
+<ul>
+<li>The whole thing.</li>
+<li>Josephus problem about how to use a queue.  Don&rsquo;t worry about that.  But
+know where queues, enqueue, dequeue, etc.</li>
+<li>Implementation with LinkedList and ArrayList (MyLinkedList out of Weiss),
+know how to add and remove items</li>
+</ul>
+
+<h3 id="chapter-4">Chapter 4</h3>
+
+<ul>
+<li>4.3.5 Ignore</li>
+<li>Otherwise, everything up through 4.4 and then 4.6 as well</li>
+</ul>
+
+<hr />
+
+<h2 id="detailed-topics">Detailed Topics</h2>
+
+<ul>
+<li>Tower of Hanoi.  Remember the basic problem and how we solved it
+recursively.  Will not have to implement but need to understand it.  What
+is the Big Oh notation of that?  2^(n-1) or 2^N</li>
+<li>Abstract Data Type vs Data Structure.  ADT doesn&rsquo;t define how they&rsquo;re
+performed.  Data Structure is the specifics and implementation.  Stack vs
+ArrayStack.  Interfaces are kinda ADTs.  Just signatures, not
+implementation.</li>
+<li>Generics.  Interfaces.  Iterators across a collection; using it with an
+enhance for loop.  Comparable. Inner Class.  Who can access them and who
+can&rsquo;t.  Binary Nodes for example.</li>
+<li>Big Oh notation for asymptotic runtime.  Typical growth functions and have
+a sense of ordering.</li>
+<li>Costs of algorithms WILL be on the exam.  Big Oh is an upper bound.  But we
+need the tightest bound possible.</li>
+<li>Binary Search Trees are O(N) for worst case.  So be careful of balanced vs
+not.  If it&rsquo;s perfectly balanced, then O(log N).</li>
+<li>List ADT.  Typical List operations.</li>
+<li>ArrayList.  Costs of operations on ArrayLists.  How they&rsquo;re implemented.
+Default size that auto grows.</li>
+<li>LinkedList.  Runtimes for all methods.  Singly vs Doubly.  For add/removes,
+depends on where we are; O(N) or O(1).  Implementation.</li>
+<li>Stacks/Queues.  Stack ADT and operations.  Queue and operations.  Costs of
+those.  All ideally O(1).</li>
+<li>Lots of implementations of Stacks from class and homework.</li>
+<li>Queues. LinkedList implementation.  Don&rsquo;t need to worry about circular
+array implementation.</li>
+<li>Trees and terminology.  Parent, child, leaf, path, node, depth, height.
+Height of leaf is zero.  Height of null link is -1.</li>
+<li>Trees.  First child and next sibling vs link to all children.</li>
+<li>Full binary trees: every node is a leaf or two children.  Remember all of
+these.  Complete binary tree is not necessarily full.  Filled from left to
+right.  Perfect binary tree is full, final row filled up.</li>
+<li>In-order, pre-order and post-order traversal of a tree and be able to
+perform them and use them for other stuff.</li>
+</ul>
+
+<h3 id="post-order">Post Order</h3>
+
+<p>Recursively call the left
+Recursively call the right
+Call the current node (root)</p>
+
+<pre><code>    A
+ B     C
+D E   F
+   G
+</code></pre>
+
+<p><code>DGEBFCA</code></p>
+
+<h3 id="pre-order">Pre Order</h3>
+
+<p>Current node first (root)
+Go left
+Go right</p>
+
+<p><code>ABDEGCF</code></p>
+
+<h3 id="in-order">In Order</h3>
+
+<p><code>DBEGAFC</code></p>
+
+<h2 id="topics-continued">Topics Continued</h2>
+
+<ul>
+<li>Expression trees.  Operators and operands.  Interior nodes are operators
+and leaves are operands.  You can do postfix by post order, etc.  In-order
+traversal you have to modify a bit to include parentheses.</li>
+<li>Stack based algorithm to build the tree.  Push/pop, etc.  Know that.</li>
+<li>Know rules of Binary Search Tree.  In-order traversal will get us the
+elements in sorted order.  You should know when a tree is BST ordered.
+Know contains, findMin, findMax and remove.  Know about lazy deletion.
+Know how to do the remove.</li>
+<li>Should know how to perform BST / AVL operations.  He&rsquo;ll give a list of
+numbers and we&rsquo;ll have to construct a tree.</li>
+<li>AVL trees.  Constrain height so that operations are in O(log N).  Doesn&rsquo;t
+have to be perfectly balanced but all AVL trees are Binary Search Trees.
+Always needs to be a BST, even during rotation.  Left subtreees height
+must not differ from right subtree&rsquo;s height by more than one at every
+node.  Know how to spot these and how to fix them using rotations.</li>
+<li>You&rsquo;ll have to draw an AVL tree given a list of numbers.  And you&rsquo;ll have
+to write down all the intermediate steps, including the rotations and
+show where the imbalances are, etc.</li>
+<li>Iterable.  Implements Iterator, has some method, returns an iterator.</li>
+<li>Throwing exceptions. Prob not but maybe.</li>
+<li>No File IO operations.</li>
+</ul>
+
+<h2 id="example-avl-tree-creation">Example AVL Tree Creation</h2>
+
+<p><code>50, 20, 10, 30, 40, 25</code></p>
+
+<pre><code>  50
+20
+
+  *50
+ 20
+10
+
+# Single rotation.
+
+  20
+ 10  50
+    30 
+
+  20
+10  50*
+   30
+     40
+
+# Double rotation.
+
+  20
+ 10  50
+    40
+   30
+
+  20
+10  40
+   30 50
+
+   20*
+10    40
+    30  50
+  25
+
+# Again a double rotation.
+
+   20
+10    30
+    25  40
+  20
+
+# THIS IS WRONG FIX THIS.
+
+   20
+10    25
+    20  30
+         40
+</code></pre>
+
+<h2 id="induction-proof">Induction Proof</h2>
+
+<ol>
+<li>Show that the base case holds true</li>
+<li>Make an assumption that the property holds true from the base case up to
+ an arbitrary N.</li>
+<li>Show that it&rsquo;s true for N + 1</li>
+<li>Draw a diagram and show what happens when you add one more</li>
+<li>A little math to prove what we need to prove</li>
+</ol>
+
+<p>Total number of nodes.  Total height of tree.  Etc.</p>
+
+                </section>
+            </article>
+            <div class="post-meta clearfix">
+                <a href="http://www.getup8.com/about/">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="author">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    
+                <section class="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture14%2f - Lecture%2014%3a%20Midterm%20Review "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture14\/';
+    var disqus_title = 'Lecture 14: Midterm Review';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture14\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul class="post-list readmore">  
+    <h3>Read more</h3>
+
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 19</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/blogging-in-hugo/'>
+                    <aside class="date">Aug 30</aside>
+                    <h1>Blogging in Hugo</h1>
+                    <h2>A guide to getting set up on Hugo and deploying to GitHub Pages.</h2>
+                </a>
+            </li>
+        
+    
+</ul>
+            <footer>
+    
+        <div class="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

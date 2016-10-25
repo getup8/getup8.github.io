@@ -1,0 +1,352 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.16" />
+		<title>Lecture 13: AVL Trees &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="button" href="http://www.getup8.com/index.xml">RSS Feed</a>
+	
+</nav>
+
+        <section class="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 13: AVL Trees</h1>
+                    <h2 class="headline">
+                    October 19, 2016 
+                    </h2>
+                    <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section class="post-body">
+                    
+
+<h2 id="random-stuff">Random Stuff</h2>
+
+<p>Only difference between AVL and Binary Search Tree code are the methods to take
+care of the tree balancing.</p>
+
+<p>For the second programming problem, you just have to make some minor changes;
+basically just using it as a type of collection.</p>
+
+<p>Only thing we haven&rsquo;t learned is rotation for AVL inserts.  Have a problem on
+this in the homework and will have one on the exam.</p>
+
+<h2 id="avl-trees">AVL Trees</h2>
+
+<p>A self-balancing Binary Search Tree with a height constraint.  At a given node,
+the height of the left subtree cannot differ from the right subtree by more
+than one.  This has to be true for every node in the tree.</p>
+
+<p>This bounds the height of the tree at <em>log(N)</em> so all operations, including
+<code>remove()</code> are <em>O(log N)</em>.</p>
+
+<h3 id="tree-height">Tree Height</h3>
+
+<ul>
+<li>Height of a tree with only the root node is zero
+
+<ul>
+<li>Left subtree is <code>null</code> and so is right subtree</li>
+<li>These <code>null</code> &ldquo;nodes&rdquo; have a height of -1</li>
+</ul></li>
+<li>Tree with a root node and one left node
+
+<ul>
+<li>Height of left node is 0</li>
+<li>Height of right node (which is <code>null</code>) is -1</li>
+<li>So it&rsquo;s a valid AVL Tree</li>
+</ul></li>
+<li>Tree with a root node and a left node which has a left node
+
+<ul>
+<li>Imbalance occurs at the root, which has a left node with height of 1 and
+a right node (<code>null</code>) of height -1</li>
+</ul></li>
+</ul>
+
+<p>Tree with root and three on left and two on right the imbalance occurs on the
+first left node.  I don&rsquo;t really understand this.  Review.</p>
+
+<p>Ahh, I think when we say &ldquo;height&rdquo; we&rsquo;re talking about the height of the
+subtrees to the left and the right, not the height of the node itself.</p>
+
+<p>Imbalances will occur on <code>insert()</code> calls.  You need to check the height of the
+nodes and then balance if the rules are broken. (??)</p>
+
+<h3 id="single-rotation">Single Rotation</h3>
+
+<p><strong>Case 1: &ldquo;zig zig&rdquo;</strong></p>
+
+<pre><code>  4
+ 2
+1
+
+becomes
+
+  2
+ 1 4
+</code></pre>
+
+<p><strong>Case 2: &ldquo;zig zag&rdquo;</strong></p>
+
+<pre><code>  4
+ 2
+  3
+</code></pre>
+
+<p>A single rotation doesn&rsquo;t really work here. If you &ldquo;pull the two up&rdquo;, there&rsquo;s
+no room for the 4.</p>
+
+<p>So instead, we perform a double rotation.</p>
+
+<h3 id="double-rotation">Double Rotation</h3>
+
+<p>You have to do two steps.  In the above example, the 3 is what we want to
+become the root.  To do this, we do a sequence of two rotations.</p>
+
+<ol>
+<li>Rotate the 2 and the 3</li>
+<li>Do the single rotation, pulling the 3 up.</li>
+</ol>
+
+<p><strong>Case 2: &ldquo;zig zag&rdquo;</strong></p>
+
+<pre><code>  4
+ 2
+  3
+
+  4
+ 3
+2
+
+  3
+ 2 4
+</code></pre>
+
+<p><strong>Case 3: &ldquo;zag zig&rdquo;</strong></p>
+
+<pre><code>  2
+   4
+  3
+</code></pre>
+
+<p>This is just a mirror of Case 2 so do the same thing.</p>
+
+<p><strong>Case 4: &ldquo;zag zag&rdquo;</strong></p>
+
+<pre><code>  2
+   4
+    5
+</code></pre>
+
+<p>This is a mirror of Case 1.</p>
+
+<h2 id="little-triangles-and-big-triangles">Little Triangles and Big Triangles</h2>
+
+<p>We&rsquo;re talking about subtrees as little and big triangles.  I think a small
+triangle means height of <em>h</em> and a big triangle means a height of <em>h + 1</em>.</p>
+
+<p>Rebalancing large trees is actually the same as the trivial examples above.</p>
+
+<p>When a new node gets inserted into a subtree, there are two scenarios:</p>
+
+<ol>
+<li>The height of the subtree doesn&rsquo;t change</li>
+<li>The height of the subtree increases by one (and you might have an
+ imbalance)</li>
+</ol>
+
+<p>The &ldquo;zig zag&rdquo; rebalance (double rotation) is a bit tricky.  Basically the root
+of the big triangle (that has the imbalance) needs to be come the new root of
+the entire tree.</p>
+
+<h2 id="example">Example</h2>
+
+<p>3, 1, 7, 2, 6, 8, 4, 5</p>
+
+<p>Insert these numbers into an AVL tree.  We finally get an imbalance on the last
+entry of 5.  We get the imbalance at the 6 node which has a right subtree
+height of -1 and a left subtree height of 1.</p>
+
+<p>I think this is a double rotation since it&rsquo;s a &ldquo;zig zag&rdquo; but it looks like a
+simple switch of two nodes..</p>
+
+<p>There&rsquo;s a website that allows you to check the validity of an AVL tree and see
+the operations that occur with each insertion.</p>
+
+<h2 id="exam">Exam</h2>
+
+<p>Only thing he hasn&rsquo;t done is implementation of the AVL rebalancing methods.</p>
+
+<p>Exam through 4.4</p>
+
+                </section>
+            </article>
+            <div class="post-meta clearfix">
+                <a href="http://www.getup8.com/about/">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="author">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    
+                <section class="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture13%2f - Lecture%2013%3a%20AVL%20Trees "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture13\/';
+    var disqus_title = 'Lecture 13: AVL Trees';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture13\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul class="post-list readmore">  
+    <h3>Read more</h3>
+
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 19</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/blogging-in-hugo/'>
+                    <aside class="date">Aug 30</aside>
+                    <h1>Blogging in Hugo</h1>
+                    <h2>A guide to getting set up on Hugo and deploying to GitHub Pages.</h2>
+                </a>
+            </li>
+        
+    
+</ul>
+            <footer>
+    
+        <div class="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>
