@@ -80,6 +80,20 @@ pip install virtualenv
 pip install virtualenvwrapper
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;environmental-variables-in-virtual-environments&#34;&gt;Environmental Variables in Virtual Environments&lt;/h2&gt;
+
+&lt;p&gt;This step is optional but if you&amp;rsquo;re going to be setting any configurations or
+storing API ids and secrets in environmental variables, I recommend also
+installing  &lt;code&gt;autoenv&lt;/code&gt;. Again, I highly recommend you read the
+docs(&lt;a href=&#34;https://github.com/kennethreitz/autoenv&#34;&gt;https://github.com/kennethreitz/autoenv&lt;/a&gt;), but this will essentially allow
+you to store environmental variables in &lt;code&gt;.env&lt;/code&gt; files within your virtual
+environments and when you enter those environments, those variables will be
+set.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;brew install autoenv
+echo &amp;quot;source $(brew --prefix autoenv)/activate.sh&amp;quot; &amp;gt;&amp;gt; ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;setting-up-virtual-environments&#34;&gt;Setting Up Virtual Environments&lt;/h2&gt;
 
 &lt;p&gt;First, you probably should read the &lt;code&gt;virtualenv&lt;/code&gt; &lt;a href=&#34;https://virtualenv.pypa.io/en/stable/&#34;&gt;docs&lt;/a&gt;
@@ -132,6 +146,12 @@ gpip(){
 
 &lt;p&gt;Now, for example, &lt;code&gt;gpip install virtualenv&lt;/code&gt; would install the package globally
 outside a virtual environment.&lt;/p&gt;
+
+&lt;p&gt;You should know run the following to make sure everything we&amp;rsquo;ve added to
+&lt;code&gt;.bash_profile&lt;/code&gt; (or equivalent) is run.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;creating-a-project-and-virtual-environment&#34;&gt;Creating a Project and Virtual Environment&lt;/h2&gt;
 
