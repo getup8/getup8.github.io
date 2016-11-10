@@ -1,0 +1,999 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.17" />
+		<title>Python Development Setup &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="button" href="http://www.getup8.com/index.xml">RSS Feed</a>
+	
+</nav>
+
+        <section class="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Python Development Setup</h1>
+                    <h2 class="headline">
+                    October 2, 2016 
+                    </h2>
+                    <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/python">python</a> |
+                        
+                            <a href="http://www.getup8.com/tags/git">git</a> |
+                        
+                            <a href="http://www.getup8.com/tags/django">django</a> |
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section class="post-body">
+                    
+
+<h1 id="notes-documentation-code-snippets">Notes, Documentation, Code Snippets</h1>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#setup">Initial Setup</a></li>
+<li><a href="#homebrew">Homebrew</a></li>
+<li><a href="#python-setup">Python Project Setup</a></li>
+<li><a href="#pip">pip</a></li>
+<li><a href="#git">Git and GitHub</a></li>
+<li><a href="#markdown">Markdown</a></li>
+<li><a href="#jekyll">Jekyll</a></li>
+<li><a href="#sass">Sass</a></li>
+<li><a href="#heroku">Heroku</a></li>
+<li><a href="#venv">VirtualEnv</a></li>
+<li><a href="#vagrant">Vagrant</a></li>
+<li><a href="#db">Databases</a></li>
+</ul>
+
+<h2 id="a-name-setup-a-getting-set-up"><a name="setup"></a>Getting Set Up</h2>
+
+<p>I basically just followed <a href="http://hackercodex.com/guide/mac-osx-mavericks-10.9-configuration/">this guide</a>
+for the most part.  Essentially, install Homebrew and XCode and create a
+.bash_profile.</p>
+
+<p>Next I followed <a href="http://hackercodex.com/guide/python-development-environment-on-mac-osx/">this guide</a>
+kinda.  Install both 2.x and 3.x pythons using Homebrew, and install pip,
+virtualenv, virtualenvwrapper if not already installed and add a line to
+<code>.bash_profile</code> to only allow running <code>pip</code> in virtual environments (but also
+create an alias <code>gpip</code> that allows you to install / upgrade globally).</p>
+
+<hr />
+
+<h2 id="a-name-homebrew-a-homebrew"><a name="homebrew"></a>Homebrew</h2>
+
+<p>Python, Git and other packages are best installed via Homebrew.</p>
+
+<pre><code class="language-sh"># Update Homebrew
+brew update
+
+# See which packages are outdated
+brew outdated
+
+# Upgrade all packages
+brew upgrade
+
+# Install a package
+brew install git
+
+# Check for problems
+brew doctor
+</code></pre>
+
+<hr />
+
+<h2 id="a-name-python-setup-a-python-project-setup"><a name="python-setup"></a>Python Project Setup</h2>
+
+<p>Before starting a project, I would recommend:</p>
+
+<ol>
+<li>Updating Homebrew and any packages that are outdated</li>
+<li>Updating Pip and any packages that are outdated</li>
+</ol>
+
+<pre><code class="language-sh">
+# Create virtualenv project with Python3
+mkproject -p python3 test_project
+
+# or if the project folder already exists
+mkvirtualenv -p python3 test_project
+
+# Install Django into virtualenv
+pip install django
+</code></pre>
+
+<hr />
+
+<h2 id="a-name-pip-a-pip"><a name="pip"></a>Pip</h2>
+
+<p>{% highlight sh %}</p>
+
+<h1 id="upgrade">Upgrade</h1>
+
+<p>pip install -U pip
+gpip install -U pip  # in my case due to my .bash_profile</p>
+
+<h1 id="search-packages">Search packages</h1>
+
+<p>pip search django</p>
+
+<h1 id="install">Install</h1>
+
+<p>pip install django
+pip install django==1.8.1</p>
+
+<h1 id="upgrade-1">Upgrade</h1>
+
+<p>pip install -U django</p>
+
+<h1 id="uninstall">Uninstall</h1>
+
+<p>pip uninstall django</p>
+
+<h1 id="show-info-about-package">Show info about package</h1>
+
+<p>pip show django</p>
+
+<h1 id="show-what-s-installed-in-current-virtualenv">Show what&rsquo;s installed in current virtualenv</h1>
+
+<p>pip list</p>
+
+<h1 id="show-what-s-outdated">Show what&rsquo;s outdated</h1>
+
+<p>pip list &ndash;outdated</p>
+
+<h1 id="dump-current-set-up-to-file">Dump current set up to file</h1>
+
+<p>pip freeze &gt; requirements.txt</p>
+
+<h1 id="install-based-on-a-requirements-file">Install based on a requirements file</h1>
+
+<p>pip install -r requirements.txt
+{% endhighlight %}</p>
+
+<hr />
+
+<h2 id="a-name-git-a-git-and-github"><a name="git"></a>Git and GitHub</h2>
+
+<h3 id="resources">Resources</h3>
+
+<ul>
+<li><a href="http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository</a></li>
+<li><a href="https://www.codecademy.com/learn/learn-git">https://www.codecademy.com/learn/learn-git</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/using-branches/git-branch">https://www.atlassian.com/git/tutorials/using-branches/git-branch</a></li>
+<li><a href="http://learngitbranching.js.org/">http://learngitbranching.js.org/</a></li>
+<li><a href="http://stackoverflow.com/questions/2621610/what-git-branching-models-work-for-you">http://stackoverflow.com/questions/2621610/what-git-branching-models-work-for-you</a></li>
+</ul>
+
+<h3 id="basic-commands">Basic Commands</h3>
+
+<p>{% highlight sh %}</p>
+
+<h1 id="to-install">To install</h1>
+
+<p>brew install git</p>
+
+<h1 id="pull-down-and-clone-an-existing-repository">Pull down and clone an existing repository</h1>
+
+<p>git clone <a href="https://github.com/getup8/basic.git">https://github.com/getup8/basic.git</a></p>
+
+<h1 id="initialize-a-local-folder-as-a-repository">Initialize a local folder as a repository</h1>
+
+<h1 id="add-files-to-staging">Add files to staging</h1>
+
+<h1 id="commit-the-files-or-changes-with-a-useful-description-message">Commit the files or changes with a useful description message</h1>
+
+<p>git init
+git add [filenames or &ndash;all]
+git commit -m &ldquo;Useful commit description&rdquo;</p>
+
+<h1 id="skip-the-staging-area-and-just-commit-new-changes-files-need-to-all-be">Skip the staging area and just commit new changes (files need to all be</h1>
+
+<h1 id="trackd-already">trackd already)</h1>
+
+<p>git commit -a -m &ldquo;added new benchmarks&rdquo;</p>
+
+<h1 id="add-a-remote-repository-and-push-local-commit-to-it">Add a remote repository and push local commit to it</h1>
+
+<p>git remote add origin <a href="https://github.com/getup8/nano-project-1.git">https://github.com/getup8/nano-project-1.git</a>
+git push -u origin master</p>
+
+<h1 id="get-the-status-of-files-in-the-repository">Get the status of files in the repository</h1>
+
+<p>git status</p>
+
+<h1 id="see-the-changes-made-since-last-commit-that-are-not-yet-staged">See the changes made since last commit that are not yet staged</h1>
+
+<p>git diff</p>
+
+<h1 id="see-the-changes-that-are-staged">See the changes that are staged</h1>
+
+<p>git diff &ndash;staged</p>
+
+<h1 id="forget-what-this-does-differently">Forget what this does differently</h1>
+
+<p>git diff &ndash;cached</p>
+
+<h1 id="remove-file-from-tracking">Remove file from tracking:</h1>
+
+<p>git rm PROJECTS.md</p>
+
+<h1 id="remove-file-from-staging-but-not-from-filesystem">Remove file from staging but not from filesystem:</h1>
+
+<p>git rm &ndash;cached README
+git mv README.md README</p>
+
+<h1 id="see-commit-history-of-repository">See commit history of repository:</h1>
+
+<p>git log</p>
+
+<h1 id="see-commit-diffs-and-limit-to-last-two-entries">See commit diffs and limit to last two entries</h1>
+
+<p>git log -p -2</p>
+
+<h1 id="other-commands">Other commands</h1>
+
+<p>git log &ndash;stat
+git log &ndash;pretty=oneline|short|full|fuller
+git log &ndash;pretty=format:&ldquo;%h %s&rdquo; &ndash;graph
+git log &ndash;since=2.weeks</p>
+
+<h1 id="add-a-file-you-forgot">Add a file you forgot</h1>
+
+<p>git commit &ndash;amend</p>
+
+<h1 id="remove-from-staging">Remove from staging</h1>
+
+<p>git reset HEAD CONTRIBUTING.md</p>
+
+<h1 id="totally-reset-everything-throw-away-local-commits-like-you-re-cloning">Totally reset everything (throw away local commits) like you&rsquo;re cloning</h1>
+
+<h1 id="from-remote">from remote</h1>
+
+<p>git reset &ndash;hard [HEAD]</p>
+
+<h1 id="revert-back-to-initial-version-of-file-before-changes">Revert back to initial version of file before changes</h1>
+
+<p>git checkout &ndash; CONTRIBUTING.md</p>
+
+<h1 id="revert-all-files">Revert all files</h1>
+
+<p>git checkout &ndash; .</p>
+
+<h1 id="remove-files-that-are-not-tracked-i-think">Remove files that are not tracked (I think)</h1>
+
+<p>git clean -df</p>
+
+<h1 id="see-list-of-current-remote-repositories">See list of current remote repositories</h1>
+
+<p>git remote -v</p>
+
+<h1 id="add-a-remote-repository">Add a remote repository</h1>
+
+<p>git remote add [shortname] [url]
+git remote add pb <a href="https://github.com/paulboone/ticgit">https://github.com/paulboone/ticgit</a></p>
+
+<h1 id="need-more-documentation-here">Need more documentation here</h1>
+
+<p>git fetch pb
+git fetch origin</p>
+
+<h1 id="sync-local-repo-with-remote">Sync local repo with remote</h1>
+
+<p>get pull</p>
+
+<h1 id="another-way-to-sync-with-remote-i-believe">Another way to sync with remote I believe</h1>
+
+<p>git fetch origin
+git merge origin/master</p>
+
+<h1 id="push-to-remote-what-does-u-do">Push to remote (what does -u do?)</h1>
+
+<p>git push origin master</p>
+
+<h1 id="get-more-info-on-remote">Get more info on remote</h1>
+
+<p>git remote show origin
+{% endhighlight %}</p>
+
+<hr />
+
+<h2 id="a-name-markdown-a-markdown"><a name="markdown"></a>Markdown</h2>
+
+<p><a href="https://help.github.com/articles/markdown-basics/">GitHub Markdown Docs</a></p>
+
+<hr />
+
+<h2 id="a-name-jekyll-a-jekyll"><a name="jekyll"></a>Jekyll</h2>
+
+<p>I&rsquo;m using Jekyll to make writing notes and documentation easier for my GitHub
+projects and other ventures.  Below are some quick resources.</p>
+
+<h3 id="resources-1">Resources</h3>
+
+<ul>
+<li><a href="https://help.github.com/articles/using-jekyll-with-pages/">https://help.github.com/articles/using-jekyll-with-pages/</a></li>
+<li><a href="http://jekyllrb.com/">http://jekyllrb.com/</a></li>
+<li><a href="http://pygments.org/docs/lexers/">http://pygments.org/docs/lexers/</a></li>
+</ul>
+
+<h3 id="quick-commands">Quick Commands</h3>
+
+<p>{% highlight sh %}</p>
+
+<h1 id="after-making-a-change-in-the-project-run-this-to-build-into-site-directory">After making a change in the project run this to build into _site directory</h1>
+
+<p>jekyll build</p>
+
+<h1 id="build-the-project-into-site-and-watch-and-auto-build-after-changes">Build the project into _site and watch and auto-build after changes</h1>
+
+<p>jekyll build &ndash;watch</p>
+
+<h1 id="firing-up-the-local-server-http-localhost-4000">Firing up the local server <a href="http://localhost:4000">http://localhost:4000</a></h1>
+
+<p>bundle exec jekyll serve
+{% endhighlight %}</p>
+
+<p>More to come..</p>
+
+<hr />
+
+<h2 id="a-name-sass-a-sass"><a name="sass"></a>Sass</h2>
+
+<h3 id="resources-2">Resources</h3>
+
+<ul>
+<li><a href="http://sass-lang.com">http://sass-lang.com</a></li>
+<li><a href="http://sass-lang.com/guide">http://sass-lang.com/guide</a></li>
+<li><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html">http://sass-lang.com/documentation/file.SASS_REFERENCE.html</a></li>
+</ul>
+
+<p>Installation is as easy as:
+<code>sudo gem install sass</code></p>
+
+<h3 id="example-usage">Example Usage</h3>
+
+<p>Some simple documentation of key concepts below.  The code is written in SCSS
+not SASS, the main difference being SASS doesn&rsquo;t use semi-colons or parens.</p>
+
+<h4 id="variables">Variables</h4>
+
+<p>{% highlight scss %}
+$font-stack: Arial, sans-serif;
+$color: #CCCCCC;
+{% endhighlight %}</p>
+
+<h4 id="nesting">Nesting</h4>
+
+<p>{% highlight scss %}
+nav {
+  ul {
+  }
+}
+{% endhighlight %}</p>
+
+<h4 id="partials">Partials</h4>
+
+<p>Write snippets in separate files to include in other Sass files: <code>_partial.scss</code>
+Used with the @import directive: <code>@import ‘partial’;</code></p>
+
+<h4 id="mixins">Mixins</h4>
+
+<p>Kinda like functions, useful especially for vendor prefixes.
+{% highlight scss %}
+@mixin border-radius($radius) {
+   -webkit-border-radius: $radius;
+   -moz-border-radius: $radius;
+   -ms-border-radius: $radius;<br />
+   border-radius: $radius;
+}</p>
+
+<p>.box { @include border-radius(10px); }
+{% endhighlight %}</p>
+
+<h4 id="extend-inheritance">Extend/Inheritance</h4>
+
+<p>Share CSS between selectors.  Inherit from other selectors.
+{% highlight scss %}
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}</p>
+
+<p>.success {
+  @extend .message;
+  border-color: green;
+}
+{% endhighlight %}</p>
+
+<h4 id="operators-math">Operators / Math</h4>
+
+<p>Multiply, divide, add, subtract, modulus.
+{% highlight scss %}
+.container { width: 100%; }</p>
+
+<p>article[role=&ldquo;main&rdquo;] {
+  float: left;
+  width: 600px / 960px * 100%;
+}</p>
+
+<p>aside[role=&ldquo;complimentary&rdquo;] {
+  float: right;
+  width: 300px / 960px * 100%;
+}
+{% endhighlight %}</p>
+
+<h3 id="running-sass">Running Sass</h3>
+
+<p>To run Sass from the command line, just use:
+<code>sass input.scss output.css</code></p>
+
+<p>You can also tell Sass to watch the file and update the CSS every time the
+Sass file changes:
+<code>sass --watch input.scss:output.css</code></p>
+
+<p>If you have a directory with many Sass files, you can also tell Sass to watch
+the entire directory:
+<code>sass --watch app/sass:public/stylesheets</code></p>
+
+<h3 id="further-reading">Further Reading</h3>
+
+<ul>
+<li><a href="http://compass-style.org/">http://compass-style.org/</a></li>
+<li><a href="http://breakpoint-sass.com/">http://breakpoint-sass.com/</a></li>
+</ul>
+
+<hr />
+
+<h2 id="a-name-heroku-a-getting-started-on-heroku"><a name="heroku"></a>Getting Started on Heroku</h2>
+
+<p>Following the steps outlined <a href="https://devcenter.heroku.com/articles/getting-started-with-python">here</a>.</p>
+
+<h4 id="initial-assumptions">Initial assumptions</h4>
+
+<ul>
+<li>Python installed</li>
+<li>virtualenv, setuptools, pip installed</li>
+<li>Heroku account</li>
+<li>Heroku toolkit installed (Heroku client, git, Foreman - an easy way to run
+apps locally)</li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+
+<p>Clone the getting started repository and move into the directory.  This
+initializes git and sets up some boilerplate structure and files.
+{% highlight sh %}
+git clone <a href="https://github.com/heroku/python-getting-started.git">https://github.com/heroku/python-getting-started.git</a>
+cd python-getting-started
+{% endhighlight %}</p>
+
+<p>Login to Heroku and create an app on Heroku, which also creates a git “remote”
+which is associated with the local git repository.
+{% highlight sh %}
+heroku login
+heroku create
+{% endhighlight %}</p>
+
+<p>Deploy the code to Heroku.
+{% highlight sh %}
+git push heroku master
+{% endhighlight %}</p>
+
+<p>Allocate one dyno (lightweight linux “container”) to the app.
+{% highlight sh %}
+heroku ps:scale web=1
+{% endhighlight %}</p>
+
+<p>Open the app to check it out.
+{% highlight sh %}
+heroku open</p>
+
+<h1 id="https-aqueous-cove-8924-herokuapp-com"><a href="https://aqueous-cove-8924.herokuapp.com/">https://aqueous-cove-8924.herokuapp.com/</a></h1>
+
+<p>{% endhighlight %}</p>
+
+<p>View server logs.
+{% highlight sh %}
+heroku logs &ndash;tail
+{% endhighlight %}</p>
+
+<p>Procfiles define the processes that run and the command that is executed to
+start your app.</p>
+
+<p>To add more containers/dynos, you can scale up to make the app persistently
+“up”.  You only get 750 free dyno hours though so this would make our app not
+free after a short time.
+{% highlight sh %}
+heroku ps:scale web=2
+{% endhighlight %}</p>
+
+<p>Declaring app dependencies is done via requirements.txt.  Heroku reads this
+file and installs the proper dependencies via pip.  To do this locally, we
+should use a virtual env.
+{% highlight sh %}
+virtualenv venv
+source venv/bin/activate
+{% endhighlight %}</p>
+
+<p>Run pip to install these dependencies locally (Heroku does the same).  Doing
+this lets us run the app locally, which is really what we want to do in
+development.
+{% highlight sh %}
+pip install -r requirements.txt &ndash;allow-all-external
+{% endhighlight %}</p>
+
+<p>Running foreman reads the Procfile (similar to Heroku) and runs the app:
+{% highlight sh %}
+foreman start web</p>
+
+<h1 id="http-0-0-0-0-5000"><a href="http://0.0.0.0:5000">http://0.0.0.0:5000</a></h1>
+
+<p>{% endhighlight %}</p>
+
+<p>In order to modify anything (let’s modify the Procfile for instance to require
+another plugin), re-run these commands.  I’m guessing pip isn’t necessary unless
+you need something else installed.
+{% highlight sh %}
+pip install -r requirements.txt &ndash;allow-all-external
+foreman start
+{% endhighlight %}</p>
+
+<p>Now we deploy these changes to Heroku.
+First add the modified files to git and then commit the changes to the local
+repository.
+{% highlight sh %}
+git add .
+git commit -m “Demo”
+{% endhighlight %}</p>
+
+<p>Then just deploy to Heroku again.
+{% highlight sh %}
+git push heroku master
+heroku open
+{% endhighlight %}</p>
+
+<p>There are <a href="https://devcenter.heroku.com/articles/getting-started-with-python#provision-add-ons">tons of addons</a>
+for Heroku as well, should be checked out at some point.</p>
+
+<p>To run a REPL (read eval print loop) / shell interface, use the run command.
+{% highlight sh %}
+heroku run python manage.py shell
+heroku run bash</p>
+
+<h1 id="type-exit-to-exit-the-shell-and-release-the-dyno">Type “exit” to exit the shell and release the dyno.</h1>
+
+<p>{% endhighlight %}</p>
+
+<p>Check out <a href="https://devcenter.heroku.com/articles/getting-started-with-python#define-config-vars">config vars</a>
+later, maybe good for dev/prod and other things?</p>
+
+<p>Databases are addons, you can see the current ones by just running:
+{% highlight sh %}
+heroku addons
+{% endhighlight %}
+I think they set up postgres automatically.</p>
+
+<p>You can also run the following to see the current config vars set up (relevant to set up database):
+{% highlight sh %}
+heroku config  # General config
+heroku pg  # Specifically for Postgres
+{% endhighlight %}</p>
+
+<p>I guess this app is already configured with a database and you can visit (what?
+i think just a view) by just appending /db after the URL:
+<code>https://aqueous-cove-8924.herokuapp.com/db</code></p>
+
+<p>But initially it’ll give an error b/c the tables don’t exist.  Need to
+initialize it first, the Django way.
+{% highlight sh %}
+heroku run python manage.py syncdb
+{% endhighlight %}
+It creates the tables and now visiting that URL/view works.</p>
+
+<p>You can access the DB directly (assuming postgres is installed locally) via:
+{% highlight sh %}
+heroku pg:psql
+\dt  # to show tables in postgres
+{% endhighlight %}</p>
+
+<p>Rename the app
+{% highlight sh %}
+heroku apps:rename <new name>
+{% endhighlight %}</p>
+
+<h3 id="further-reading-1">Further Reading:</h3>
+
+<ul>
+<li><a href="https://devcenter.heroku.com/articles/heroku-postgresql">https://devcenter.heroku.com/articles/heroku-postgresql</a></li>
+<li><a href="https://devcenter.heroku.com/articles/getting-started-with-python#next-steps">https://devcenter.heroku.com/articles/getting-started-with-python#next-steps</a></li>
+<li><a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></li>
+</ul>
+
+<hr />
+
+<h2 id="a-name-venv-a-virtualenv"><a name="venv"></a>VirtualEnv</h2>
+
+<h3 id="resources-3">Resources</h3>
+
+<ul>
+<li><a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">http://docs.python-guide.org/en/latest/dev/virtualenvs/</a></li>
+</ul>
+
+<p>I installed all of those.</p>
+
+<p>Before doing anything anymore:
+{% highlight sh %}</p>
+
+<h1 id="create-the-project-virtualenv-move-into-the-dir-and-activate">Create the project, virtualenv, move into the dir and activate</h1>
+
+<p>mkproject dt</p>
+
+<h1 id="delete">Delete</h1>
+
+<p>rmvirtualenv dt</p>
+
+<h1 id="show-current-environments">Show current environments</h1>
+
+<p>lsvirtualenv</p>
+
+<h1 id="to-get-out-of-the-venv">To get out of the venv</h1>
+
+<p>deactivate</p>
+
+<h1 id="to-move-to-directory-and-activate-an-existing-virtualenv">To move to directory and activate an existing virtualenv</h1>
+
+<p>workon dt
+{% endhighlight %}</p>
+
+<hr />
+
+<h2 id="a-name-vagrant-a-vagrant"><a name="vagrant"></a>Vagrant</h2>
+
+<h3 id="resources-4">Resources</h3>
+
+<ul>
+<li><a href="https://www.udacity.com/wiki/ud197/install-vagrant">https://www.udacity.com/wiki/ud197/install-vagrant</a></li>
+</ul>
+
+<p>If you’d like to see what was installed in the VM, look in
+/vagrant/pg_config.sh.</p>
+
+<p>{% highlight sh %}
+vagrant up
+vagrant ssh
+exit # exit the command line
+vagrant halt
+{% endhighlight %}</p>
+
+<p>Random:
+To connect psql to the forum database for Lesson 3, type <code>psql forum</code> at the
+command line. To exit psql, type <code>\q</code> or Control-D (^D).</p>
+
+<hr />
+
+<h2 id="a-name-db-a-postgres"><a name="db"></a>Postgres</h2>
+
+<h3 id="resources-5">Resources</h3>
+
+<ul>
+<li><a href="http://www.postgresql.org/">http://www.postgresql.org/</a></li>
+</ul>
+
+<h3 id="commands">Commands</h3>
+
+<p>{% highlight sh %}
+&ndash; Connect to database
+psql [db]
+{% endhighlight %}</p>
+
+<p>{% highlight psql %}
+&ndash; Show databases
+\l
+\list
+\l+</p>
+
+<p>&ndash; Connect to database
+\c [database_name]</p>
+
+<p>&ndash; Show tables
+\dt</p>
+
+<p>&ndash; Desc table
+\d [tablename]</p>
+
+<p>&ndash; Quit
+\q</p>
+
+<p>&ndash; Help - get all these commands
+\h</p>
+
+<p>&ndash; Connectinon info
+\conninfo</p>
+
+<p>&ndash; Change database name
+ALTER DATABASE name RENAME TO new_name</p>
+
+<p>{% endhighlight %}</p>
+
+<h3 id="db-link">DB Link</h3>
+
+<p><a href="http://www.postgresql.org/docs/current/interactive/dblink.html">http://www.postgresql.org/docs/current/interactive/dblink.html</a></p>
+
+<p>{% highlight psql %}</p>
+
+<p>CREATE EXTENSION dblink;</p>
+
+<p>&ndash; Verify
+SELECT pg_namespace.nspname, pg_proc.proname
+FROM pg_proc, pg_namespace
+WHERE pg_proc.pronamespace=pg_namespace.oid
+   AND pg_proc.proname LIKE &lsquo;%dblink%&rsquo;;</p>
+
+<p>&ndash; Test connection
+SELECT dblink_connect(&lsquo;host=localhost user=alexscott dbname=wewander_db&rsquo;);</p>
+
+<p>&ndash; Add back the social login set up info
+UPDATE django_site SET domain = &lsquo;localhost:8000&rsquo;, name = &lsquo;localhost&rsquo; where id = 1;</p>
+
+<p>INSERT INTO socialaccount_socialapp SELECT * FROM
+ dblink(&lsquo;dbname=wewander_db2&rsquo;, &lsquo;SELECT * FROM socialaccount_socialapp&rsquo;)
+  AS t1(id integer,
+        provider character varying(30),
+        name character varying(40),
+        client_id character varying(191),
+        secret character varying(191),
+        key character varying(191));</p>
+
+<p>INSERT INTO socialaccount_socialapp_sites (socialapp_id, site_id) VALUES
+    (1, 1),
+    (2, 1),
+    (3, 1);</p>
+
+<p>{% endhighlight %}</p>
+
+<p>{% highlight psql %}
+CREATE DATABASE db
+DROP DATABASE db
+DROP TABLE table
+CREATE VIEW view AS SELECT &hellip; &ndash; Useful for aggregations
+{% endhighlight %}</p>
+
+<h3 id="database-concepts">Database Concepts</h3>
+
+<ul>
+<li>Atomicity: a command executes as a whole or not at all (commit!)</li>
+<li>Normalized vs Denormalized: Normalized databases have relationships between
+tables that are really there among the data.
+
+<ul>
+<li>Every row has the same number of columns</li>
+<li>There is a unique key for every row, every column describes the key</li>
+<li>Facts that don&rsquo;t relate to the key belong in their own table</li>
+<li>Tables shouldn&rsquo;t imply relationships that don&rsquo;t exist</li>
+<li><a href="http://en.wikipedia.org/wiki/Database_normalization">http://en.wikipedia.org/wiki/Database_normalization</a></li>
+<li><a href="http://www.bkent.net/Doc/simple5.htm">http://www.bkent.net/Doc/simple5.htm</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="a-name-sqlalchemy-a-sqlalchemy"><a name="sqlalchemy"></a>SQLAlchemy</h2>
+
+<h3 id="resources-6">Resources</h3>
+
+<ul>
+<li><a href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a></li>
+</ul>
+
+<hr />
+
+<h2 id="protocols">Protocols</h2>
+
+<p>Protocols are the &ldquo;gramatical rules&rdquo; that ensure that clients and servers (and
+really any computer on the internet) are communicating in the same way.</p>
+
+<ul>
+<li>Transmission Control Protocol (TCP)
+Enables info to be broken into small packets and sent.
+Counterpart is UDP (User Data Protocol) which is good for streaming</li>
+<li>Internet Protocol (IP)
+Like a postal address.  Can be static or dynamic.
+Computer looks up IP in a DNS (Domain Name Server)
+Uses the address to initiate communication
+Operating systems use Ports to designate channels of communication on the same
+IP address.  Can range from 0 to 65,536.  First 10K often reserved by OS.
+80 is most common.  8080 is often used for web communication.
+When client and server on the same machine, we use &ldquo;localhost&rdquo; which has the
+IP address 127.0.0.1</li>
+<li>Hypertext Transfer Protocol (HTTP, HTTP2?)
+Clients tell servers what they want using HTTP &ldquo;verbs&rdquo;
+Most common are GET and POST requests
+GETs are sometimes called safe methods
+Server replies to these requests with a Status Code.  Can also supply
+requested resources like HTML, CSS, JS, images, etc
+200: Successful GET
+301: Successful POST
+404: File not found</li>
+</ul>
+
+                </section>
+            </article>
+            <div class="post-meta clearfix">
+                <a href="http://www.getup8.com/about/">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="author">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    
+                <section class="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fresources%2fdev%2f - Python%20Development%20Setup "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/resources\/dev\/';
+    var disqus_title = 'Python Development Setup';
+    var disqus_url = 'http:\/\/www.getup8.com\/resources\/dev\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul class="post-list readmore">  
+    <h3>Read more</h3>
+
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/python-setup/'>
+                    <aside class="date">Nov 9</aside>
+                    <h1>Getting Setup for Python Development on Mac OS X</h1>
+                    <h2>Set up your Mac for easy Python development</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 19</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/blogging-in-hugo/'>
+                    <aside class="date">Aug 30</aside>
+                    <h1>Blogging in Hugo</h1>
+                    <h2>A guide to getting set up on Hugo and deploying to GitHub Pages.</h2>
+                </a>
+            </li>
+        
+    
+</ul>
+            <footer>
+    
+        <div class="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

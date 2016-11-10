@@ -1,0 +1,363 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Alex Scott">
+		<meta name="description" content="getup8 blog">
+		<meta name="generator" content="Hugo 0.17" />
+		<title>Lecture 18: Hash Tables and Heaps? &middot; GetUp8</title>
+		<link rel="shortcut icon" href="http://www.getup8.com/images/favicon.ico">
+		<link rel="stylesheet" href="http://www.getup8.com/css/style.css">
+		<link rel="stylesheet" href="http://www.getup8.com/css/highlight.css">
+		
+		<link rel="stylesheet" href="http://www.getup8.com/css/custom.css">
+		
+
+		
+		<link rel="stylesheet" href="http://www.getup8.com/fontawesome/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://www.getup8.com/index.xml" rel="alternate" type="application/rss+xml" title="GetUp8" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://www.getup8.com/'> <span class="arrow-left">←</span>Home</a>
+	
+
+	
+		<a href='http://www.getup8.com/about'>About</a>
+	
+
+	
+	<a class="button" href="http://www.getup8.com/index.xml">RSS Feed</a>
+	
+</nav>
+
+        <section class="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Lecture 18: Hash Tables and Heaps?</h1>
+                    <h2 class="headline">
+                    November 9, 2016 
+                    </h2>
+                    <h2 class="headline">
+                    
+                    
+                        
+                            <a href="http://www.getup8.com/tags/data-structures">data structures</a> |
+                        
+                    
+                    
+                    </h2>
+                </header>
+                <section class="post-body">
+                    
+
+<h2 id="hashing-in-java-standard-library">Hashing in Java Standard Library</h2>
+
+<p>In the <code>Object</code> class, there&rsquo;s a function called <code>hashCode()</code>, which applies
+a hash function to that object.  So when one inserts a Java object into some
+built-in hash table (<code>HashMap</code> or <code>HashSet</code>), they use that function or the
+overrides of that function.</p>
+
+<p>The <code>.equals()</code> method actually works via <code>hashCode()</code>.  So if two objects have
+the same hash code, that function will return true.</p>
+
+<p>Reversible vs. Non-reversible.  Non-reversible is good for security but doesn&rsquo;t
+concern us too much.</p>
+
+<p><code>String</code> evaluates to the ASCII code of the character(s).</p>
+
+<p>Integers and doubles and such will hash to the underlying number.</p>
+
+<p>When you do <code>System.out.print(Object)</code> that&rsquo;s the hash code that gets printed
+out.</p>
+
+<hr />
+
+<p>Let&rsquo;s say we&rsquo;re inserting new values into a hash table (Integers).</p>
+
+<p>Hash table itself will be an array where we&rsquo;ll store the values we&rsquo;re
+inserting.  We don&rsquo;t want this array to be that large so we don&rsquo;t want to
+create an array that could store any integer (based on its value).</p>
+
+<p>Operation:</p>
+
+<p><code>integer % tableSize</code></p>
+
+<p>You should pick prime numbers as the size.  You tend to get better spread with
+locations if you do that.  There are certain types of hash tables where this is
+actually <em>critical</em> for inserts to even happen.</p>
+
+<p>Often, for convenience and ease, we just assign a table size of 10 though.</p>
+
+<hr />
+
+<h2 id="an-example-of-a-hash-table">An Example of a Hash Table</h2>
+
+<p>Given an array of size 10 (so a hash table with size 10).</p>
+
+<ul>
+<li>Insert 0.  Goes to location 0.</li>
+<li>Insert 81.  Goes to location 1.  (<code>81 % 10 = 1</code>)</li>
+<li>Insert 1.  Try to go to 1 but we have a <em>collision</em>.</li>
+</ul>
+
+<p>Two types of collisions we have to worry about:</p>
+
+<ol>
+<li>If underlying hash function gives us the same hash code</li>
+<li>When the insertion position is already filled</li>
+</ol>
+
+<p>Different ways of dealing with this.</p>
+
+<h2 id="separate-chaining-methods">Separate Chaining Methods</h2>
+
+<p>With separate chaining, we can have a separate structure, like a <code>LinkedList</code>
+stored at each location in the array instead of a single value.</p>
+
+<p>So how efficient is this?</p>
+
+<ul>
+<li>Inserting is <em>O(1)</em> since inserting into a <code>LinkedList</code> is <em>O(1)</em>, as is the
+hash function.</li>
+<li>Searching via a <code>contains()</code> call could actually be <em>O(N)</em> if the hash
+function is terrible or the table is much too small.  We could instead
+implement a balanced (e.g. AVL) binary tree and the search would be
+<em>O(log N)</em> but then this would ruin our insertion time.</li>
+</ul>
+
+<p>There&rsquo;s a property of a hash table called the load factor.  It&rsquo;s the ratio of
+the number of elements in the table to the table size.</p>
+
+<p><code>loadFactor (lambda) = # of inserted elements / hash table size</code></p>
+
+<p>If we ensure the load factor of the hash table is no greater than 1, then we&rsquo;re
+pretty good to go.</p>
+
+<p>But that assumes:</p>
+
+<ol>
+<li>The hash function is good</li>
+<li>The table size is prime</li>
+<li>Something else maybe</li>
+</ol>
+
+<p>When that load factor gets too large, we want to <strong>rehash</strong> the table.</p>
+
+<ol>
+<li>Grow the size of the table (usually double it)</li>
+<li>Rehash all the elements (with the new hash function modulo) and insert
+ into the new table.  This is <em>O(N)</em>.</li>
+</ol>
+
+<p>So inserts into a hash table have the danger of causing a rehash.  There&rsquo;s this
+idea of amortized cost though when we look at the cost of this rehash on
+average across all inserts so it&rsquo;s not <em>that</em> expensive.  But it doesn&rsquo;t
+dismiss the fact that <em>one</em> insert is <em>O(N)</em> when the rehashing occurs.</p>
+
+<p>NOTE TO SELF.  See if I can get the 1004 class notes to learn some of the
+basics of computing.</p>
+
+<hr />
+
+<h2 id="open-addressing">Open Addressing</h2>
+
+<p>Only one element can be at any given location in the hash table.  An example
+of this is <strong>Linear Probing</strong>.</p>
+
+<p>So the load factor of these tables is never more than one.</p>
+
+<p>So what happens with a collision?  We need to find a new place for it since we
+can&rsquo;t just add to a list.  We need a deterministic way of inserting it so we
+can go back and find it when we search.</p>
+
+<h3 id="probing">Probing</h3>
+
+<p>Gives us a series of locations that we should try to insert/search in. These
+series are defined like:</p>
+
+<p><code>h0(x), h1(x), h2(x)...</code></p>
+
+<p>So the <em>ith</em> position can be calculated like:</p>
+
+<p><code>hi = (hash(x) + f(i)) % tableSize</code></p>
+
+<h3 id="linear-probing">Linear Probing</h3>
+
+<p>We have a linear function, usually just <code>f(i) = i</code> that we use to probe. This
+just means we go to the next position in the array until we find an open space.</p>
+
+<p><strong>Primary Clustering</strong> is an issue with this method.  You end up getting large
+clusters of the array that are filled and it slows down the operations a lot.
+You need to make sure:</p>
+
+<ol>
+<li>The load factor is less than 0.5 (rehash if it goes above this)</li>
+<li>You don&rsquo;t try to insert on a primary cluster</li>
+</ol>
+
+<p>So this isn&rsquo;t a great choice.  We want to spread things out more and avoid any
+clustering.</p>
+
+<p>If you remove an item completely and make a location empty, that breaks the
+contains check because we might stop searching at the empty position.  This is
+bad.  We have to do &ldquo;lazy&rdquo; deletion here, basically by leaving the value here
+and storing with a var whether its there or not (e.g. <code>isActive</code>).</p>
+
+<p>When you do a rehash though, you can discard all of these.</p>
+
+<h3 id="quadratic-probing">Quadratic Probing</h3>
+
+<p>Next class.</p>
+
+                </section>
+            </article>
+            <div class="post-meta clearfix">
+                <a href="http://www.getup8.com/about/">
+                        <img class="avatar" src="http://www.getup8.com/images/avatar.png">
+                        <div>
+                            <span class="author">Alex Scott</span>
+                            <span>If you&#39;re a nerd, I&#39;m a nerd.</span>
+                        </div>
+                    
+                <section class="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fwww.getup8.com%2fclasses%2fdata-structures%2flecture18%2f - Lecture%2018%3a%20Hash%20Tables%20and%20Heaps%3f "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'getup8';
+    var disqus_identifier = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture18\/';
+    var disqus_title = 'Lecture 18: Hash Tables and Heaps?';
+    var disqus_url = 'http:\/\/www.getup8.com\/classes\/data-structures\/lecture18\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul class="post-list readmore">  
+    <h3>Read more</h3>
+
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/python-setup/'>
+                    <aside class="date">Nov 9</aside>
+                    <h1>Getting Setup for Python Development on Mac OS X</h1>
+                    <h2>Set up your Mac for easy Python development</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/power_of_one_and_zero/'>
+                    <aside class="date">Oct 19</aside>
+                    <h1>The Power of One (and Zero)</h1>
+                    <h2>How simple binary tracking of a task can be a huge motivator, especially with a little competition.</h2>
+                </a>
+            </li>
+        
+    
+
+    
+        
+            <li>
+                <a href='http://www.getup8.com/post/blogging-in-hugo/'>
+                    <aside class="date">Aug 30</aside>
+                    <h1>Blogging in Hugo</h1>
+                    <h2>A guide to getting set up on Hugo and deploying to GitHub Pages.</h2>
+                </a>
+            </li>
+        
+    
+</ul>
+            <footer>
+    
+        <div class="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/alexscott">
+        <i class="fa fa-facebook"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/getup8">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://instagram.com/getup8">
+        <i class="fa fa-instagram"></i>
+    </a>
+    
+    <a class="symbol" href="https://medium.com/@getup8">
+        <i class="fa fa-medium"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/@getup8">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2016 Alex Scott
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://www.getup8.com/js/main.js"></script>
+<script src="http://www.getup8.com/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83538021-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+</html>

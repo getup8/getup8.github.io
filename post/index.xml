@@ -1,13 +1,173 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on GetUp8</title>
-    <link>http://www.getup8.com/post/</link>
-    <description>Recent content in Posts on GetUp8</description>
+    <title>Post-rsses on GetUp8</title>
+    <link>http://www.getup8.com/post/index.xml</link>
+    <description>Recent content in Post-rsses on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Oct 2016 23:40:37 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 09 Nov 2016 17:42:21 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting Setup for Python Development on Mac OS X</title>
+      <link>http://www.getup8.com/post/python-setup/</link>
+      <pubDate>Wed, 09 Nov 2016 17:42:21 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/post/python-setup/</guid>
+      <description>
+
+&lt;p&gt;This is a short guide to get properly set up with Python, virtual environments
+and git on your Mac (I&amp;rsquo;m on 10.10).  Heavily inspired by &lt;a href=&#34;https://hackercodex.com/guide/mac-osx-mavericks-10.9-configuration/&#34;&gt;these&lt;/a&gt;
+great &lt;a href=&#34;https://hackercodex.com/guide/python-development-environment-on-mac-osx/&#34;&gt;tutorials&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;initial-setup&#34;&gt;Initial Setup&lt;/h2&gt;
+
+&lt;p&gt;First install &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt;.  It&amp;rsquo;s a great package manager for
+OS X and we&amp;rsquo;ll use it to install Python (and keep it updated in the future).&lt;/p&gt;
+
+&lt;p&gt;In a terminal, enter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-python&#34;&gt;Install Python&lt;/h2&gt;
+
+&lt;p&gt;If all went well with the Homebrew installation, we can now use it to install
+Python.  While Macs come with Python installed already, it&amp;rsquo;s a better
+practice to install a fresh version outside the OS.  It&amp;rsquo;s good to install both
+Python 2 and Python 3 although if you know you&amp;rsquo;re only going to use one for all
+your development, feel free to just install that one.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Install python 2.x
+brew install python
+
+# Install python 3.x
+brew install python3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;version-control-install-git&#34;&gt;Version Control: Install Git&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;re planning on using &lt;code&gt;git&lt;/code&gt; (if you&amp;rsquo;re not, you should be) and don&amp;rsquo;t
+already have it installed, you can also install via Homebrew.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don&amp;rsquo;t cover &lt;code&gt;git&lt;/code&gt; in this post (yet) but there&amp;rsquo;s a ton of good documentation
+out there on how to get started with it.  Initially, just take a look at the
+&lt;a href=&#34;https://git-scm.com/doc&#34;&gt;official docs&lt;/a&gt; if you&amp;rsquo;re just getting started.&lt;/p&gt;
+
+&lt;h2 id=&#34;virtual-environments&#34;&gt;Virtual Environments&lt;/h2&gt;
+
+&lt;p&gt;Virtual environments allow you to create isolated environments on your
+computer where you can install whatever packages you&amp;rsquo;d like and not have them
+interfere with global packages (and vice versa) or other virtual environments.&lt;/p&gt;
+
+&lt;p&gt;I would say they are mandatory for Python development so download the below
+and learn how to use them!&lt;/p&gt;
+
+&lt;p&gt;You can read more about &lt;code&gt;pip&lt;/code&gt; in the &lt;a href=&#34;https://pip.pypa.io/en/stable/&#34;&gt;docs&lt;/a&gt; but
+essentially it&amp;rsquo;s the defacto Python package manager / installer and pretty
+simple to use.  In case you&amp;rsquo;re curious, Homebrew installed &lt;code&gt;pip&lt;/code&gt; when it
+installed &lt;code&gt;python&lt;/code&gt; so it should be on your machine, ready to use.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# First download virtualenv, the main package to create and manage
+# virtual environments for Python
+pip install virtualenv
+
+# Next install some extra tooling that makes creating and managing
+# projects even easier
+pip install virtualenvwrapper
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;setting-up-virtual-environments&#34;&gt;Setting Up Virtual Environments&lt;/h2&gt;
+
+&lt;p&gt;First, you probably should read the &lt;code&gt;virtualenv&lt;/code&gt; &lt;a href=&#34;https://virtualenv.pypa.io/en/stable/&#34;&gt;docs&lt;/a&gt;
+and &lt;code&gt;virtualenvwrapper&lt;/code&gt; &lt;a href=&#34;https://virtualenvwrapper.readthedocs.io/en/latest/install.html&#34;&gt;docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You need to set some locations for where you want to store your virtual
+environment source (the Python packages and such that you install) and the
+actual project folder and files.  Do this via some additional variables in
+&lt;code&gt;~/.bash_profile&lt;/code&gt; or &lt;code&gt;~/.bashrc&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Feel free to change the &lt;code&gt;code&lt;/code&gt; folder and that path to wherever you want to
+store your code.  This directory should be created if it doesn&amp;rsquo;t already exist.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Settings for python virtualenvwrapper
+export WORKON_HOME=$HOME/virtualenvs  # virtualenv source / packages
+export PROJECT_HOME=$HOME/code  # project code directory
+source /usr/local/bin/virtualenvwrapper.sh  # path to shell script
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Again, read the documentation, it&amp;rsquo;s well worth it.&lt;/p&gt;
+
+&lt;h2 id=&#34;restricting-pip-to-virtual-environments&#34;&gt;Restricting &lt;code&gt;pip&lt;/code&gt; to Virtual Environments&lt;/h2&gt;
+
+&lt;p&gt;There will definitely be times when you think you&amp;rsquo;re in a virtual environment
+and you want to install a package within that environment only but then lo and
+behold you realize you just installed something globally.&lt;/p&gt;
+
+&lt;p&gt;To prevent such muck ups, it&amp;rsquo;s wise to add a little safety check. This is
+definitely optional but I find it very helpful to (1) keep me from installing
+anything globally that I didn&amp;rsquo;t mean to and (2) let me know when a virtual
+environment isn&amp;rsquo;t activated (and I thought it was).&lt;/p&gt;
+
+&lt;p&gt;Go to your base directory and in either &lt;code&gt;.bash_profile&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt;, add the
+following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Only allow pip commands if within a virtual environment
+export PIP_REQUIRE_VIRTUALENV=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So what if you actually do want to install something at the global level?  You
+can just set &lt;code&gt;PIP_REQUIRE_VIRTUALENV&lt;/code&gt; to an empty string.  To make life
+easier, you can create a shortcut for that, also within &lt;code&gt;.bash_profile&lt;/code&gt; or
+&lt;code&gt;.bashrc&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Provide alias `gpip` to install python packages outside a virtualenv
+gpip(){
+   PIP_REQUIRE_VIRTUALENV=&amp;quot;&amp;quot; pip &amp;quot;$@&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, for example, &lt;code&gt;gpip install virtualenv&lt;/code&gt; would install the package globally
+outside a virtual environment.&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-a-project-and-virtual-environment&#34;&gt;Creating a Project and Virtual Environment&lt;/h2&gt;
+
+&lt;p&gt;We use commands from &lt;code&gt;virtualenvwrapper&lt;/code&gt; to create new Python projects. The
+&lt;code&gt;mkproject&lt;/code&gt; command is super useful because it does several things at once:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Make the virtual environment directory&lt;/li&gt;
+&lt;li&gt;Make a project directory&lt;/li&gt;
+&lt;li&gt;Move into that project directory&lt;/li&gt;
+&lt;li&gt;Activate the virtual environment&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Sweet!&lt;/p&gt;
+
+&lt;p&gt;Also, note the &lt;code&gt;-p&lt;/code&gt; argument we specify to use Python3 within the environment.
+This is super important if you&amp;rsquo;re going to be coding in and using Python3.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;# Create virtualenv project with Python3
+mkproject -p python3 mycoolproject
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You&amp;rsquo;re all set!  You can now install any packages you need and start developing
+projects, all in the inner sanctum of the virtual environment.&lt;/p&gt;
+
+&lt;p&gt;For instance, just &lt;code&gt;pip install django&lt;/code&gt; and you&amp;rsquo;re ready to start hacking away
+on a new web project.&lt;/p&gt;
+
+&lt;p&gt;If you ever need to get back into that virtual environment, all you do is type
+&lt;code&gt;workon mycoolproject&lt;/code&gt; and you&amp;rsquo;ll be transported to your code folder with an
+activated virtualenv.&lt;/p&gt;
+
+&lt;p&gt;Hope this was useful and let me know if you have any issues.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The Power of One (and Zero)</title>

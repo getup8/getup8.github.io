@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Abouts on GetUp8</title>
-    <link>http://www.getup8.com/about/</link>
-    <description>Recent content in Abouts on GetUp8</description>
+    <title>About-rsses on GetUp8</title>
+    <link>http://www.getup8.com/about/index.xml</link>
+    <description>Recent content in About-rsses on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 01 Sep 2016 22:28:43 -0400</lastBuildDate>

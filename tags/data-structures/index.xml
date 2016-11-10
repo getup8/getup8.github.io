@@ -1,13 +1,248 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>data structures on GetUp8</title>
-    <link>http://www.getup8.com/tags/data-structures/</link>
-    <description>Recent content in data structures on GetUp8</description>
+    <title>GetUp8</title>
+    <link>http://www.getup8.com/tags/data-structures/index.xml</link>
+    <description>Recent content on GetUp8</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Oct 2016 22:36:00 -0400</lastBuildDate>
     <atom:link href="http://www.getup8.com/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lecture 18: Hash Tables and Heaps?</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture18/</link>
+      <pubDate>Wed, 09 Nov 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture18/</guid>
+      <description>
+
+&lt;h2 id=&#34;hashing-in-java-standard-library&#34;&gt;Hashing in Java Standard Library&lt;/h2&gt;
+
+&lt;p&gt;In the &lt;code&gt;Object&lt;/code&gt; class, there&amp;rsquo;s a function called &lt;code&gt;hashCode()&lt;/code&gt;, which applies
+a hash function to that object.  So when one inserts a Java object into some
+built-in hash table (&lt;code&gt;HashMap&lt;/code&gt; or &lt;code&gt;HashSet&lt;/code&gt;), they use that function or the
+overrides of that function.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;.equals()&lt;/code&gt; method actually works via &lt;code&gt;hashCode()&lt;/code&gt;.  So if two objects have
+the same hash code, that function will return true.&lt;/p&gt;
+
+&lt;p&gt;Reversible vs. Non-reversible.  Non-reversible is good for security but doesn&amp;rsquo;t
+concern us too much.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;String&lt;/code&gt; evaluates to the ASCII code of the character(s).&lt;/p&gt;
+
+&lt;p&gt;Integers and doubles and such will hash to the underlying number.&lt;/p&gt;
+
+&lt;p&gt;When you do &lt;code&gt;System.out.print(Object)&lt;/code&gt; that&amp;rsquo;s the hash code that gets printed
+out.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we&amp;rsquo;re inserting new values into a hash table (Integers).&lt;/p&gt;
+
+&lt;p&gt;Hash table itself will be an array where we&amp;rsquo;ll store the values we&amp;rsquo;re
+inserting.  We don&amp;rsquo;t want this array to be that large so we don&amp;rsquo;t want to
+create an array that could store any integer (based on its value).&lt;/p&gt;
+
+&lt;p&gt;Operation:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;integer % tableSize&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should pick prime numbers as the size.  You tend to get better spread with
+locations if you do that.  There are certain types of hash tables where this is
+actually &lt;em&gt;critical&lt;/em&gt; for inserts to even happen.&lt;/p&gt;
+
+&lt;p&gt;Often, for convenience and ease, we just assign a table size of 10 though.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;an-example-of-a-hash-table&#34;&gt;An Example of a Hash Table&lt;/h2&gt;
+
+&lt;p&gt;Given an array of size 10 (so a hash table with size 10).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Insert 0.  Goes to location 0.&lt;/li&gt;
+&lt;li&gt;Insert 81.  Goes to location 1.  (&lt;code&gt;81 % 10 = 1&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Insert 1.  Try to go to 1 but we have a &lt;em&gt;collision&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Two types of collisions we have to worry about:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If underlying hash function gives us the same hash code&lt;/li&gt;
+&lt;li&gt;When the insertion position is already filled&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Different ways of dealing with this.&lt;/p&gt;
+
+&lt;h2 id=&#34;separate-chaining-methods&#34;&gt;Separate Chaining Methods&lt;/h2&gt;
+
+&lt;p&gt;With separate chaining, we can have a separate structure, like a &lt;code&gt;LinkedList&lt;/code&gt;
+stored at each location in the array instead of a single value.&lt;/p&gt;
+
+&lt;p&gt;So how efficient is this?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Inserting is &lt;em&gt;O(1)&lt;/em&gt; since inserting into a &lt;code&gt;LinkedList&lt;/code&gt; is &lt;em&gt;O(1)&lt;/em&gt;, as is the
+hash function.&lt;/li&gt;
+&lt;li&gt;Searching via a &lt;code&gt;contains()&lt;/code&gt; call could actually be &lt;em&gt;O(N)&lt;/em&gt; if the hash
+function is terrible or the table is much too small.  We could instead
+implement a balanced (e.g. AVL) binary tree and the search would be
+&lt;em&gt;O(log N)&lt;/em&gt; but then this would ruin our insertion time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There&amp;rsquo;s a property of a hash table called the load factor.  It&amp;rsquo;s the ratio of
+the number of elements in the table to the table size.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;loadFactor (lambda) = # of inserted elements / hash table size&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If we ensure the load factor of the hash table is no greater than 1, then we&amp;rsquo;re
+pretty good to go.&lt;/p&gt;
+
+&lt;p&gt;But that assumes:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The hash function is good&lt;/li&gt;
+&lt;li&gt;The table size is prime&lt;/li&gt;
+&lt;li&gt;Something else maybe&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;When that load factor gets too large, we want to &lt;strong&gt;rehash&lt;/strong&gt; the table.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Grow the size of the table (usually double it)&lt;/li&gt;
+&lt;li&gt;Rehash all the elements (with the new hash function modulo) and insert
+ into the new table.  This is &lt;em&gt;O(N)&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So inserts into a hash table have the danger of causing a rehash.  There&amp;rsquo;s this
+idea of amortized cost though when we look at the cost of this rehash on
+average across all inserts so it&amp;rsquo;s not &lt;em&gt;that&lt;/em&gt; expensive.  But it doesn&amp;rsquo;t
+dismiss the fact that &lt;em&gt;one&lt;/em&gt; insert is &lt;em&gt;O(N)&lt;/em&gt; when the rehashing occurs.&lt;/p&gt;
+
+&lt;p&gt;NOTE TO SELF.  See if I can get the 1004 class notes to learn some of the
+basics of computing.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;open-addressing&#34;&gt;Open Addressing&lt;/h2&gt;
+
+&lt;p&gt;Only one element can be at any given location in the hash table.  An example
+of this is &lt;strong&gt;Linear Probing&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;So the load factor of these tables is never more than one.&lt;/p&gt;
+
+&lt;p&gt;So what happens with a collision?  We need to find a new place for it since we
+can&amp;rsquo;t just add to a list.  We need a deterministic way of inserting it so we
+can go back and find it when we search.&lt;/p&gt;
+
+&lt;h3 id=&#34;probing&#34;&gt;Probing&lt;/h3&gt;
+
+&lt;p&gt;Gives us a series of locations that we should try to insert/search in. These
+series are defined like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;h0(x), h1(x), h2(x)...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So the &lt;em&gt;ith&lt;/em&gt; position can be calculated like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;hi = (hash(x) + f(i)) % tableSize&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;linear-probing&#34;&gt;Linear Probing&lt;/h3&gt;
+
+&lt;p&gt;We have a linear function, usually just &lt;code&gt;f(i) = i&lt;/code&gt; that we use to probe. This
+just means we go to the next position in the array until we find an open space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Primary Clustering&lt;/strong&gt; is an issue with this method.  You end up getting large
+clusters of the array that are filled and it slows down the operations a lot.
+You need to make sure:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The load factor is less than 0.5 (rehash if it goes above this)&lt;/li&gt;
+&lt;li&gt;You don&amp;rsquo;t try to insert on a primary cluster&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So this isn&amp;rsquo;t a great choice.  We want to spread things out more and avoid any
+clustering.&lt;/p&gt;
+
+&lt;p&gt;If you remove an item completely and make a location empty, that breaks the
+contains check because we might stop searching at the empty position.  This is
+bad.  We have to do &amp;ldquo;lazy&amp;rdquo; deletion here, basically by leaving the value here
+and storing with a var whether its there or not (e.g. &lt;code&gt;isActive&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;When you do a rehash though, you can discard all of these.&lt;/p&gt;
+
+&lt;h3 id=&#34;quadratic-probing&#34;&gt;Quadratic Probing&lt;/h3&gt;
+
+&lt;p&gt;Next class.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lecture 17: Hmmmm</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture17/</link>
+      <pubDate>Wed, 02 Nov 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture17/</guid>
+      <description>&lt;p&gt;Not sure what we discussed here.  Midterm again?  AVL Tree code.  And just
+started on Hash Tables at the very end.  Look at the other class&amp;rsquo;s notes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lecture 16: Midterm Test Review</title>
+      <link>http://www.getup8.com/classes/data-structures/lecture16/</link>
+      <pubDate>Mon, 31 Oct 2016 22:36:00 -0400</pubDate>
+      
+      <guid>http://www.getup8.com/classes/data-structures/lecture16/</guid>
+      <description>
+
+&lt;h2 id=&#34;problem-1-induction-proof&#34;&gt;Problem 1: Induction Proof&lt;/h2&gt;
+
+&lt;p&gt;Base case:&lt;/p&gt;
+
+&lt;p&gt;Is one node a perfect binary tree?  Yes.  1 node.  Is it odd?  Yes.&lt;/p&gt;
+
+&lt;p&gt;Assume this holds true for values k = 1 to N.&lt;/p&gt;
+
+&lt;p&gt;You need to add a full row of nodes at the bottom.  So we need to add twice
+the number of elements, an even number.&lt;/p&gt;
+
+&lt;p&gt;So you&amp;rsquo;d have an odd number plus an even number; an&lt;/p&gt;
+
+&lt;h2 id=&#34;problem-2&#34;&gt;Problem 2&lt;/h2&gt;
+
+&lt;p&gt;a. Binary search, searching a well balanced binary tree
+b. &amp;hellip;
+c. Popping from a stack, assigning to head in LinkedList
+d. Towers of Hanoi and Fibonnaci recursively&lt;/p&gt;
+
+&lt;h2 id=&#34;problem-3&#34;&gt;Problem 3&lt;/h2&gt;
+
+&lt;p&gt;Stack. Straightforward.&lt;/p&gt;
+
+&lt;h2 id=&#34;problem-4&#34;&gt;Problem 4&lt;/h2&gt;
+
+&lt;p&gt;Given postorder traversal or tree and inorder traversal, uniquely reconstruct
+the tree.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Root has to be the &lt;code&gt;A&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Locate that node in the inorder traversal and realize that all nodes to the
+left are on the left side of the tree. Same for those on the right.&lt;/li&gt;
+&lt;li&gt;Look at the postorder for those on the left and you can find the root&lt;/li&gt;
+&lt;li&gt;Do the same for the right&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;problem-5&#34;&gt;Problem 5&lt;/h2&gt;
+
+&lt;p&gt;Pretty much 100% correct.  Didn&amp;rsquo;t really need to check if both left and right
+are null, can leave that out.&lt;/p&gt;
+
+&lt;h2 id=&#34;problem-6&#34;&gt;Problem 6&lt;/h2&gt;
+
+&lt;h2 id=&#34;problem-7&#34;&gt;Problem 7&lt;/h2&gt;
+</description>
+    </item>
     
     <item>
       <title>Lecture 14: Midterm Review</title>
